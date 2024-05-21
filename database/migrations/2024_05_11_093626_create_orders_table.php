@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('order_status')->default(0)->change();
             $table->integer('payment_status')->default(0);
             $table->double('transport_fee');
-            $table->string('note')->nullable();
+            $table->integer('status');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('payment_id')->references('id')->on('payments');

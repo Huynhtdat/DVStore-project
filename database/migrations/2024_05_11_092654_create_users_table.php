@@ -19,11 +19,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone_number');
             $table->bigInteger('role_id')->unsigned();
-            $table->integer('active')->default(1);
+            $table->integer('status')->default(1);
             $table->string('disable_reason')->nullable();
-            $table->integer('created_by')->nullable();
-            $table->integer('updated_by')->nullable();
-            $table->integer('deleted_by')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
             $table->softDeletes();

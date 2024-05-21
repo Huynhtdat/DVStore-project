@@ -16,6 +16,7 @@ return new class extends Migration
             $table->char('name', 100);
             $table->integer('parent_id');
             $table->string('slug');
+            $table->integer('status')->default(1);;
             $table->timestamps();
             $table->softDeletes();
         });
