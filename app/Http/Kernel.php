@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
@@ -54,14 +54,19 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.admin' => \App\Http\Middleware\AdminAuthenticate::class,
+        'auth.admin_author' => \App\Http\Middleware\AdminAuthorizations::class,
+        'auth.user' => \App\Http\Middleware\UserAuthenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin.verified' => \App\Http\Middleware\AdminEnsureEmailIsVerified::class,
+        'maintenance' => \App\Http\Middleware\Maintenance::class,
+        'maintenance_active' => \App\Http\Middleware\MaintenanceActive::class,
     ];
 }

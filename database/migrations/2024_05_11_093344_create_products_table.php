@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('name', 100);
             $table->double('price_import');
             $table->double('price_sell');
-            $table->string('image');
+            $table->string('img');
             $table->json('detail_images')->nullable();
             $table->text('description')->change();
             $table->integer('status')->default(1);

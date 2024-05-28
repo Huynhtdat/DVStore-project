@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::middleware(['maintenance'])->group(function () {
+    // Route::get('/', [HomeController::class, "index"])->name('user.home');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('user.home');
 });

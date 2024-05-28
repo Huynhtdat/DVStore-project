@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -61,6 +65,11 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
@@ -93,6 +102,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admin' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
@@ -105,6 +120,16 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
+
+    'verification' => [
+        'expire' => [
+            'default' => 60,
+            'resend' => 60,
+            'create_by_another' => 60,
+            'update_by_another' => 60,
+            'change_by_self' => 60,
+        ]
+    ],
 
     'password_timeout' => 10800,
 
