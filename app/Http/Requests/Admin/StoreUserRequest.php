@@ -36,7 +36,7 @@ class StoreUserRequest extends FormRequest
                 'regex:/[0-9]/',
                 'regex:/[@$!%*#?&]/',
             ],
-            'phone_number' => 'required|min:11|max:12',
+            'phone_number' => 'required|min:10|max:11',
             'city' => 'required',
             'district' => 'required',
             'ward' => 'required',
@@ -50,24 +50,25 @@ class StoreUserRequest extends FormRequest
      * @return array
      */
     public function messages()
-    {
-        return [
-            'name.required' => __('message.required', ['attribute' => 'họ và tên']),
-            'name.max' => __('message.max', ['attribute' => 'Họ và tên']),
-            'name.min' => __('message.min', ['attribute' => 'Họ và tên']),
-            'phone_number.required' => __('message.required', ['attribute' => 'số điện thoại']),
-            'phone_number.min' => __('message.required', ['attribute' => 'số điện thoại']),
-            'phone_number.max' => __('message.min_max_length', ['attribute' => 'số điện thoại']),
-            'city.required' => __('message.required', ['attribute' => 'tỉnh, thành phố']),
-            'district.required' => __('message.required', ['attribute' => 'quận, huyện']),
-            'ward.required' => __('message.required', ['attribute' => 'phường, xã']),
-            'apartment_number.required' => __('message.required', ['attribute' => 'số nhà']),
-            'password.required' => __('message.required', ['attribute' => 'mật khẩu']),
-            'password.min' => __('message.password_invalidator', ['attribute' => 'mật khẩu']),
-            'password.max' => __('message.password_invalidator', ['attribute' => 'mật khẩu']),
-            'password.regex' => __('message.password_invalidator', ['attribute' => 'Mật khẩu']),
-            'email.unique' => __('message.unique', ['attribute' => 'Email']),
-            'email.email' => __('message.email'),
-        ];
-    }
+{
+    return [
+        'name.required' => 'Vui lòng nhập họ và tên',
+        'name.max' => 'Họ và tên không được dài quá 24 ký tự',
+        'name.min' => 'Họ và tên phải có ít nhất 1 ký tự',
+        'phone_number.required' => 'Vui lòng nhập số điện thoại',
+        'phone_number.min' => 'Số điện thoại phải có ít nhất 10 ký tự',
+        'phone_number.max' => 'Số điện thoại không được dài quá 10 ký tự',
+        'city.required' => 'Vui lòng nhập tỉnh, thành phố',
+        'district.required' => 'Vui lòng nhập quận, huyện',
+        'ward.required' => 'Vui lòng nhập phường, xã',
+        'apartment_number.required' => 'Vui lòng nhập số nhà',
+        'password.required' => 'Vui lòng nhập mật khẩu',
+        'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
+        'password.max' => 'Mật khẩu không được dài quá 24 ký tự',
+        'password.regex' => 'Mật khẩu bao gồm từ 8 - 24 ký tự, ít nhất một chữ cái in hoa, một chữ cái in thường, một số và một ký tự đặc biệt (%, #, @, _, \\, -)',
+        'email.unique' => 'Email này đã được sử dụng',
+        'email.email' => 'Địa chỉ email không hợp lệ',
+    ];
+}
+
 }

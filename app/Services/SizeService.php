@@ -105,9 +105,9 @@ class SizeService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên kích thước']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên kích thước']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên kích thước']),
+                    'required' => "Vui lòng nhập tên size",
+                    'minlength' => "Tên size có tối thiểu 1 ký tự",
+                    'maxlength' => "tên size có tối đa 100 ký tự",
                 ],
             ];
 
@@ -171,9 +171,9 @@ class SizeService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên kích thước']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên kích thước']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên kích thước']),
+                    'required' => "Vui lòng nhập tên size",
+                    'minlength' => "Tên size có tối thiểu 1 ký tự",
+                    'maxlength' => "tên size có tối đa 100 ký tự",
                 ],
             ];
 

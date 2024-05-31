@@ -109,9 +109,9 @@ class CategoryService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'tên danh mục']),
+                    'required' => "Vui lòng nhập tên danh mục",
+                    'minlength' => "Tên danh mục có tối thiểu 1 ký tự",
+                    'maxlength' => "tên danh mục có tối đa 100 ký tự",
                 ],
             ];
 
@@ -183,9 +183,9 @@ class CategoryService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên danh mục']),
+                    'required' => "Vui lòng nhập tên danh mục",
+                    'minlength' => "Tên danh mục có tối thiểu 1 ký tự",
+                    'maxlength' => "tên danh mục có tối đa 100 ký tự",
                 ],
             ];
 

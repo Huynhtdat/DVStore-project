@@ -134,30 +134,30 @@ class ProfileService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Họ và tên']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Họ và tên']),
-                    'maxlength' => __('message.max', ['max' => 30, 'attribute' => 'Họ và tên']),
+                    'required' => "Vui lòng nhập họ và tên",
+                    'minlength' => "Họ và tên có tối thiểu 1 ký tự",
+                    'maxlength' => "Họ và tên có tối đa 100 ký tự ",
                 ],
                 'email' => [
-                    'required' => __('message.required', ['attribute' => 'email']),
-                    'email' => __('message.email'),
+                    'required' => "Vui lòng nhập địa chỉ email",
+                    'email' => "Địa chỉ email này không hợp lệ",
                 ],
                 'phone_number' => [
-                    'required' => __('message.required', ['attribute' => 'số điện thoại']),
-                    'minlength' => __('message.min', ['attribute' => 'số điện thoại', 'min' => 10]),
-                    'maxlength' => __('message.max', ['attribute' => 'số điện thoại', 'max' => 10]),
+                    'required' => "Vui lòng nhập số điện thoại",
+                    'minlength' => "Số điện thoại có tối thiểu 10 ký tự",
+                    'maxlength' => "Số điện thoại có tối đa 10 ký tự",
                 ],
                 'city' => [
-                    'required' =>  __('message.required', ['attribute' => 'tỉnh, thành phố']),
+                    'required' =>  "Vui lòng nhập tỉnh, thành phố",
                 ],
                 'district' =>[
-                    'required' =>  __('message.required', ['attribute' => 'quận, huyện']),
+                    'required' =>  "Vui lòng nhập quận, huyện",
                 ],
                 'ward' => [
-                    'required' => __('message.required', ['attribute' => 'phường, xã']),
+                    'required' => "Vui lòng nhập phường, xã",
                 ],
                 'apartment_number' => [
-                    'required' =>  __('message.required', ['attribute' => 'số nhà']),
+                    'required' =>  "Vui lòng nhập số nhà",
                 ],
 
             ];
@@ -277,16 +277,16 @@ class ProfileService
             // Messages eror rules
             $messages = [
                 'current_password' => [
-                    'required' => __('message.required', ['attribute' => 'mật khẩu hiện tại']),
+                    'required' => "Nhập mật khẩu hiện tại ",
                 ],
                 'new_password' => [
-                    'required' => __('message.required', ['attribute' => 'mật khẩu mới']),
-                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu mới', 'min' => 8]),
-                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu mới', 'max' => 24]),
-                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
-                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
-                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
-                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                    'required' => "Nhập mật khẩu mới",
+                    'minlength' => "Mật khẩu có tối thiểu 8 ký tự",
+                    'maxlength' => "Mật khẩu có tối đa 24 ký tự",
+                    'checklower' => "Mật khẩu có chứa ít nhất 1 chữ cái in thường",
+                    'checkupper' => "Mật khẩu có chứa ít nhất 1 chữ cái in hoa",
+                    'checkdigit' => "Mật khẩu có chứa ít nhất 1 chữ số",
+                    'checkspecialcharacter' => "Mật khẩu phải chứa ít nhất 1 kí tự đặc biệt (%, #, @, _, /, -)",
                 ],
                 'confirm_password' => [
                     'equalTo' => 'Xác nhận mật khẩu không trùng khớp',

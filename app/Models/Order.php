@@ -29,9 +29,8 @@ class Order extends Model
         'payment_id',
         'user_id',
         'total_money',
-        'order_status',
+        'status',
         'transport_fee',
-        'note',
         'payment_status',
     ];
 

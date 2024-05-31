@@ -32,9 +32,9 @@ class StoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('message.required', ['attribute' => 'Tên danh mục']),
-            'name.max' => __('message.max', ['attribute' => 'Tên danh mục']),
-            'name.min' => __('message.min', ['attribute' => 'Tên danh mục']),
+            'name.required' => "Vui lòng nhập tên danh mục",
+            'name.max' => "Tên danh mục có tối đa 100 ký tự",
+            'name.min' => "Tên danh mục có tối thiểu 1 ký tự",
         ];
     }
 }

@@ -25,7 +25,6 @@ class ProductColor extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'img',
         'color_id',
         'product_id',
     ];

@@ -13,11 +13,11 @@
           @if (isset($field['list']))
             @foreach ($field['list'] as $option)
                 <option value="{{$option['value']}}"
-                @if (old($field['attribute']))
-                  @php if (old($field['attribute']) == $option['value']) echo "selected"; @endphp
-                @elseif(isset($field['value']))
-                  @php if ($field['value'] == $option['value']) echo "selected"; @endphp
-                @endif
+                    @if (old($field['attribute']))
+                        @php if (old($field['attribute']) == $option['value']) echo "selected"; @endphp
+                    @elseif(isset($field['value']))
+                        @php if ($field['value'] == $option['value']) echo "selected"; @endphp
+                    @endif
                 >{{$option['text']}}</option>
             @endforeach
           @endif

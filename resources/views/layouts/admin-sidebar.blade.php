@@ -143,7 +143,7 @@
                 </a>
               </li>
               {{-- nếu người dùng đang đăng nhập là quản trị viên thì hiển thị chức năng này --}}
-              {{-- @if (Auth::guard('admin')->user()->role_id == 1)
+              @if (Auth::guard('admin')->user()->role_id == 1)
               <li class="nav-item">
                 @php
                     $isRouteUser = request()->is('admin/payments*');
@@ -155,8 +155,8 @@
                   </p>
                 </a>
               </li>
-              @endif --}}
-              {{-- <li class="nav-item">
+              @endif
+              <li class="nav-item">
                 @php
                     $isRouteUser = request()->is('admin/orders*');
                 @endphp
@@ -166,7 +166,7 @@
                     {{ TextLayoutSidebar("order") }}
                   </p>
                 </a>
-              </li> --}}
+              </li>
               {{-- @if (Auth::guard('admin')->user()->role_id == 1)
                 <li class="nav-item">
                   @php

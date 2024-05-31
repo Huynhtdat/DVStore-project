@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProductColorRequest;
 use App\Http\Requests\Admin\StoreProductRequest;
-use App\Http\Requests\Admin\StoreSizeProductRequest;
+use App\Http\Requests\Admin\StoreProductSizeRequest;
 use App\Http\Requests\Admin\UpdateProductColorRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
-use App\Http\Requests\Admin\UpdateSizeProductRequest;
+use App\Http\Requests\Admin\UpdateProductSizeRequest;
 use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\ProductSize;
@@ -63,63 +63,63 @@ class ProductController extends Controller
         return response()->json($this->productService->getCategoryByParent($request), 200);
     }
 
-    // public function createColor(Product $product)
-    // {
-    //     return view('admin.product.color', $this->productService->createColor($product));
-    // }
+    public function createColor(Product $product)
+    {
+        return view('admin.product.color', $this->productService->createColor($product));
+    }
 
-    // public function storeColor(StoreProductColorRequest $request, Product $product)
-    // {
-    //    return $this->productService->storeColor($request, $product);
-    // }
+    public function storeColor(StoreProductColorRequest $request, Product $product)
+    {
+       return $this->productService->storeColor($request, $product);
+    }
 
-    // public function editColor(ProductColor $productColor)
-    // {
-    //     return $this->productService->editColor($productColor);
-    // }
+    public function editColor(ProductColor $productColor)
+    {
+        return $this->productService->editColor($productColor);
+    }
 
-    // public function updateColor(UpdateProductColorRequest $request, ProductColor $productColor)
-    // {
-    //     return $this->productService->updateColor($request, $productColor);
-    // }
+    public function updateColor(UpdateProductColorRequest $request, ProductColor $productColor)
+    {
+        return $this->productService->updateColor($request, $productColor);
+    }
 
-    // public function deleteColor(ProductColor $productColor)
-    // {
-    //     return $this->productService->deleteColor($productColor);
-    // }
+    public function deleteColor(ProductColor $productColor)
+    {
+        return $this->productService->deleteColor($productColor);
+    }
 
-    // public function createSize(Product $product)
-    // {
-    //     return view('admin.product.size', $this->productService->createSize($product));
-    // }
+    public function createSize(Product $product)
+    {
+        return view('admin.product.size', $this->productService->createSize($product));
+    }
 
-    // public function getSizeByProductColor(Request $request)
-    // {
-    //     return $this->productService->getSizeByProductColor($request);
-    // }
+    public function getSizeByProductColor(Request $request)
+    {
+        return $this->productService->getSizeByProductColor($request);
+    }
 
-    // public function getSizeByProductColorEdit(ProductSize $productSize)
-    // {
-    //     return $this->productService->getSizeByProductColorEdit($productSize);
-    // }
+    public function getSizeByProductColorEdit(ProductSize $productSize)
+    {
+        return $this->productService->getSizeByProductColorEdit($productSize);
+    }
 
-    // public function storeSizeProduct(StoreSizeProductRequest $request, Product $product)
-    // {
-    //     return $this->productService->storeSizeProduct($request, $product);
-    // }
+    public function storeSizeProduct(StoreProductSizeRequest $request, Product $product)
+    {
+        return $this->productService->storeSizeProduct($request, $product);
+    }
 
-    // public function deleteSizeProduct(ProductSize $productSize)
-    // {
-    //     return $this->productService->deleteSizeProduct($productSize);
-    // }
+    public function deleteSizeProduct(ProductSize $productSize)
+    {
+        return $this->productService->deleteSizeProduct($productSize);
+    }
 
-    // public function editSizeProduct(ProductSize $productSize, Product $product)
-    // {
-    //     return $this->productService->editSizeProduct($productSize, $product);
-    // }
+    public function editSizeProduct(ProductSize $productSize, Product $product)
+    {
+        return $this->productService->editSizeProduct($productSize, $product);
+    }
 
-    // public function updateSizeProduct(ProductSize $productSize, Product $product, UpdateSizeProductRequest $request)
-    // {
-    //     return $this->productService->updateSizeProduct($productSize, $product, $request);
-    // }
+    public function updateSizeProduct(ProductSize $productSize, Product $product, UpdateProductSizeRequest $request)
+    {
+        return $this->productService->updateSizeProduct($productSize, $product, $request);
+    }
 }

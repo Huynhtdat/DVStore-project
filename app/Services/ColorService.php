@@ -101,9 +101,9 @@ class ColorService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên danh mục']),
+                    'required' => "Vui lòng nhập tên màu sắc",
+                    'minlength' => "Tên màu sắc có tối thiểu 1 ký tự",
+                    'maxlength' => "tên màu sắc có tối đa 100 ký tự",
                 ],
             ];
 
@@ -166,9 +166,9 @@ class ColorService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên danh mục']),
+                    'required' => "Vui lòng nhập tên màu sắc",
+                    'minlength' => "Tên màu sắc có tối thiểu 1 ký tự",
+                    'maxlength' => "tên màu sắc có tối đa 100 ký tự",
                 ],
             ];
 

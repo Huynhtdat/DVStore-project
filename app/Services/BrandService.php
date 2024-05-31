@@ -100,9 +100,9 @@ class BrandService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên danh mục']),
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'minlength' => "Tên thương hiệu có tối thiểu 1 ký tự",
+                    'maxlength' => "tên thương hiệu có tối đa 100 ký tự",
                 ],
             ];
 
@@ -165,9 +165,9 @@ class BrandService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Tên danh mục']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Tên danh mục']),
-                    'maxlength' => __('message.max', ['max' => 100, 'attribute' => 'Tên danh mục']),
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'minlength' => "Tên thương hiệu có tối thiểu 1 ký tự",
+                    'maxlength' => "tên thương hiệu có tối đa 100 ký tự",
                 ],
             ];
 

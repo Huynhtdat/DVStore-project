@@ -33,9 +33,9 @@ class StoreColorRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('message.required', ['attribute' => 'Tên danh mục']),
-            'name.max' => __('message.max', ['attribute' => 'Tên danh mục']),
-            'name.min' => __('message.min', ['attribute' => 'Tên danh mục']),
+            'name.required' => "Vui lòng nhập tên màu",
+            'name.max' => "Tên màu có tối đa 100 ký tự",
+            'name.min' => "Tên màu cso tối thiểu 1 ký tự",
         ];
     }
 

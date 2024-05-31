@@ -39,7 +39,7 @@
 											<img style="width:100px;" src="{{ asset("asset/client/images/products/small/$productColor->img") }}" alt="">
 										</td>
 										<td>
-											<button class="btn btn-primary edit" 
+											<button class="btn btn-primary edit"
 												url-update="{{ route('admin.products_color_update', $productColor->id) }}"
 												url-img="{{ asset('asset/client/images/products/small/') }}"
 												>
@@ -71,9 +71,9 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" 
-					class="form-submit" 
-					url-store="{{ route('admin.products_color_store', $product->id) }}" method="POST" 
+			<form method="post"
+					class="form-submit"
+					url-store="{{ route('admin.products_color_store', $product->id) }}" method="POST"
 					enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
@@ -84,13 +84,6 @@
 								@endforeach
 							</select>
 						</x-admin-input-prepend>
-					</div>
-					<div class="form-group">
-						<div class="preview">
-							<img id="img-preview" style="width: 60px" src="" />
-							<label for="file-input" id="lable-img">Chọn Hình Ảnh</label>
-							<input class="img-color" hidden accept="image/*" type="file" id="file-input" name="img"/>
-						</div>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -113,7 +106,7 @@
 				</button>
 			</div>
 			<div id="body-modal-edit">
-				
+
 			</div>
 		</div>
 		<!-- /.modal-content -->

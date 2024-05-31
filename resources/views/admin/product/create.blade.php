@@ -86,6 +86,16 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="card-body">
+                    <div class="container">
+                      <div class="preview">
+                        <img id="img-preview" src="" />
+                        <label for="file-input">Chọn Chi Tiết Hình Ảnh</label>
+                        <input hidden accept="image/*" type="file" id="file-input" name="detail_images"/>
+                      </div>
+                    </div>
+                  </div>
               </div>
               {{-- <div class="col-4">
                 <div class="card-body">

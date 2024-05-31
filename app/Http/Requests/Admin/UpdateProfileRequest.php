@@ -28,7 +28,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => 'required|string|min:1|max:30',
             'email' => 'required|string|email|unique:users,email,' . $user->id . ',id,deleted_at,"NULL"',
-            'phone_number' => 'required|min:11|max:12',
+            'phone_number' => 'required|min:10|max:10',
             'city' => 'required',
             'district' => 'required',
             'ward' => 'required',
@@ -38,18 +38,18 @@ class UpdateProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('message.required', ['attribute' => 'họ và tên']),
-            'name.max' => __('message.max', ['attribute' => 'Họ và tên']),
-            'name.min' => __('message.min', ['attribute' => 'Họ và tên']),
-            'phone_number.required' => __('message.required', ['attribute' => 'số điện thoại']),
-            'phone_number.min' => __('message.required', ['attribute' => 'số điện thoại']),
-            'phone_number.max' => __('message.min_max_length', ['attribute' => 'số điện thoại']),
-            'city.required' => __('message.required', ['attribute' => 'tỉnh, thành phố']),
-            'district.required' => __('message.required', ['attribute' => 'quận, huyện']),
-            'ward.required' => __('message.required', ['attribute' => 'phường, xã']),
-            'apartment_number.required' => __('message.required', ['attribute' => 'số nhà']),
-            'email.unique' => __('message.unique', ['attribute' => 'Email']),
-            'email.email' => __('message.email'),
+            'name.required' => "Vui lòng nhập họ và tên",
+            'name.max' => "Họ và tên có tối đa 30 ký tự",
+            'name.min' => "Họ và tên có tối thiểu 1 ký tự",
+            'phone_number.required' => "Vui lòng nhập số điện thoại",
+            'phone_number.min' => "Số điện thoại có tối thiểu 10 ký tự",
+            'phone_number.max' => "Số điện thoại có tối đa 10 ký tự",
+            'city.required' => "Vui lòng nhập tỉnh, thành phố",
+            'district.required' => "Vui lòng nhập quận, huyện",
+            'ward.required' => "Vui lòng nhập phường, xã",
+            'apartment_number.required' => "Vui lòng nhập số nhà",
+            'email.unique' => "Địa chỉ email này đã được sử dụng",
+            'email.email' => "Địa chỉ emial này không hợp lệ",
         ];
     }
 }

@@ -31,9 +31,9 @@ class StoreSizeRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('message.required', ['attribute' => 'Tên kích thước']),
-            'name.max' => __('message.max', ['attribute' => 'Tên kích thước']),
-            'name.min' => __('message.min', ['attribute' => 'Tên kích thước']),
+            'name.required' => "Vui lòng nhập tên size",
+            'name.max' => "Tên size có tối đa 100 ký tự",
+            'name.min' => "Tên size có tối thiểu 1 ký tự",
         ];
     }
 }

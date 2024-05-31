@@ -1,4 +1,4 @@
-<?php
+                                    <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('price_sell');
             $table->string('img');
             $table->json('detail_images')->nullable();
-            $table->text('description')->change();
+            $table->text('description');
             $table->integer('status')->default(1);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');

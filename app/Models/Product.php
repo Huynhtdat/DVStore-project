@@ -29,6 +29,7 @@ class Product extends Model
         'price_import',
         'price_sell',
         'img',
+        'dtail_images',
         'description',
         'status',
         'category_id',

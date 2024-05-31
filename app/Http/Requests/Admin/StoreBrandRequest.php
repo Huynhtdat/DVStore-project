@@ -36,9 +36,9 @@ class StoreBrandRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('message.required', ['attribute' => 'Tên danh mục']),
-            'name.max' => __('message.max', ['attribute' => 'Tên danh mục']),
-            'name.min' => __('message.min', ['attribute' => 'Tên danh mục']),
+            'name.required' => "Vui lòng nhập tên thương hiệu",
+            'name.max' => "Tên thương hiệu có tối đa 100 ký tự",
+            'name.min' => "Tên thương hiệu ít nhất có 1 ký tự",
         ];
     }
 }

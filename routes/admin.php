@@ -5,7 +5,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('login', [App\Http\Controllers\Admin\Auth\LoginController::class, "create"])->name('admin.login');
     Route::post('login', [App\Http\Controllers\Admin\Auth\LoginController::class, "store"]);
 
-    Route::get('logout', [App\Http\Controllers\Admin\Auth\LoginController::class, "logout"])->name('admin.logout');
+
 });
 
 
@@ -49,6 +49,21 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::post('delete', [App\Http\Controllers\Admin\ProductController::class, "delete"])->name('admin.products_delete');
 
         Route::get('get-categories-by-parent', [App\Http\Controllers\Admin\ProductController::class, "getCategoryByParent"])->name('admin.category_by_parent');
+
+        Route::get('color/{product}', [App\Http\Controllers\Admin\ProductController::class, "createColor"])->name('admin.products_color');
+        Route::post('color/{product}', [App\Http\Controllers\Admin\ProductController::class, "storeColor"])->name('admin.products_color_store');
+        Route::get('color-update/{productColor}', [App\Http\Controllers\Admin\ProductController::class, "editColor"])->name('admin.products_color_edit');
+        Route::post('color-update/{productColor}', [App\Http\Controllers\Admin\ProductController::class, "updateColor"])->name('admin.products_color_update');
+        Route::post('color-delete/{productColor}', [App\Http\Controllers\Admin\ProductController::class, "deleteColor"])->name('admin.products_color_delete');
+
+        Route::get('size/{product}', [App\Http\Controllers\Admin\ProductController::class, "createSize"])->name('admin.products_size');
+        Route::get('size-by-product-color', [App\Http\Controllers\Admin\ProductController::class, "getSizeByProductColor"])->name('admin.size_by_product_color');
+        Route::get('size-by-product-color-edit/{productSize}', [App\Http\Controllers\Admin\ProductController::class, "getSizeByProductColorEdit"])->name('admin.size_by_product_color_edit');
+        Route::post('store-size-product/{product}', [App\Http\Controllers\Admin\ProductController::class, "storeSizeProduct"])->name('admin.store_size_product');
+        Route::post('delete-size-product/{productSize}', [App\Http\Controllers\Admin\ProductController::class, "deleteSizeProduct"])->name('admin.delete_size_product');
+        Route::get('update-size-product/{productSize}/{product}', [App\Http\Controllers\Admin\ProductController::class, "editSizeProduct"])->name('admin.update_size_product');
+        Route::post('update-size-product/{productSize}/{product}', [App\Http\Controllers\Admin\ProductController::class, "updateSizeProduct"])->name('admin.update_size_product');
+
     });
 
     #Color
@@ -80,4 +95,25 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::post('update/{brand}', [App\Http\Controllers\Admin\BrandController::class, "update"])->name('admin.brands_update');
         Route::post('delete', [App\Http\Controllers\Admin\BrandController::class, "delete"])->name('admin.brands_delete');
     });
+
+    #payment metthod
+    Route::group(['prefix' => 'payments'], function(){
+        Route::get('/', [App\Http\Controllers\Admin\PaymentMethodController::class, "index"])->name('admin.payments_index');
+        //Route::get('create', [App\Http\Controllers\Admin\PaymentMethodController::class, "create"])->name('admin.payments_create');
+        //Route::post('create', [App\Http\Controllers\Admin\PaymentMethodController::class, "store"])->name('admin.payments_store');
+        Route::get('edit/{payment}', [App\Http\Controllers\Admin\PaymentMethodController::class, "edit"])->name('admin.payments_edit');
+        Route::post('edit/{payment}', [App\Http\Controllers\Admin\PaymentMethodController::class, "update"])->name('admin.payments_update');
+    });
+
+    #order
+    Route::group(['prefix' => 'orders'], function(){
+        Route::get('/', [App\Http\Controllers\Admin\OrderController::class, "index"])->name('admin.orders_index');
+        //Route::get('create', [App\Http\Controllers\Admin\OrderController::class, "create"])->name('admin.orders_create');
+        //Route::post('create', [App\Http\Controllers\Admin\OrderController::class, "store"])->name('admin.orders_store');
+        Route::get('edit/{order}', [App\Http\Controllers\Admin\OrderController::class, "edit"])->name('admin.orders_edit');
+        Route::post('update/{order}', [App\Http\Controllers\Admin\OrderController::class, "update"])->name('admin.orders_update');
+        Route::post('delete', [App\Http\Controllers\Admin\OrderController::class, "delete"])->name('admin.orders_delete');
+    });
+
+    Route::get('logout', [App\Http\Controllers\Admin\Auth\LoginController::class, "logout"])->name('admin.logout');
 });

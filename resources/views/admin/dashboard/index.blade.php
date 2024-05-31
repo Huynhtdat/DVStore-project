@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <!-- Main content -->
-    {{-- <section class="content">
+     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -33,7 +33,7 @@
           </div>
           <div class="col-md-12">
              <!-- STACKED BAR CHART -->
-             <div class="card card-success">
+             {{-- <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Doanh Thu Tháng {{ $month }} Năm {{ $year }}</h3>
                 <div id="data-statistics" days="{{ $days }}" parameters="{{ $parameters }}"></div>
@@ -52,9 +52,9 @@
                 </div>
               </div>
               <!-- /.card-body -->
-            </div>
+            </div> --}}
             <!-- /.card -->
-          </div>
+          {{-- </div>
           <div class="col-md-12">
             <!-- PIE CHART -->
             <div class="card card-success">
@@ -113,10 +113,10 @@
             <!-- /.card -->
           </div>
 
-        </div>
+        </div> --}}
         <!-- /.row -->
       </div><!-- /.container-fluid -->
-    </section> --}}
+    </section>
     <!-- /.content -->
     @vite(['resources/admin/js/dashboard.js'])
 @endsection

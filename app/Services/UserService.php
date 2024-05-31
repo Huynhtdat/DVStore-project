@@ -203,49 +203,50 @@ class UserService
                 ],
                 'phone_number' => [
                     'required' => true,
-                    'minlength' => 12,
-                    'maxlength' => 12,
+                    'minlength' => 10,
+                    'maxlength' => 10,
                 ],
             ];
 
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Họ và tên']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Họ và tên']),
-                    'maxlength' => __('message.max', ['max' => 30, 'attribute' => 'Họ và tên']),
+                    'required' => 'Vui lòng nhập họ và tên',
+                    'minlength' => 'Họ và tên phải có ít nhất 1 ký tự',
+                    'maxlength' => 'Họ và tên không được dài quá 24 ký tự',
                 ],
                 'email' => [
-                    'required' => __('message.required', ['attribute' => 'email']),
-                    'email' => __('message.email'),
+                    'required' => 'Vui lòng nhập email',
+                    'email' => 'Địa chỉ email không hợp lệ',
                 ],
                 'password' => [
-                    'required' => __('message.required', ['attribute' => 'mật khẩu']),
-                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu', 'min' => 8]),
-                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu', 'max' => 24]),
-                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
-                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
-                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
-                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                    'required' => 'Vui lòng nhập mật khẩu',
+                    'minlength' => 'Mật khẩu phải có ít nhất 8 ký tự',
+                    'maxlength' => 'Mật khẩu không được dài quá 24 ký tự',
+                    'checklower' => 'Mật khẩu phải chứa ít nhất một chữ cái in thường',
+                    'checkupper' => 'Mật khẩu phải chứa ít nhất một chữ cái in hoa',
+                    'checkdigit' => 'Mật khẩu phải chứa ít nhất một chữ số',
+                    'checkspecialcharacter' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt (%, #, @, _, /, -)',
                 ],
                 'phone_number' => [
-                    'required' => __('message.required', ['attribute' => 'số điện thoại']),
-                    'minlength' => __('message.min', ['attribute' => 'số điện thoại', 'min' => 10]),
-                    'maxlength' => __('message.max', ['attribute' => 'số điện thoại', 'max' => 10]),
+                    'required' => 'Vui lòng nhập số điện thoại',
+                    'minlength' => 'Số điện thoại phải có ít nhất 10 ký tự',
+                    'maxlength' => 'Số điện thoại không được dài quá 10 ký tự',
                 ],
                 'city' => [
-                    'required' =>  __('message.required', ['attribute' => 'tỉnh, thành phố']),
+                    'required' => 'Vui lòng nhập tỉnh, thành phố',
                 ],
-                'district' =>[
-                    'required' =>  __('message.required', ['attribute' => 'quận, huyện']),
+                'district' => [
+                    'required' => 'Vui lòng nhập quận, huyện',
                 ],
                 'ward' => [
-                    'required' => __('message.required', ['attribute' => 'phường, xã']),
+                    'required' => 'Vui lòng nhập phường, xã',
                 ],
                 'apartment_number' => [
-                    'required' =>  __('message.required', ['attribute' => 'số nhà']),
+                    'required' => 'Vui lòng nhập số nhà',
                 ],
             ];
+
 
             return [
                 'title' => TextLayoutTitle("create_user"),
@@ -301,7 +302,7 @@ class UserService
             $user = User::create($userData);
             $addressData['user_id'] = $user->id;
             $this->addressRepository->updateOrCreate($addressData);
-            // DB::commit();
+            DB::commit();
             return redirect()->route('admin.users_index')->with('success', TextSystemConst::CREATE_SUCCESS);
         } catch (Exception $e) {
             Log::error($e);
@@ -409,43 +410,44 @@ class UserService
                 ],
             ];
 
-            // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Họ và tên']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Họ và tên']),
-                    'maxlength' => __('message.max', ['max' => 30, 'attribute' => 'Họ và tên']),
+                    'required' => 'Vui lòng nhập họ và tên',
+                    'minlength' => 'Họ và tên phải có ít nhất 1 ký tự',
+                    'maxlength' => 'Họ và tên không được dài quá 24 ký tự',
                 ],
                 'email' => [
-                    'required' => __('message.required', ['attribute' => 'email']),
-                    'email' => __('message.email'),
+                    'required' => 'Vui lòng nhập email',
+                    'email' => 'Địa chỉ email không hợp lệ',
                 ],
                 'password' => [
-                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu', 'min' => 8]),
-                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu', 'max' => 24]),
-                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
-                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
-                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
-                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                    'required' => 'Vui lòng nhập mật khẩu',
+                    'minlength' => 'Mật khẩu phải có ít nhất 8 ký tự',
+                    'maxlength' => 'Mật khẩu không được dài quá 24 ký tự',
+                    'checklower' => 'Mật khẩu phải chứa ít nhất một chữ cái in thường',
+                    'checkupper' => 'Mật khẩu phải chứa ít nhất một chữ cái in hoa',
+                    'checkdigit' => 'Mật khẩu phải chứa ít nhất một chữ số',
+                    'checkspecialcharacter' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt (%, #, @, _, /, -)',
                 ],
                 'phone_number' => [
-                    'required' => __('message.required', ['attribute' => 'số điện thoại']),
-                    'minlength' => __('message.min', ['attribute' => 'số điện thoại', 'min' => 10]),
-                    'maxlength' => __('message.max', ['attribute' => 'số điện thoại', 'max' => 10]),
+                    'required' => 'Vui lòng nhập số điện thoại',
+                    'minlength' => 'Số điện thoại phải có ít nhất 10 ký tự',
+                    'maxlength' => 'Số điện thoại không được dài quá 10 ký tự',
                 ],
                 'city' => [
-                    'required' =>  __('message.required', ['attribute' => 'tỉnh, thành phố']),
+                    'required' => 'Vui lòng nhập tỉnh, thành phố',
                 ],
-                'district' =>[
-                    'required' =>  __('message.required', ['attribute' => 'quận, huyện']),
+                'district' => [
+                    'required' => 'Vui lòng nhập quận, huyện',
                 ],
                 'ward' => [
-                    'required' => __('message.required', ['attribute' => 'phường, xã']),
+                    'required' => 'Vui lòng nhập phường, xã',
                 ],
                 'apartment_number' => [
-                    'required' =>  __('message.required', ['attribute' => 'số nhà']),
+                    'required' => 'Vui lòng nhập số nhà',
                 ],
             ];
+
 
             return [
                 'title' => TextLayoutTitle("create_edit"),
