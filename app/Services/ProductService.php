@@ -19,9 +19,12 @@ use App\Models\ProductColor;
 use App\Models\ProductSize;
 use App\Models\Size;
 use App\Http\Requests\Admin\StoreProductColorRequest;
+use App\Http\Requests\Admin\StoreProductImageRequest;
 use App\Http\Requests\Admin\StoreProductSizeRequest;
 use App\Http\Requests\Admin\UpdateProductColorRequest;
+use App\Http\Requests\Admin\UpdateProductImageRequest;
 use App\Http\Requests\Admin\UpdateProductSizeRequest;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Session;
 
 class ProductService
@@ -284,6 +287,7 @@ class ProductService
             'product' => $product,
             'routeSize' => route('admin.products_size', $product->id),
             'routeColor' => route('admin.products_color', $product->id),
+            'routeImage' => route('admin.products_image', $product->id),
         ];
     }
 
@@ -346,14 +350,13 @@ class ProductService
             'productColors' => $productColors,
             'routeSize' => route('admin.products_size', $product->id),
             'routeProduct' => route('admin.products_edit', $product->id),
+            'routeImage' => route('admin.products_image', $product->id),
         ];
     }
     public function storeColor(StoreProductColorRequest $request, Product $product)
     {
         try {
-            // $imageName = time().'.'.request()->img->getClientOriginalExtension();
             $colorId = $request->color_id;
-            // request()->img->move(public_path('asset/client/images/products/small'), $imageName);
 
             $checkColorExist = $this->productRepository->checkProductColorExist($product->id, $colorId);
             if ($checkColorExist > 0) {
@@ -456,6 +459,7 @@ class ProductService
             'title' => 'Kích thước sản phẩm',
             'routeColor' => route('admin.products_color', $product->id),
             'routeProduct' => route('admin.products_edit', $product->id),
+            'routeImage' => route('admin.products_image', $product->id),
             'productSizes' => $productSizes,
             'productColors' => $productColors,
             'product' => $product,
@@ -549,6 +553,101 @@ class ProductService
                 'message' => 'Có lỗi xảy ra vui lòng thử lại'
             ], 200);
         }
+    }
+
+    public function createImage(Product $product)
+    {
+
+        $productImages = ProductImage::where('product_id', $product->id)->whereNull('deleted_at')->get();
+
+        return [
+            'title' => 'Hình Anhr Chi Tiết Sản Phẩm',
+            'product' => $product,
+            'productImages' => $productImages,
+            'routeColor' => route('admin.products_color', $product->id),
+            'routeSize' => route('admin.products_size', $product->id),
+            'routeProduct' => route('admin.products_edit', $product->id),
+        ];
+    }
+    public function storeImage(StoreProductImageRequest $request, Product $product)
+    {
+        try {
+            $imageName = time().'.'.request()->img->getClientOriginalExtension();
+            request()->img->move(public_path('asset/client/images/products/small'), $imageName);
+
+            //thêm hình ảnh vào databse
+            ProductImage::create([
+                'img' => $imageName,
+                'product_id' => $product->id
+            ]);
+            Session::flash('success', 'Thêm hình ảnh thành công');
+            // trả về kết quả
+            return response()->json([
+                'status' => true,
+                'route' => route('admin.products_image', $product->id),
+            ], 200);
+        } catch (Exception) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xảy ra vui lòng thử lại'
+            ], 200);
+        }
+    }
+
+    //lấy thông tin màu sản phẩm để chỉnh sửa
+    public function editImage(ProductImage $productImage)
+    {
+        // $colors = Color::whereNotIn('id', function($query) use($productColor) {
+        //     $query->select('color_id')
+        //           ->from('products_color')
+        //           ->where('product_id', '=', $productColor->product_id)
+        //           ->where('color_id', '!=', $productColor->color_id)
+        //           ->whereNull('deleted_at');
+        // })
+        // ->get();
+        // trả về kết quả
+        return response()->json([
+            'productImage' => $productImage,
+        ], 200);
+    }
+
+    public function updateImage(UpdateProductImageRequest $request, ProductImage $productImage)
+    {
+        try {
+            $data = $request->validated();
+            if ($request->img) {
+                $imageName = time().'.'.request()->img->getClientOriginalExtension();
+                request()->img->move(public_path('asset/client/images/products/small'), $imageName);
+                $data['img'] = $imageName;
+            }
+            $productImage->update($data);
+            Session::flash('success', 'Sửa hình ảnh thành công');
+            return response()->json([
+                'status' => true,
+                'route' => route('admin.products_image', $productImage->product_id),
+            ], 200);
+        } catch (Exception) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xảy ra vui lòng thử lại'
+            ], 200);
+        }
+    }
+
+    public function deleteImage(ProductImage $productImage)
+    {
+        if ($productImage->delete()) {
+            $data = [
+                'status' => true,
+                'message' => 'Xóa màu thành công'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'message' => 'Xóa thất bại vui lòng kiểm tra lại'
+            ];
+        }
+        return response()->json($data, 200);
     }
 }
 ?>

@@ -8,9 +8,12 @@
 						<li class="breadcrumb-item">Sản Phẩm</li>
 						<li class="breadcrumb-item active">
 							<a href="{{ $routeColor }}">Màu Sản Phẩm</a>
-            </li>
+                        </li>
 						<li class="breadcrumb-item">
 							<a href="{{ $routeSize }}">Kích Thước Sản Phẩm</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
 						</li>
 				</ol>
 			</div>
@@ -33,26 +36,26 @@
               <div class="col-8">
                 <div class="card-body row">
                   <x-admin-input-prepend label="Tên Sản Phẩm" width="auto">
-                    <input 
+                    <input
                       id="name"
-                      type="text" 
+                      type="text"
                       name="name"
                       value="{{ $product->name }}"
                       class="form-control">
                   </x-admin-input-prepend>
                   <x-admin-input-prepend label="Giá Nhập" col="col-6" width="auto">
-                    <input 
+                    <input
                       id="price_import"
                       type="number"
-                      min="1" 
+                      min="1"
                       name="price_import"
                       value="{{ $product->price_import }}"
                       class="form-control">
                   </x-admin-input-prepend>
                   <x-admin-input-prepend label="Giá Bán" col="col-6" width="auto">
-                    <input 
+                    <input
                       id="price_sell"
-                      type="number" 
+                      type="number"
                       name="price_sell"
                       value="{{ $product->price_sell }}"
                       class="form-control">
@@ -63,7 +66,7 @@
                           <option value="{{ $brand->id }}"
                             @if ($brand->id == $product->brand_id)
                                 @selected(true)
-                            @endif  
+                            @endif
                           >{{ $brand->name }}</option>
                       @endforeach
                     </select>
@@ -74,14 +77,14 @@
                           <option value="{{ $categoryParent->id }}"
                             @if ($categoryParent->id == $product->category->parent_id)
                               @selected(true)
-                            @endif    
+                            @endif
                           >{{ $categoryParent->name }}</option>
                       @endforeach
                     </select>
                   </x-admin-input-prepend>
                   <x-admin-input-prepend label="Danh Mục" width="auto">
                     <select class="form-control" value="{{ $product->category_id }}" name="category_id" id="category_id" route="{{ route('admin.category_by_parent') }}">
-                      
+
                     </select>
                   </x-admin-input-prepend>
                   <div class="card card-outline card-info col-12">

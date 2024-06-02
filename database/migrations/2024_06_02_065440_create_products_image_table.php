@@ -8,13 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('products_color', function (Blueprint $table) {
+        Schema::create('products_image', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('color_id')->unsigned();
-            $table->foreign('color_id')->references('id')->on('colors');
+            $table->string('img');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
@@ -24,9 +25,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('products_color');
+        Schema::dropIfExists('products_image');
     }
 };

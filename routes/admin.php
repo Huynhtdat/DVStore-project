@@ -64,6 +64,11 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::get('update-size-product/{productSize}/{product}', [App\Http\Controllers\Admin\ProductController::class, "editSizeProduct"])->name('admin.update_size_product');
         Route::post('update-size-product/{productSize}/{product}', [App\Http\Controllers\Admin\ProductController::class, "updateSizeProduct"])->name('admin.update_size_product');
 
+        Route::get('image/{product}', [App\Http\Controllers\Admin\ProductController::class, "createImage"])->name('admin.products_image');
+        Route::post('image/{product}', [App\Http\Controllers\Admin\ProductController::class, "storeImage"])->name('admin.products_image_store');
+        Route::get('image-update/{productImage}', [App\Http\Controllers\Admin\ProductController::class, "editImage"])->name('admin.products_image_edit');
+        Route::post('image-update/{productImage}', [App\Http\Controllers\Admin\ProductController::class, "updateImage"])->name('admin.products_image_update');
+        Route::post('image-delete/{productImage}', [App\Http\Controllers\Admin\ProductController::class, "deleteImage"])->name('admin.products_image_delete');
     });
 
     #Color

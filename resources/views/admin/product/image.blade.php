@@ -8,20 +8,22 @@
 						<li class="breadcrumb-item">
                             <a href="{{ $routeProduct }}">Sản Phẩm</a>
                         </li>
-						<li class="breadcrumb-item active">Màu Sản Phẩm</li>
+						<li class="breadcrumb-item">
+                            <a href="{{ $routeColor }}">Màu Sản Phẩm</a>
+                        </li>
 						<li class="breadcrumb-item">
 							<a href="{{ $routeSize }}">Kích Thước Sản Phẩm</a>
 						</li>
-                        <li class="breadcrumb-item">
-							<a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
-						</li>
+                        <li class="breadcrumb-item active">
+                            Hình Ảnh Chi Tiết Sản Phẩm
+                        </li>
 				</ol>
 			</div>
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header text-right">
 						<button class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-							<i class="fas fa-plus"></i> Thêm Màu
+							<i class="fas fa-plus"></i> Thêm HÌnh Ảnh Chi Tiết Cho Sản Phẩm
 						</button>
 					</div>
 					<!-- /.card-header -->
@@ -29,24 +31,26 @@
 						<table class="table table-hover text-nowrap">
 							<thead>
 								<tr>
-									<th>Mã Màu</th>
-									<th>Tên Màu</th>
+									<th>Mã Hình Ảnh</th>
+									<th>Hình Ảnh</th>
 									<th>Thao Tác</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($productColors as $productColor)
+								@foreach ($productImages as $productImage)
 									<tr>
-										<td>{{ $productColor->id }}</td>
-										<td>{{ $productColor->color->name }}</td>
+										<td>{{ $productImage->id }}</td>
+										<td>
+											<img style="width:100px;" src="{{ asset("asset/client/images/products/small/$productImage->img") }}" alt="">
+										</td>
 										<td>
 											<button class="btn btn-primary edit"
-												url-update="{{ route('admin.products_color_update', $productColor->id) }}"
+												url-update="{{ route('admin.products_image_update', $productImage->id) }}"
 												url-img="{{ asset('asset/client/images/products/small/') }}"
 												>
 												<i class="fas fa-edit"></i>
 											</button>
-											<button class="btn btn-danger delete" url-delete="{{ route('admin.products_color_delete', $productColor->id) }}">
+											<button class="btn btn-danger delete" url-delete="{{ route('admin.products_image_delete', $productImage->id) }}">
 												<i class="fas fa-trash"></i>
 											</button>
 										</td>
@@ -67,24 +71,22 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Thêm Mới Màu</h4>
+				<h4 class="modal-title">Thêm Mới Hình Ảnh Sản Phẩm</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<form method="post"
 					class="form-submit"
-					url-store="{{ route('admin.products_color_store', $product->id) }}" method="POST"
+					url-store="{{ route('admin.products_image_store', $product->id) }}" method="POST"
 					enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
-						<x-admin-input-prepend label="Màu" width="auto">
-							<select class="form-control" name="color_id" id="color_id">
-								@foreach ($colors as $color)
-										<option value="{{ $color->id }}">{{ $color->name }}</option>
-								@endforeach
-							</select>
-						</x-admin-input-prepend>
+						<div class="preview">
+							<img id="img-preview" style="width: 60px" src="" />
+							<label for="file-input" id="lable-img">Chọn Hình Ảnh</label>
+							<input class="img-product" hidden accept="image/*" type="file" id="file-input" name="img"/>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
@@ -101,7 +103,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Chỉnh sửa màu màu</h4>
+				<h4 class="modal-title">Chỉnh Sửa Hình Ảnh Chi Tiết</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -116,7 +118,7 @@
 </div>
 @vite(
 [
-  'resources/admin/js/product-color.js',
+  'resources/admin/js/product-image.js',
   'resources/admin/css/product.css',
 ])
 @endsection

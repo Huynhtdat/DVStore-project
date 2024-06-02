@@ -98,6 +98,15 @@
       "__commonjsHelpers.4e997714.js"
     ]
   },
+  "resources/admin/js/product-image.js": {
+    "file": "assets/product-image.b6cd00b0.js",
+    "src": "resources/admin/js/product-image.js",
+    "isEntry": true,
+    "imports": [
+      "_sweetalert2.all.015ec384.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
   "resources/admin/js/edit-product.js": {
     "file": "assets/edit-product.9196f3f3.js",
     "src": "resources/admin/js/edit-product.js",

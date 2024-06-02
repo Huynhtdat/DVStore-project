@@ -5,11 +5,18 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
-						<li class="breadcrumb-item"><a href="{{ $routeProduct }}">Sản Phẩm</a></li>
-						<li class="breadcrumb-item active"><a href="{{ $routeColor }}">Màu Sản Phẩm</a></li>
+						<li class="breadcrumb-item">
+                            <a href="{{ $routeProduct }}">Sản Phẩm</a>
+                        </li>
+						<li class="breadcrumb-item active">
+                            <a href="{{ $routeColor }}">Màu Sản Phẩm</a>
+                        </li>
 						<li class="breadcrumb-item">
 							Kích Thước Sản Phẩm
 						</li>
+                        <li class="breadcrumb-item active">
+                            <a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
+                        </li>
 				</ol>
 			</div>
 			<div class="col-12">
@@ -39,7 +46,7 @@
 										<td>{{ $productSize->color_name }}</td>
 										<td>{{ $productSize->quanity }}</td>
 										<td>
-											<button class="btn btn-primary edit" 
+											<button class="btn btn-primary edit"
 												url-update="{{ route('admin.update_size_product', [$productSize->id, $product->id]) }}"
 												url-get-size="{{ route('admin.size_by_product_color_edit', $productSize->id) }}"
 												>
@@ -48,7 +55,7 @@
 											<button class="btn btn-danger delete" url-delete="{{ route('admin.delete_size_product', $productSize->id) }}">
 												<i class="fas fa-trash"></i>
 											</button>
-										</td>	
+										</td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -71,9 +78,9 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" 
-					class="form-submit" 
-					url-store="{{ route('admin.store_size_product', $product->id) }}" method="POST" 
+			<form method="post"
+					class="form-submit"
+					url-store="{{ route('admin.store_size_product', $product->id) }}" method="POST"
 					enctype="multipart/form-data">
 				<div class="modal-body">
 					<x-admin-input-prepend label="Màu Sắc" width="auto">
@@ -85,7 +92,7 @@
 					</x-admin-input-prepend>
 					<x-admin-input-prepend label="Kích Thước" width="auto">
 						<select url-get-size="{{ route('admin.size_by_product_color') }}" class="form-control" name="size_id" id="size_id">
-							
+
 						</select>
 					</x-admin-input-prepend>
 					<x-admin-input-prepend label="Số lượng" width="auto">
@@ -112,7 +119,7 @@
 				</button>
 			</div>
 			<div id="body-modal-edit">
-				
+
 			</div>
 		</div>
 		<!-- /.modal-content -->

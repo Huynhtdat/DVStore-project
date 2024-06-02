@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProductColorRequest;
+use App\Http\Requests\Admin\StoreProductImageRequest;
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\StoreProductSizeRequest;
 use App\Http\Requests\Admin\UpdateProductColorRequest;
+use App\Http\Requests\Admin\UpdateProductImageRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Http\Requests\Admin\UpdateProductSizeRequest;
 use App\Models\Product;
 use App\Models\ProductColor;
+use App\Models\ProductImage;
 use App\Models\ProductSize;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -58,10 +61,13 @@ class ProductController extends Controller
         return $this->productService->delete($request);
     }
 
+
     public function getCategoryByParent(Request $request)
     {
         return response()->json($this->productService->getCategoryByParent($request), 200);
     }
+
+
 
     public function createColor(Product $product)
     {
@@ -87,6 +93,8 @@ class ProductController extends Controller
     {
         return $this->productService->deleteColor($productColor);
     }
+
+
 
     public function createSize(Product $product)
     {
@@ -121,5 +129,31 @@ class ProductController extends Controller
     public function updateSizeProduct(ProductSize $productSize, Product $product, UpdateProductSizeRequest $request)
     {
         return $this->productService->updateSizeProduct($productSize, $product, $request);
+    }
+
+
+    public function createImage(Product $product)
+    {
+        return view('admin.product.image', $this->productService->createImage($product));
+    }
+
+    public function storeImage(StoreProductImageRequest $request, Product $product)
+    {
+       return $this->productService->storeImage($request, $product);
+    }
+
+    public function editImage(ProductImage $productImage)
+    {
+        return $this->productService->editImage($productImage);
+    }
+
+    public function updateImage(UpdateProductImageRequest $request, ProductImage $productImage)
+    {
+        return $this->productService->updateImage($request, $productImage);
+    }
+
+    public function deleteImage(ProductImage $productImage)
+    {
+        return $this->productService->deleteImage($productImage);
     }
 }
