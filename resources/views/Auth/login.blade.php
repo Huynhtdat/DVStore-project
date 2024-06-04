@@ -8,11 +8,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        .social-btn i {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body class="d-flex align-items-center min-vh-100">
     <div class="container">
         <div class="d-flex justify-content-center">
-            <div class="border p-4 rounded shadow-sm">
+            <div class="border p-4 rounded shadow-sm" style="max-width: 400px; width: 100%;">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -36,14 +48,25 @@
                     </div>
                     <button type="submit" class="btn btn-primary d-block mx-auto">Đăng Nhập</button>
                 </form>
-
-                <!-- Thêm thông báo và liên kết đăng ký -->
-                <p class="mt-3">Nếu bạn chưa có tài khoản, <a href="{{ route('register') }}">Đăng ký</a> ngay.</p>
+                <div class="text-center mt-3">
+                    <p>Hoặc đăng nhập với</p>
+                    <div class="row g-2 justify-content-center">
+                        <div class="col">
+                            <a href="{{ route('social.login', 'facebook') }}" class="btn btn-primary social-btn w-100 mb-2">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('social.login', 'google') }}" class="btn btn-danger social-btn w-100">
+                                <i class="fab fa-google"></i> Google
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-3 text-center">Nếu bạn chưa có tài khoản, <a href="{{ route('register') }}">Đăng ký</a> ngay.</p>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
