@@ -12,11 +12,11 @@ $(document).ready(function(){
         },
         messages: {
             email: {
-                required: "Vui lòng nhập Email",
-                email: "Địa chỉ email không hợp lệ",
+                required: "Enter your Email",
+                email: "Email address is not valid",
             },
             password: {
-                required: "Vui lòng nhập mật khẩu",
+                required: "Enter your Password",
             },
         },
         errorElement: 'span',

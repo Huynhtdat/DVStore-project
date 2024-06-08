@@ -9,18 +9,13 @@
                     <a
                         href="{{ (isset($routes['create'])) ? route($routes['create']) : '#'}}"
                         class="btn btn-primary next-link__js">
-                        Thêm Mới
+                        Add New
                     </a>
                 @endif
                 @if ($actions['createExcel'])
                     <button class="btn btn-success ml-1">Excel</button>
                 @endif
             </div>
-            {{-- <div class="col-6 text-right">
-                @if ($actions['deleteAll'])
-                    <button class="btn btn-danger">Xóa Tất Cả</button>
-                @endif
-            </div> --}}
         </div>
         </div>
     @endif

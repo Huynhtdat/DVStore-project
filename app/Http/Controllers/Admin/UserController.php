@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Models\User;
-use App\Services\UserService;
+use App\Http\Services\Admin\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

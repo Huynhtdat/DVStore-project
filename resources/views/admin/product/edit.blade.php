@@ -1,19 +1,19 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin')
 @section('content')
 <section section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
-						<li class="breadcrumb-item">Sản Phẩm</li>
+						<li class="breadcrumb-item">Product</li>
 						<li class="breadcrumb-item active">
-							<a href="{{ $routeColor }}">Màu Sản Phẩm</a>
+							<a href="{{ $routeColor }}">Product Color</a>
                         </li>
 						<li class="breadcrumb-item">
-							<a href="{{ $routeSize }}">Kích Thước Sản Phẩm</a>
+							<a href="{{ $routeSize }}">Product Size</a>
 						</li>
                         <li class="breadcrumb-item">
-							<a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
+							<a href="{{ $routeImage }}">Product Image Detail</a>
 						</li>
 				</ol>
 			</div>
@@ -24,7 +24,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12">
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title">Thông tin cơ bản</h3>
+              <h3 class="card-title">Base Information</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -35,7 +35,7 @@
             <div class="row">
               <div class="col-8">
                 <div class="card-body row">
-                  <x-admin-input-prepend label="Tên Sản Phẩm" width="auto">
+                  <x-admin-input-prepend label="Product Name" width="auto">
                     <input
                       id="name"
                       type="text"
@@ -43,7 +43,7 @@
                       value="{{ $product->name }}"
                       class="form-control">
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Giá Nhập" col="col-6" width="auto">
+                  <x-admin-input-prepend label="Price Import" col="col-6" width="auto">
                     <input
                       id="price_import"
                       type="number"
@@ -52,7 +52,7 @@
                       value="{{ $product->price_import }}"
                       class="form-control">
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Giá Bán" col="col-6" width="auto">
+                  <x-admin-input-prepend label="Price Sell" col="col-6" width="auto">
                     <input
                       id="price_sell"
                       type="number"
@@ -60,7 +60,7 @@
                       value="{{ $product->price_sell }}"
                       class="form-control">
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Thương Hiệu" width="auto" col="col-6">
+                  <x-admin-input-prepend label="Brand" width="auto" col="col-6">
                     <select class="form-control" name="brand_id" id="brand">
                       @foreach ($brands as $brand)
                           <option value="{{ $brand->id }}"
@@ -71,7 +71,7 @@
                       @endforeach
                     </select>
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Thời trang" width="auto" col="col-6">
+                  <x-admin-input-prepend label="Fashion" width="auto" col="col-6">
                     <select class="form-control" name="parent_id" id="parent_id">
                       @foreach ($categoriesParent as $categoryParent)
                           <option value="{{ $categoryParent->id }}"
@@ -82,7 +82,7 @@
                       @endforeach
                     </select>
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Danh Mục" width="auto">
+                  <x-admin-input-prepend label="Category" width="auto">
                     <select class="form-control" value="{{ $product->category_id }}" name="category_id" id="category_id" route="{{ route('admin.category_by_parent') }}">
 
                     </select>
@@ -90,7 +90,7 @@
                   <div class="card card-outline card-info col-12">
                     <div class="card-header">
                       <h3 class="card-title">
-                        Mô Tả Sản Phẩm
+                        Product Description
                       </h3>
                     </div>
                     <!-- /.card-header -->
@@ -107,15 +107,15 @@
                   <div class="container">
                     <div class="preview">
                       <img id="img-preview" src="{{ asset("asset/client/images/products/small/$product->img") }}" />
-                      <label for="file-input">Chọn Hình Ảnh</label>
+                      <label for="file-input">Image</label>
                       <input hidden accept="image/*" type="file" id="file-input" name="img"/>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-12 text-center" style="padding-bottom: 10px;">
-                <button class="btn btn-success">CẬP NHẬT</button>
-                <button class="btn btn-danger">HỦY</button>
+                <button class="btn btn-success">UPDATE</button>
+                <button class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </div>

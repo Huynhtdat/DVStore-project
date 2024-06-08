@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Models\Category;
-use App\Services\CategoryService;
+use App\Http\Services\Admin\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller

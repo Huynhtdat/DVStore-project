@@ -33,9 +33,10 @@ class StoreColorRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Vui lòng nhập tên màu",
-            'name.max' => "Tên màu có tối đa 100 ký tự",
-            'name.min' => "Tên màu cso tối thiểu 1 ký tự",
+            'name.required' => "Please enter the color name", // Vui lòng nhập tên màu
+            'name.max' => "The color name can have a maximum of 100 characters", // Tên màu có tối đa 100 ký tự
+            'name.min' => "The color name must have at least 1 character", // Tên màu ít nhất có 1 ký tự
+
         ];
     }
 

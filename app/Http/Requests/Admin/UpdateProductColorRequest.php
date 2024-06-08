@@ -36,8 +36,8 @@ class UpdateProductColorRequest extends FormRequest
     public function messages()
     {
         return [
-            'color_id.required' => 'Vui lòng điền đầy đủ thông tin',
-            'color_id.integer' => 'Màu không hợp lệ',
+            'color_id.required' => 'Please fill in all the information', // Vui lòng điền đầy đủ thông tin
+            'color_id.integer' => 'Invalid color', // Màu không hợp lệ
         ];
     }
 }

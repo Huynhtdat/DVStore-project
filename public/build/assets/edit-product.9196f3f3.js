@@ -1,1 +1,41 @@
-$("#summernote").summernote();$(document).ready(function(){const i=document.getElementById("file-input"),n=document.getElementById("img-preview");i.addEventListener("change",o=>{if(o.target.files.length){const t=URL.createObjectURL(o.target.files[0]);n.src=t,console.log(t)}else{const t="";n.src=t}}),r(),$(document).on("change","#parent_id",function(){r()})});function r(){let i=$("#category_id").attr("value");$("#category_id").html("");let n=$("#parent_id").val(),o=$("#category_id").attr("route");$.ajax({type:"GET",url:o+"?parent_id="+n}).done(t=>{let a="";t.forEach(e=>{i==e.id?a+=`<option value="${e.id}" selected>${e.name}</option>`:a+=`<option value="${e.id}">${e.name}</option>`}),$("#category_id").html(a)})}
+$("#summernote").summernote();
+
+$(document).ready(function () {
+    const fileInput = document.getElementById("file-input");
+    const imgPreview = document.getElementById("img-preview");
+
+    fileInput.addEventListener("change", event => {
+        if (event.target.files.length) {
+            const imageUrl = URL.createObjectURL(event.target.files[0]);
+            imgPreview.src = imageUrl;
+            console.log(imageUrl);
+        } else {
+            const imageUrl = "";
+            imgPreview.src = imageUrl;
+        }
+    });
+
+    loadCategories();
+
+    $(document).on("change", "#parent_id", function () {
+        loadCategories();
+    });
+});
+
+function loadCategories() {
+    let defaultValue = $("#category_id").attr("value");
+    $("#category_id").html("");
+    let parentId = $("#parent_id").val();
+    let route = $("#category_id").attr("route");
+
+    $.ajax({
+        type: "GET",
+        url: route + "?parent_id=" + parentId
+    }).done(response => {
+        let options = "";
+        response.forEach(category => {
+            options += `<option value="${category.id}" ${defaultValue == category.id ? 'selected' : ''}>${category.name}</option>`;
+        });
+        $("#category_id").html(options);
+    });
+}

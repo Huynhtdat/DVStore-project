@@ -19,7 +19,7 @@ $(document).ready(function(){
     "info": true,
     "autoWidth": false,
     "responsive": true,
-    "buttons": [ 
+    "buttons": [
       {
           extend: 'excelHtml5',
           exportOptions: {
@@ -31,19 +31,19 @@ $(document).ready(function(){
           exportOptions: {
             columns: columnsExport
           }
-          
+
       },
     ],
     "language": {
-      search: "Tìm kiếm",
-      emptyTable: "Không có dữ liệu",
+      search: "Search",
+      emptyTable: "No Data",
       paginate: {
-          first: "Trang đầu",
-          previous: "Trang trước",
-          next: "Trang sau",
-          last: "Trang cuối",
+          first: "First",
+          previous: "Previous",
+          next: "Next",
+          last: "Last",
       },
-      "info": "Bản ghi từ _START_ đến _END_ tổng cộng _TOTAL_ bản ghi",
+      "info": "Total _TOTAL_", //Bản ghi từ _START_ đến _END_ tổng cộng _TOTAL_ bản ghi
       "infoFiltered": "",
     }
   });
@@ -64,13 +64,13 @@ $(document).ready(function(){
     let id = $(this).closest('tr').attr('id');
     let url = $(this).attr('url');
     Swal.fire({
-      title: "Bạn có chắc muốn xóa?",
+      title: "Are you sure you want to delete??",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'CÓ',
-      cancelButtonText: 'KHÔNG',
+      confirmButtonText: 'YES',
+      cancelButtonText: 'NO',
     }).then((result) => {
       if (result.isConfirmed) {
         // Display loading
@@ -89,15 +89,15 @@ $(document).ready(function(){
 
           //If delete success
           if (response.status == 'success') {
-            //Show success toast message 
+            //Show success toast message
             fire(toast, 'success', response.message)
             // Delete row in data table
             table.rows(`#${id}`).remove().draw();
           } else if (response.status == 'failed') {
-            // Show error toast message 
+            // Show error toast message
             fire(toast, 'error', response.message)
           } else {
-            // Show error toast message 
+            // Show error toast message
             fire(toast, 'error', response.message)
             // Reload page
             setTimeout(()=>{
@@ -111,7 +111,7 @@ $(document).ready(function(){
 });
 
 // function init toast message
-function toast() 
+function toast()
 {
   return Swal.mixin({
     toast: true,
@@ -126,7 +126,7 @@ function toast()
   });
 }
 
-function fire(toast, type, message) 
+function fire(toast, type, message)
 {
   let background;
   let icon;

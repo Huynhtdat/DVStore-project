@@ -18,7 +18,7 @@ class Maintenance
      */
     public function handle(Request $request, Closure $next)
     {
-        if (setting_website()->maintenance == 2) {
+        if (setting_website()->maintenance == 0) {
             return $next($request);
         }
 

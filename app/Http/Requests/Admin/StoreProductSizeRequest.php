@@ -38,9 +38,10 @@ class StoreProductSizeRequest extends FormRequest
     public function messages()
     {
         return [
-            'quantity.required' => "Vui lòng nhập số lượng",
-            'product_color_id.required' => "Vui lòng chọn màu sắc cho sản phẩm",
-            'size_id.required' => "Vui lòng chọn kích thước cho sản phẩm",
+            'quantity.required' => "Please enter the quantity", // Vui lòng nhập số lượng
+            'product_color_id.required' => "Please select a color for the product", // Vui lòng chọn màu sắc cho sản phẩm
+            'size_id.required' => "Please select a size for the product", // Vui lòng chọn kích thước cho sản phẩm
+
         ];
     }
 }

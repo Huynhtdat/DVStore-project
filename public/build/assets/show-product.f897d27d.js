@@ -1,2 +1,27 @@
-$(document).ready(function(){$(document).on("click","#filter-price",function(){let e=$("#filter-price").attr("url")+"",i=$("#min-price").val(),r=$("#max-price").val();if(e.search(`[\\[\\]?*+|{}\\\\()@.
-\r]`)>=0){if(e.search("min_price=")>=0){let c=e.split("min_price")[1].split("=")[1].split("&")[0];e=e.replace(c,i)}else e+=`&min_price=${i}`;if(e.search("max_price=")>=0){let c=e.split("max_price")[1].split("=")[1].split("&")[0];e=e.replace(c,r)}else e+=`&max_price=${r}`}else e+=`?min_price=${i}&max_price=${r}`;window.location.href=e})});
+$(document).ready(function () {
+    $(document).on("click", "#filter-price", function () {
+        let url = $("#filter-price").attr("url") + "";
+        let minPrice = $("#min-price").val();
+        let maxPrice = $("#max-price").val();
+
+        if (url.search(`[\\[\\]?*+|{}\\\\()@.\r]`) >= 0) {
+            if (url.search("min_price=") >= 0) {
+                let currentMinPrice = url.split("min_price")[1].split("=")[1].split("&")[0];
+                url = url.replace(currentMinPrice, minPrice);
+            } else {
+                url += `&min_price=${minPrice}`;
+            }
+
+            if (url.search("max_price=") >= 0) {
+                let currentMaxPrice = url.split("max_price")[1].split("=")[1].split("&")[0];
+                url = url.replace(currentMaxPrice, maxPrice);
+            } else {
+                url += `&max_price=${maxPrice}`;
+            }
+        } else {
+            url += `?min_price=${minPrice}&max_price=${maxPrice}`;
+        }
+
+        window.location.href = url;
+    });
+});

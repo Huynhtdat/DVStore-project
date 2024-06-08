@@ -36,12 +36,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getBestSellingProduct()
     {
         return DB::select('
-            select sum(order_details.quantity) as sum, products.id, products.name, products.price_sell, products.img from products 
+            select sum(order_details.quantity) as sum, products.id, products.name, products.price_sell, products.img from products
             join products_color on products.id = products_color.product_id
             join products_size on products_color.id = products_size.product_color_id
             join order_details on products_size.id = order_details.product_size_id
             join orders on orders.id = order_details.order_id
-            where orders.order_status = 3 and products.deleted_at is null
+            where orders.status = 3 and products.deleted_at is null
             group by products.id, products.name, products.price_sell, products.img
             order by sum desc
             limit 12
@@ -62,12 +62,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getQuantityBuyProduct($productId)
     {
         return DB::select("
-            select sum(order_details.quantity) as sum from products 
+            select sum(order_details.quantity) as sum from products
             join products_color on products.id = products_color.product_id
             join products_size on products_color.id = products_size.product_color_id
             join order_details on products_size.id = order_details.product_size_id
             join orders on orders.id = order_details.order_id
-            where orders.order_status = 3 
+            where orders.status = 3
             and products.deleted_at is null
             and products.id = $productId
         ")[0]->sum ?? 0;

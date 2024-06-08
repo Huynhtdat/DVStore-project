@@ -11,7 +11,8 @@ class Role extends Model
 
     const ROLE = [
         'admin' => 1,
-        'user'  => 2,
+        'staff' => 2,
+        'user'  => 3,
     ];
 
     const ROLE_ADMIN = 'admin';

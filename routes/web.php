@@ -17,16 +17,14 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::middleware(['maintenance'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('user.home');
+    Route::get('/', [App\Http\Controllers\User\HomeController::class, "index"])->name('user.home');
 });
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('user.login');
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('user.register');
 
 Route::post('/register', [AuthController::class, 'register']);
 

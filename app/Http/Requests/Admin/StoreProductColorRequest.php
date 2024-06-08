@@ -36,9 +36,9 @@ class StoreProductColorRequest extends FormRequest
     public function messages()
     {
         return [
-            'color_id.required' => 'Vui lòng chọn màu sản phẩm',
-            'product_id.required' => 'Vui lòng điền đầy đủ thông tin',
-            'color_id.integer' => 'Màu không hợp lệ',
+            'color_id.required' => 'Please select a product color', // Vui lòng chọn màu sản phẩm
+            'product_id.required' => 'Please provide complete information', // Vui lòng điền đầy đủ thông tin
+            'color_id.integer' => 'Invalid color', // Màu không hợp lệ
         ];
     }
 }

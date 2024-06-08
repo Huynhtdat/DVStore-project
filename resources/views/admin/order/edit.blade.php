@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin')
 @section('content')
 <section section class="content">
   <div class="container-fluid">
@@ -6,7 +6,7 @@
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Thông tin đơn hàng</h3>
+            <h3 class="card-title">Information of Order</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -17,18 +17,18 @@
           <div class="col-md-12 mt-3">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Thông tin khách hàng</h3>
+                <h3 class="card-title">Information of Customer</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>Mã KH</th>
-                      <th>Họ Tên</th>
-                      <th>Số Điện Thoại</th>
+                      <th>ID</th>
+                      <th>Fullname</th>
+                      <th>Phone Nuber</th>
                       <th>Email</th>
-                      <th>Địa Chỉ</th>
+                      <th>Address</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -49,21 +49,21 @@
           <div class="col-md-12 mt-3">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Chi tiết đơn hàng</h3>
+                <h3 class="card-title">Order Detail</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th style="width: 100px;">Mã SP</th>
-                      <th>Tên SP</th>
-                      <th>Hình Ảnh</th>
-                      <th>Màu</th>
-                      <th>Kích Thước</th>
-                      <th>Số Lượng</th>
-                      <th>Đơn Giá</th>
-                      <th>Thành Tiền</th>
+                      <th style="width: 100px;">ID Product</th>
+                      <th>Name Product</th>
+                      <th>Image</th>
+                      <th>Color</th>
+                      <th>Size</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Into Money</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,19 +84,19 @@
                       </tr>
                     @endforeach
                     <tr>
-                      <td colspan="7">Tổng Tiền Sản Phẩm</td>
+                      <td colspan="7">Total Money Product</td>
                       <td><b>{{ format_number_to_money($totalProductMoney) }} VND</b></td>
                     </tr>
                     <tr>
-                      <td colspan="7">Phí Vận Chuyển</td>
+                      <td colspan="7">Transport Fee</td>
                       <td><b>{{ format_number_to_money($infomation_user['orders_transport_fee']) }} VND</b></td>
                     </tr>
                     <tr>
-                      <td colspan="7">Phương Thức Thanh Toán</td>
+                      <td colspan="7">Payment Method</td>
                       <td><b>{{ $infomation_user['payment_name'] }}</b></td>
                     </tr>
                     <tr>
-                      <td colspan="7">Tổng Tiền Đơn Hàng</td>
+                      <td colspan="7">Total Money Order</td>
                       <td><b>{{ format_number_to_money($order->total_money) }} VND</b></td>
                     </tr>
                   </tbody>
@@ -108,25 +108,25 @@
           </div>
           @if ($order->order_status != 3)
           <div class="action col-md-12 pb-3">
-            <button class="btn btn-success" data-toggle="modal" data-target="#modal-lg">Xử Lý Đơn Hàng</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#modal-lg">Order processing</button>
           </div>
           @endif
         </div>
       </div>
     </div>
   </div>
-  <x-modal-view-detail size="modal-lg" title="Xử Lý Đơn Hàng">
+  <x-modal-view-detail size="modal-lg" title="Order processing">
     <form action="{{ route('admin.orders_update', $order->id) }}" method="post">
       @csrf
       <div class="form-group">
         <select class="form-control" name="status" id="status">
-          <option value="1">Xác Nhận</option>
-          <option value="2">Hủy</option>
+          <option value="1">Confirm</option>
+          <option value="2">Cancel</option>
         </select>
       </div>
       <div class="form-group text-center">
         <button class="btn btn-primary">
-          Xử Lý
+          Handle
         </button>
       </div>
     </form>

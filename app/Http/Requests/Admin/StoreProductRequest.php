@@ -37,13 +37,13 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Vui lòng nhập tên sản phẩm",
-            'price_import.required' => "Vui lòng nhập giá nhập của sản phẩm",
-            'price_sell.required' => "Vui lòng nhập giá bán của sản phẩm",
-            'brand_id.required' => "Vui lòng chọn thương hiệu của sản phẩm",
-            'category.required' => "Vui lòng chọn danh mục của sản phẩm",
-            'description.required' => "Vui lòng nhập mô tả cho sản phẩm",
-            'img.required' => "Vui lòng thêm hình ảnh đại diện cho sản phẩm",
+            'name.required' => "Please enter the product name", // Vui lòng nhập tên sản phẩm
+            'price_import.required' => "Please enter the import price of the product", // Vui lòng nhập giá nhập của sản phẩm
+            'price_sell.required' => "Please enter the selling price of the product", // Vui lòng nhập giá bán của sản phẩm
+            'brand_id.required' => "Please select the product brand", // Vui lòng chọn thương hiệu của sản phẩm
+            'category.required' => "Please select the product category", // Vui lòng chọn danh mục của sản phẩm
+            'description.required' => "Please enter a description for the product", // Vui lòng nhập mô tả cho sản phẩm
+            'img.required' => "Please add a representative image for the product", // Vui lòng thêm hình ảnh đại diện cho sản phẩm
         ];
 
     }

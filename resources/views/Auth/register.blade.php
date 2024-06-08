@@ -44,7 +44,7 @@
             </div>
         @endif
         <div class="col-12 col-md-8 col-lg-6 mx-auto">
-            <form action="{{ route('register') }}" method="POST" class="register-form">
+            <form action="{{ route('user.register') }}" method="POST" class="register-form">
                 @csrf
                 <h1 class="text-center mb-4">Tạo Tài Khoản</h1>
                 <div class="form-group mb-3">

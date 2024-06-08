@@ -1,4 +1,4 @@
-@props(['route', 'cancel', 'fields', 'rules' => '', 'messages' => '', 'textSubmit' => 'Thêm Mới', 'cancelBtn' => "true"])
+@props(['route', 'cancel', 'fields', 'rules' => '', 'messages' => '', 'textSubmit' => 'Add', 'cancelBtn' => "true"])
 
 <div id="form-data" hidden data-rules="{{ json_encode($rules) }}"
         data-messages="{{ json_encode($messages) }}"></div>
@@ -25,7 +25,7 @@
       @elseif($field['type'] == 'file')
       <div class="custom-file">
         <input type="file" name="{{$field['attribute']}}" class="custom-file-input inputFile__js" id="{{$field['attribute']}}">
-        <label class="custom-file-label" for="inputFile__js">Chọn hình ảnh</label>
+        <label class="custom-file-label" for="inputFile__js">Choose Image</label>
       </div>
       @else
       <input
@@ -53,8 +53,9 @@
   <div class="card-header text-center">
     <button class="btn btn-success">{{$textSubmit}}</button>
     @if ($cancelBtn == "true")
-      <a href="{{ route($cancel) }}" class="btn btn-danger next-link__js">Hủy</a>
+      <a href="{{ route($cancel) }}" class="btn btn-danger next-link__js">Cancel</a>
     @endif
   </div>
 </form>
-@vite(['resources/common/js/form.js','resources/common/css/form.css'])
+@vite(['resources/common/js/form.js',
+'resources/common/css/form.css'])

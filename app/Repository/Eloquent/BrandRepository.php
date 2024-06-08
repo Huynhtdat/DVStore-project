@@ -3,7 +3,6 @@
 namespace App\Repository\Eloquent;
 
 use App\Models\Brand;
-use App\Models\Color;
 
 /**
  * Class BrandRepository

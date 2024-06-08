@@ -31,7 +31,7 @@ $(document).ready(function () {
           }
         });
         let modal = `
-            <form method="post" 
+            <form method="post"
               class="form-submit"
               enctype="multipart/form-data"
               url-store="${url}"
@@ -41,7 +41,7 @@ $(document).ready(function () {
                   <div class="form-group col-12">
                     <div class="input-group">
                       <div class="input-group-prepend" style="width:auto;">
-                        <span class="input-group-text" style="width:100%;">Màu</span>
+                        <span class="input-group-text" style="width:100%;">Color</span>
                       </div>
                       <select class="form-control" name="color_id" id="color_id_edit">
                         ${option}
@@ -53,14 +53,14 @@ $(document).ready(function () {
                 <div class="form-group">
                   <div class="preview">
                     <img id="img-preview" style="width: 60px" src="${urlImg + '/' + res.productColor.img}" />
-                    <label for="file-input-edit" id="lable-img">Chọn Hình Ảnh</label>
+                    <label for="file-input-edit" id="lable-img">Image</label>
                     <input class="img-color" hidden accept="image/*" type="file" id="file-input-edit" name="img"/>
                   </div>
                 </div>
 				      </div>
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">CACEL</button>
+                <button type="submit" class="btn btn-primary">UPDATE</button>
               </div>
           </form>
           `;
@@ -74,13 +74,13 @@ $(document).ready(function () {
 
     let url = $(this).attr('url-delete');
     Swal.fire({
-      title: "Bạn có chắc muốn xóa?",
+      title: "Are you sure you want to delete?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'CÓ',
-      cancelButtonText: 'KHÔNG',
+      confirmButtonText: 'YES',
+      cancelButtonText: 'NO',
     }).then((result) => {
       if (result.isConfirmed) {
         // Display loading
@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         }).fail(() => {
           $('#loading__js').css('display', 'none');
-          fire1(toast1, 'error', 'Có lỗi xảy ra vui lòng thử lại')
+          fire1(toast1, 'error', 'An error occurred, please try again')
           setTimeout(()=>{
             location.reload();
           }, 2000);

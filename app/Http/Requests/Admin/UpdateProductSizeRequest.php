@@ -36,7 +36,7 @@ class UpdateProductSizeRequest extends FormRequest
     public function messages()
     {
         return [
-            'quantity.required' => "Vui lòng nhập số lượng",
+            'quantity.required' => "Please enter the quantity", // Vui lòng nhập số lượng
         ];
     }
 }

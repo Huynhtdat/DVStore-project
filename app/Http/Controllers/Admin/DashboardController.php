@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\DashboardService;
+use App\Http\Services\Admin\DashboardService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

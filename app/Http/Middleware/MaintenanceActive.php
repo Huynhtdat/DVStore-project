@@ -16,10 +16,10 @@ class MaintenanceActive
      */
     public function handle(Request $request, Closure $next)
     {
-        if (setting_website()->maintenance == 1) {
-            return $next($request);
-        }
+        // if (setting_website()->maintenance == NULL) {
+        //     return $next($request);
+        // }
 
-        return redirect()->route('user.home');
+        // return redirect()->route('user.home');
     }
 }

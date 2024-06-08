@@ -28,14 +28,14 @@ $(document).ready(function() {
                     <div class="form-group">
                     <div class="preview">
                         <img id="img-preview" style="width: 60px" src="${s+"/"+o.productImage.img}" />
-                        <label for="file-input-edit" id="lable-img">Chỉnh Sửa Hình Ảnh</label>
+                        <label for="file-input-edit" id="lable-img">Imgae Product</label>
                         <input class="img-product" hidden accept="image/*" type="file" id="file-input-edit" name="img"/>
                     </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    <button type="submit" class="btn btn-primary">UPDATE</button>
                 </div>
           </form>
           `;
@@ -46,13 +46,13 @@ $(document).ready(function() {
     $(document).on("click", ".delete", function() {
         let e = $(this).attr("url-delete");
         a.fire({
-            title: "Bạn có chắc chắn muốn xóa?",
+            title: "Are you sure you want to delete?",
             icon: "warning",
             showCancelButton: !0,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "CÓ",
-            cancelButtonText: "KHÔNG"
+            confirmButtonText: "YES",
+            cancelButtonText: "NO"
         }).then(s => {
             s.isConfirmed && ($("#loading__js").css("display", "flex"), $.ajax({
                 type: "POST",
@@ -60,7 +60,7 @@ $(document).ready(function() {
             }).done(o => {
                 $("#loading__js").css("display", "none"), o.status == !0 ? (console.log("true"), $(this).closest("tr").remove(), r(n, "success", o.message)) : (console.log("false"), r(n, "error", o.message))
             }).fail(() => {
-                $("#loading__js").css("display", "none"), r(n, "error", "Có lỗi xảy ra vui lòng thử lại"), setTimeout(() => {
+                $("#loading__js").css("display", "none"), r(n, "error", "An error occurred, please try again"), setTimeout(() => {
                     location.reload()
                 }, 2e3)
             }))

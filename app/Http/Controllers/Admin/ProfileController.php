@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Requests\Admin\UpdateProfileRequest;
-use App\Services\ProfileService;
+use App\Http\Services\Admin\ProfileService;
 
 class ProfileController extends Controller
 {

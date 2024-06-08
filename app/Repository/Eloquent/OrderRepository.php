@@ -53,7 +53,6 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             'order_details.unit_price',
             'order_details.quantity',
             'sizes.name as size_name',
-            'products_color.img as products_color_img',
             'colors.name as color_name',
             'products.name as product_name',
             'products.id as product_id',

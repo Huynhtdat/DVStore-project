@@ -45,7 +45,7 @@ class ChangePasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'confirm_password.same' => 'Xác nhận mật khẩu không trùng khớp'
+            'confirm_password.same' => 'Confirm password does not match' //Xác nhận mật khẩu không trùng khớp
         ];
     }
     public function withValidator(Validator $validator)

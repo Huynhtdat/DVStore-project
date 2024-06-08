@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin')
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -6,14 +6,14 @@
 			<div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
 						<li class="breadcrumb-item">
-                            <a href="{{ $routeProduct }}">Sản Phẩm</a>
+                            <a href="{{ $routeProduct }}">Product</a>
                         </li>
-						<li class="breadcrumb-item active">Màu Sản Phẩm</li>
+						<li class="breadcrumb-item active">Product Color</li>
 						<li class="breadcrumb-item">
-							<a href="{{ $routeSize }}">Kích Thước Sản Phẩm</a>
+							<a href="{{ $routeSize }}">Product Size</a>
 						</li>
                         <li class="breadcrumb-item">
-							<a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
+							<a href="{{ $routeImage }}">Product Image Detail</a>
 						</li>
 				</ol>
 			</div>
@@ -21,7 +21,7 @@
 				<div class="card">
 					<div class="card-header text-right">
 						<button class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-							<i class="fas fa-plus"></i> Thêm Màu
+							<i class="fas fa-plus"></i> Add Color
 						</button>
 					</div>
 					<!-- /.card-header -->
@@ -29,9 +29,9 @@
 						<table class="table table-hover text-nowrap">
 							<thead>
 								<tr>
-									<th>Mã Màu</th>
-									<th>Tên Màu</th>
-									<th>Thao Tác</th>
+									<th>ID</th>
+									<th>Color Name</th>
+									<th>Tools</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -67,7 +67,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Thêm Mới Màu</h4>
+				<h4 class="modal-title">Add New Color</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -78,7 +78,7 @@
 					enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
-						<x-admin-input-prepend label="Màu" width="auto">
+						<x-admin-input-prepend label="Color" width="auto">
 							<select class="form-control" name="color_id" id="color_id">
 								@foreach ($colors as $color)
 										<option value="{{ $color->id }}">{{ $color->name }}</option>
@@ -88,7 +88,7 @@
 					</div>
 				</div>
 				<div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary">Lưu</button>
 				</div>
 			</form>
@@ -101,7 +101,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Chỉnh sửa màu màu</h4>
+				<h4 class="modal-title">Edit Product Color</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>

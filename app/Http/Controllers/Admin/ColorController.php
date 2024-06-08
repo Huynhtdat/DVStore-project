@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreColorRequest;
 use App\Models\Color;
-use App\Services\ColorService;
+use App\Http\Services\Admin\ColorService;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller

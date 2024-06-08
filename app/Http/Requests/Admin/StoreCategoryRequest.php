@@ -32,9 +32,10 @@ class StoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Vui lòng nhập tên danh mục",
-            'name.max' => "Tên danh mục có tối đa 100 ký tự",
-            'name.min' => "Tên danh mục có tối thiểu 1 ký tự",
+            'name.required' => "Please enter the category name", // Vui lòng nhập tên danh mục
+            'name.max' => "The category name can have a maximum of 100 characters", // Tên danh mục có tối đa 100 ký tự
+            'name.min' => "The category name must have at least 1 character", // Tên danh mục ít nhất có 1 ký tự
+
         ];
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\StoreBrandRequest;
 use App\Models\Brand;
-use App\Services\BrandService;
+use App\Http\Services\Admin\BrandService;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller

@@ -33,7 +33,7 @@ $(document).ready(function(){
     $(document).on('change', '.inputFile__js', function(){
         let nameFile = String($('.inputFile__js').val());
         if (nameFile == '' || nameFile == null) {
-            $('.custom-file-label').text('Chọn hình ảnh');
+            $('.custom-file-label').text('Choose Image');
         } else {
             $('.custom-file-label').text(nameFile.split('\\')[2]);
         }

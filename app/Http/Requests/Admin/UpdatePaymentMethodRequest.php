@@ -32,8 +32,8 @@ class UpdatePaymentMethodRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Vui lòng nhập tên phương thức thanh toán",
-            'status.required' => "Vui lòng chọn trang thái cho phương thức thanh toán này",
+            'name.required' => "Please enter the payment method name", // Vui lòng nhập tên phương thức thanh toán
+            'status.required' => "Please select a status for this payment method", // Vui lòng chọn trạng thái cho phương thức thanh toán này
         ];
     }
 }

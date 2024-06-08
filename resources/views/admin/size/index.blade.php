@@ -1,14 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin')
 @section('content')
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <x-table-crud 
-          :headers="$tableCrud['headers']" 
-          :list="$tableCrud['list']" 
+        <x-table-crud
+          :headers="$tableCrud['headers']"
+          :list="$tableCrud['list']"
           :actions="$tableCrud['actions']"
-          :routes="$tableCrud['routes']" 
+          :routes="$tableCrud['routes']"
         />
         <!-- /.card -->
       </div>

@@ -89,9 +89,9 @@
       "__commonjsHelpers.4e997714.js"
     ]
   },
-  "resources/admin/js/size.js": {
-    "file": "assets/size.c80b22b4.js",
-    "src": "resources/admin/js/size.js",
+  "resources/admin/js/product-size.js": {
+    "file": "assets/product-size.c80b22b4.js",
+    "src": "resources/admin/js/product-size.js",
     "isEntry": true,
     "imports": [
       "_sweetalert2.all.015ec384.js",

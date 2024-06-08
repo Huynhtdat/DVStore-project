@@ -38,18 +38,18 @@ class UpdateProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Vui lòng nhập họ và tên",
-            'name.max' => "Họ và tên có tối đa 30 ký tự",
-            'name.min' => "Họ và tên có tối thiểu 1 ký tự",
-            'phone_number.required' => "Vui lòng nhập số điện thoại",
-            'phone_number.min' => "Số điện thoại có tối thiểu 10 ký tự",
-            'phone_number.max' => "Số điện thoại có tối đa 10 ký tự",
-            'city.required' => "Vui lòng nhập tỉnh, thành phố",
-            'district.required' => "Vui lòng nhập quận, huyện",
-            'ward.required' => "Vui lòng nhập phường, xã",
-            'apartment_number.required' => "Vui lòng nhập số nhà",
-            'email.unique' => "Địa chỉ email này đã được sử dụng",
-            'email.email' => "Địa chỉ emial này không hợp lệ",
+            'name.required' => "Please enter your full name", // Vui lòng nhập họ và tên
+            'name.max' => "The full name can have a maximum of 30 characters", // Họ và tên có tối đa 30 ký tự
+            'name.min' => "The full name must have at least 1 character", // Họ và tên có tối thiểu 1 ký tự
+            'phone_number.required' => "Please enter your phone number", // Vui lòng nhập số điện thoại
+            'phone_number.min' => "The phone number must have at least 10 characters", // Số điện thoại có tối thiểu 10 ký tự
+            'phone_number.max' => "The phone number can have a maximum of 10 characters", // Số điện thoại có tối đa 10 ký tự
+            'city.required' => "Please enter the city", // Vui lòng nhập tỉnh, thành phố
+            'district.required' => "Please enter the district", // Vui lòng nhập quận, huyện
+            'ward.required' => "Please enter the ward", // Vui lòng nhập phường, xã
+            'apartment_number.required' => "Please enter the apartment number", // Vui lòng nhập số nhà
+            'email.unique' => "This email address has already been used", // Địa chỉ email này đã được sử dụng
+            'email.email' => "This email address is invalid", // Địa chỉ email này không hợp lệ
         ];
     }
 }

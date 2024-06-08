@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.admin')
 @section('content')
 <section class="content">
   <div class="container-fluid">
@@ -6,16 +6,16 @@
 			<div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
 						<li class="breadcrumb-item">
-                            <a href="{{ $routeProduct }}">Sản Phẩm</a>
-                        </li>
-						<li class="breadcrumb-item active">
-                            <a href="{{ $routeColor }}">Màu Sản Phẩm</a>
+                            <a href="{{ $routeProduct }}">Product</a>
                         </li>
 						<li class="breadcrumb-item">
-							Kích Thước Sản Phẩm
+                            <a href="{{ $routeColor }}">Product Color</a>
+                        </li>
+						<li class="breadcrumb-item active">
+							Product Size
 						</li>
-                        <li class="breadcrumb-item active">
-                            <a href="{{ $routeImage }}">Hình Ảnh Chi Tiết Sản Phẩm</a>
+                        <li class="breadcrumb-item">
+                            <a href="{{ $routeImage }}">Product Image detail</a>
                         </li>
 				</ol>
 			</div>
@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-header text-right">
 						<button class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-							<i class="fas fa-plus"></i> Thêm Kích Thước
+							<i class="fas fa-plus"></i> Add Size
 						</button>
 					</div>
 					<!-- /.card-header -->
@@ -31,11 +31,11 @@
 						<table class="table table-hover text-nowrap">
 							<thead>
 								<tr>
-									<th>Mã KT</th>
-									<th>Tên Kích Thước</th>
-									<th>Màu</th>
-									<th>Số lượng</th>
-									<th>Thao Tác</th>
+									<th>ID</th>
+									<th>Size Name</th>
+									<th>Color</th>
+									<th>Quantity</th>
+									<th>Tools</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,7 +73,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Thêm Mới Kích Thước</h4>
+				<h4 class="modal-title">Add New Size</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -83,25 +83,25 @@
 					url-store="{{ route('admin.store_size_product', $product->id) }}" method="POST"
 					enctype="multipart/form-data">
 				<div class="modal-body">
-					<x-admin-input-prepend label="Màu Sắc" width="auto">
+					<x-admin-input-prepend label="Color" width="auto">
 						<select class="form-control" name="product_color_id" id="color_id">
 							@foreach ($productColors as $productColor)
 									<option value="{{ $productColor->id }}">{{ $productColor->color->name }}</option>
 							@endforeach
 						</select>
 					</x-admin-input-prepend>
-					<x-admin-input-prepend label="Kích Thước" width="auto">
+					<x-admin-input-prepend label="Size" width="auto">
 						<select url-get-size="{{ route('admin.size_by_product_color') }}" class="form-control" name="size_id" id="size_id">
 
 						</select>
 					</x-admin-input-prepend>
-					<x-admin-input-prepend label="Số lượng" width="auto">
+					<x-admin-input-prepend label="Quantity" width="auto">
 						<input id="quantity" type="number" min="0" name="quantity"class="form-control">
 					</x-admin-input-prepend>
 				</div>
 				<div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-					<button type="submit" class="btn btn-primary">Lưu</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">CACEL</button>
+					<button type="submit" class="btn btn-primary">ADD</button>
 				</div>
 			</form>
 		</div>
@@ -113,7 +113,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Chỉnh sửa kích thước</h4>
+				<h4 class="modal-title">Edit Product Size</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -127,5 +127,5 @@
 	<!-- /.modal-dialog -->
 </div>
 @vite(
-['resources/admin/js/size.js'])
+['resources/admin/js/product-size.js'])
 @endsection

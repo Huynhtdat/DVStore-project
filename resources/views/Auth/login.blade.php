@@ -35,7 +35,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('user.login') }}" method="POST">
                     @csrf
                     <h1 class="mb-4 text-center">Đăng Nhập</h1>
                     <div class="mb-3">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mt-3 text-center">Nếu bạn chưa có tài khoản, <a href="{{ route('register') }}">Đăng ký</a> ngay.</p>
+                <p class="mt-3 text-center">Nếu bạn chưa có tài khoản, <a href="{{ route('user.register') }}">Đăng ký</a> ngay.</p>
             </div>
         </div>
     </div>

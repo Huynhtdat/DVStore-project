@@ -15,7 +15,7 @@ use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
 use App\Models\ProductSize;
-use App\Services\ProductService;
+use App\Http\Services\Admin\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

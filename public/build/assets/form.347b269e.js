@@ -1,1 +1,43 @@
-$(document).ready(function(){const e=$("#form-data").data("rules"),a=$("#form-data").data("messages");$.validator.addMethod("checklower",function(t){return t?/[a-z]/.test(t):!0}),$.validator.addMethod("checkupper",function(t){return t?/[A-Z]/.test(t):!0}),$.validator.addMethod("checkdigit",function(t){return t?/[0-9]/.test(t):!0}),$.validator.addMethod("checkspecialcharacter",function(t){return t?/[%#@_\-]/.test(t):!0}),$("#form__js").validate({rules:e!=null?e:"",messages:a!=null?a:"",errorElement:"span",errorPlacement:function(t,n){t.addClass("invalid-feedback"),n.closest(".form-group").append(t)},submitHandler:t=>{t.submit(),$("#loading__js").css("display","flex")}}),$(document).on("change",".inputFile__js",function(){let t=String($(".inputFile__js").val());t==""||t==null?$(".custom-file-label").text("Ch\u1ECDn h\xECnh \u1EA3nh"):$(".custom-file-label").text(t.split("\\")[2])})});
+$(document).ready(function () {
+    const rules = $("#form-data").data("rules");
+    const messages = $("#form-data").data("messages");
+
+    $.validator.addMethod("checklower", function (value) {
+        return value ? /[a-z]/.test(value) : true;
+    });
+
+    $.validator.addMethod("checkupper", function (value) {
+        return value ? /[A-Z]/.test(value) : true;
+    });
+
+    $.validator.addMethod("checkdigit", function (value) {
+        return value ? /[0-9]/.test(value) : true;
+    });
+
+    $.validator.addMethod("checkspecialcharacter", function (value) {
+        return value ? /[%#@_\-]/.test(value) : true;
+    });
+
+    $("#form__js").validate({
+        rules: rules != null ? rules : "",
+        messages: messages != null ? messages : "",
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        submitHandler: function (form) {
+            form.submit();
+            $("#loading__js").css("display", "flex");
+        }
+    });
+
+    $(document).on("change", ".inputFile__js", function () {
+        let filename = String($(".inputFile__js").val());
+        if (filename == "" || filename == null) {
+            $(".custom-file-label").text("Choose Image");
+        } else {
+            $(".custom-file-label").text(filename.split("\\")[2]);
+        }
+    });
+});

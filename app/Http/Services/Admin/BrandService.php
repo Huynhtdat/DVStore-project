@@ -1,0 +1,219 @@
+<?php
+
+namespace App\Http\Services\Admin;
+
+use App\Helpers\admin\TextSystemConst;
+use App\Http\Requests\Admin\StoreBrandRequest;
+use App\Models\Brand;
+use App\Repository\Eloquent\BrandRepository;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class BrandService
+{
+    /**
+     * @var BrandRepository
+     */
+    private $brandRepository;
+
+    /**
+     * BrandService constructor.
+     *
+     * @param BrandRepository $brandRepository
+     */
+    public function __construct(BrandRepository $brandRepository)
+    {
+        $this->brandRepository = $brandRepository;
+    }
+
+    /**
+     * Display a listing of the users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // Get list brand
+        $list = $this->brandRepository->all();
+        $tableCrud = [
+            'headers' => [
+                [
+                    'text' => 'ID',
+                    'key' => 'id',
+                ],
+                [
+                    'text' => 'Brand Name',
+                    'key' => 'name',
+                ],
+            ],
+            'actions' => [
+                'text'          => "Tools",
+                'create'        => true,
+                'createExcel'   => false,
+                'edit'          => true,
+                'deleteAll'     => true,
+                'delete'        => true,
+                'viewDetail'    => false,
+            ],
+            'routes' => [
+                'create' => 'admin.brands_create',
+                'delete' => 'admin.brands_delete',
+                'edit' => 'admin.brands_edit',
+            ],
+            'list' => $list,
+        ];
+
+        return [
+            'title' => TextLayoutTitle("brand"),
+            'tableCrud' => $tableCrud,
+        ];
+    }
+
+    /**
+     * Show the form for creating a new user.
+     *
+     * @return array
+     */
+    public function create()
+    {
+        try {
+            // Fields form
+            $fields = [
+                [
+                    'attribute' => 'name',
+                    'label' => 'Name Brand',
+                    'type' => 'text',
+                ],
+            ];
+
+            //Rules form
+            $rules = [
+                'name' => [
+                    'required' => true,
+                    'minlength' => 1,
+                    'maxlength' => 100,
+                ],
+            ];
+
+            // Messages eror rules
+            $messages = [
+                'name' => [
+                    'required' => "Please enter the brand name", // Vui lòng nhập tên thương hiệu
+                    'maxlength' => "The brand name can have a maximum of 100 characters", // Tên thương hiệu có tối đa 100 ký tự
+                    'minlength' => "The brand name must have at least 1 character", // Tên thương hiệu ít nhất có 1 ký tự
+                ],
+            ];
+
+            return [
+                'title' => TextLayoutTitle("create_brand"),
+                'fields' => $fields,
+                'rules' => $rules,
+                'messages' => $messages,
+            ];
+        } catch (Exception) {
+            return [];
+        }
+
+    }
+
+    /**
+     * store the admin in the database.
+     * @param App\Http\Requests\Admin\StoreCategoryRequest $request
+     * @return Illuminate\Http\RedirectResponse
+     */
+    public function store(StoreBrandRequest $request)
+    {
+        try {
+            $data = $request->validated();
+            $this->brandRepository->create($data);
+            return redirect()->route('admin.brands_index')->with('success', TextSystemConst::CREATE_SUCCESS);
+        } catch (Exception $e) {
+            Log::error($e);
+            return redirect()->route('admin.brands_index')->with('error', TextSystemConst::CREATE_FAILED);
+        }
+    }
+
+    /**
+     * Show the form for creating a new user.
+     *
+     * @return array
+     */
+    public function edit(Brand $category)
+    {
+        try {
+            // Fields form
+            $fields = [
+                [
+                    'attribute' => 'name',
+                    'label' => 'Brand Name',
+                    'type' => 'text',
+                    'value' => $category->name,
+                ],
+            ];
+
+            //Rules form
+            $rules = [
+                'name' => [
+                    'required' => true,
+                    'minlength' => 1,
+                    'maxlength' => 100,
+                ],
+            ];
+
+            // Messages eror rules
+            $messages = [
+                'name' => [
+                    'required' => "Please enter the brand name", // Vui lòng nhập tên thương hiệu
+                    'maxlength' => "The brand name can have a maximum of 100 characters", // Tên thương hiệu có tối đa 100 ký tự
+                    'minlength' => "The brand name must have at least 1 character", // Tên thương hiệu ít nhất có 1 ký tự
+                ],
+            ];
+
+            return [
+                'title' => TextLayoutTitle("edit_brand"),
+                'fields' => $fields,
+                'rules' => $rules,
+                'messages' => $messages,
+                'category' => $category,
+            ];
+        } catch (Exception) {
+            return [];
+        }
+
+    }
+
+    public function update(StoreBrandRequest $request, Brand $color)
+    {
+        try {
+            $data = $request->validated();
+            $this->brandRepository->update($color, $data);
+            return redirect()->route('admin.brands_index')->with('success', TextSystemConst::UPDATE_SUCCESS);
+        } catch (Exception $e) {
+            Log::error($e);
+            DB::rollBack();
+            return redirect()->route('admin.brands_index')->with('error', TextSystemConst::UPDATE_FAILED);
+        }
+    }
+
+     /**
+     * delete the user in the database.
+     * @param Illuminate\Http\Request; $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Request $request)
+    {
+        try{
+            if($this->brandRepository->delete($this->brandRepository->find($request->id))) {
+                return response()->json(['status' => 'success', 'message' => TextSystemConst::DELETE_SUCCESS], 200);
+            }
+
+            return response()->json(['status' => 'failed', 'message' => TextSystemConst::DELETE_FAILED], 200);
+        } catch (Exception $e) {
+            Log::error($e);
+            return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
+        }
+    }
+}
+?>

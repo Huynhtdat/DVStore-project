@@ -1,7 +1,7 @@
 @props(['headers', 'list', 'actions', 'routes'])
 <div class="card">
     <!-- /.card-header -->
-    @if ($actions['create'] || $actions['createExcel'] || $actions['deleteAll'])
+    @if ($actions['create'] || $actions['createExcel'])
         <div class="card-header">
         <div class="row">
             <div class="col-6 d-flex">
@@ -9,7 +9,7 @@
                     <a
                         href="{{ (isset($routes['create'])) ? route($routes['create']) : '#'}}"
                         class="btn btn-primary next-link__js">
-                        Thêm Mới
+                        Add
                     </a>
                 @endif
                 @if ($actions['createExcel'])

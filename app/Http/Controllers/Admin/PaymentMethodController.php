@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdatePaymentMethodRequest;
 use App\Models\Payment;
-use App\Services\PaymentMethodService;
+use App\Http\Services\Admin\PaymentMethodService;
 use Illuminate\Http\Request;
 
 class PaymentMethodController extends Controller
