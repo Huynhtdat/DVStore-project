@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class EmailVerificationPromptController extends Controller
+{
+    /**
+     * Display the email verification prompt.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function __invoke(Request $request)
+    {
+        if ($request->user('admin')->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        }
+
+        return view('admin.auth.verify-email');
+    }
+}

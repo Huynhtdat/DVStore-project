@@ -40,11 +40,21 @@
                     <h1 class="mb-4 text-center">Đăng Nhập</h1>
                     <div class="mb-3">
                         <label for="email" class="form-label"><strong>Email:</strong></label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Nhập Email" required>
+                        @if ($errors->get('email'))
+                                <span id="email-error" class="error invalid-feedback" style="display: block">
+                                  {{ implode(", ",$errors->get('email')) }}
+                                </span>
+                        @endif
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label"><strong>Password:</strong></label>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                        <label for="password" class="form-label"><strong>Mật Khẩu:</strong></label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Nhập Mật Khẩu" required>
+                        @if ($errors->get('password'))
+                                <span id="password-error" class="error invalid-feedback" style="display: block">
+                                  {{ implode(", ",$errors->get('password')) }}
+                                </span>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary d-block mx-auto">Đăng Nhập</button>
                 </form>
@@ -63,6 +73,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="{{ route('user.forgot_password_create') }}">Quên mật khẩu</a>
                 <p class="mt-3 text-center">Nếu bạn chưa có tài khoản, <a href="{{ route('user.register') }}">Đăng ký</a> ngay.</p>
             </div>
         </div>
