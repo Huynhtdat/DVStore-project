@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -26,6 +28,16 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreign('role_id')->references('id')->on('roles');
         });
+        DB::table('users')->insert([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@example.com',
+            'password' => Hash::make('123456'), // Mã hoá mật khẩu
+            'phone_number' => '123456789',
+            'role_id' => 1,
+            'active' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

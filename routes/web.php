@@ -40,6 +40,8 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [ForgotPasswordController::class, "store"])->name('user.forgot_password_store');
     Route::get('account/change-new-password', [ForgotPasswordController::class, "changePassword"])->name('user.change_new_password');
     Route::post('account/change-new-password', [ForgotPasswordController::class, "updatePassword"]);
+
+
 });
 
 

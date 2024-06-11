@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="{{ asset('asset/admin/plugins/fontawesome-free/css/all.min.css') }}">
     @vite(['resources/client/css/auth.css', 'resources/client/css/home.css'])
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- FlexSlider -->
+    <script src="{{ asset('asset/client/js/jquery.flexslider-min.js') }}"></script>
 </head>
 
-<body>
+<body class="home">
     <div class="wrapper">
         <div class="header">
             <div class="container">
@@ -43,65 +46,62 @@
                                             <div class="dropdown-menu">
                                                 <ul class="mega-menu-links">
                                                     {{-- route profile --}}
-                                                    <li><a href="#">Thông tin cá nhân</a></li>
+                                                    <li><a href="#">Profile</a></li>
                                                     {{-- route lịch sử đơn hàng --}}
-                                                    <li><a href="#">Lịch sử mua hàng</a></li>
+                                                    <li><a href="#">Purchase history</a></li>
                                                     {{-- route logout --}}
-                                                    <li><a href="#">Đăng xuất</a></li>
+                                                    <li><a href="#">LogOut</a></li>
                                                 </ul>
                                             </div>
                                         </li>
                                     </ul>
                                     @else
                                     <ul class="usermenu">
-                                        <li><a href="{{ route('user.login') }}" class="log">Đăng Nhập</a></li>
-                                        <li><a href="{{ route('user.register') }}" class="reg">Đăng Kí</a></li>
+                                        <li><a href="{{ route('user.login') }}" class="log">Login</a></li>
+                                        <li><a href="{{ route('user.register') }}" class="reg">Register</a></li>
                                     </ul>
                                     @endif
                                 </div>
+                                <ul class="option">
+                                    <li id="search" class="search">
+                                        {{-- thêm route search ngay tại đây --}}
+                                        <form method="GET" action="#">
+                                            <input class="search-submit" type="submit" value="">
+                                            <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="keyword">
+                                        </form>
+                                    </li>
+                                    <li class="option-cart">
+                                        {{-- thêm route giỏ hàng tại đây --}}
+                                        <a href="#" class="cart-icon">cart <span class="cart_no"></span></a>
+                                    </li>
+                                </ul>
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown {{ (request()->is('/*')) ? 'active' : '' }}">
+                                            <a href="{{ route('user.home') }}">Trang Chủ</a>
+                                        </li>
+                                        @foreach (category_header() as $category)
+                                        <li class="dropdown @php if (isset($request->slug) && $request->slug == $category->slug) { echo "active"; } @endphp">
+                                            {{-- thêm route product (thêm id) --}}
+                                            <a href="#">{{ $category->name }}</a>
+                                        </li>
+                                        @endforeach
+                                        <li class="dropdown {{ (request()->is('introduction*')) ? 'active' : '' }}">
+                                            {{-- thêm route giới thiệu cửa hàng tại đây --}}
+                                            <a href="#">Giới Thiệu</a>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="header_bottom">
-                            <ul class="option">
-                                <li id="search" class="search">
-                                    {{-- thêm route search ngay tại đây --}}
-                                    <form method="GET" action="#">
-                                        <input class="search-submit" type="submit" value="">
-                                        <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="keyword">
-                                    </form>
-                                </li>
-                                <li class="option-cart">
-                                    {{-- thêm route giỏ hàng tại đây --}}
-                                    <a href="#" class="cart-icon">cart <span class="cart_no"></span></a>
-                                </li>
-                            </ul>
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav">
-                                    <li class="dropdown {{ (request()->is('/*')) ? 'active' : '' }}">
-                                        <a href="{{ route('user.home') }}">Trang Chủ</a>
-                                    </li>
-                                    @foreach (category_header() as $category)
-                                    <li class="dropdown @php if (isset($request->slug) && $request->slug == $category->slug) { echo "active"; } @endphp">
-                                        {{-- thêm route product (thêm id) --}}
-                                        <a href="#">{{ $category->name }}</a>
-                                    </li>
-                                    @endforeach
-                                    <li class="dropdown {{ (request()->is('introduction*')) ? 'active' : '' }}">
-                                        {{-- thêm route giới thiệu cửa hàng tại đây --}}
-                                        <a href="#">Giới Thiệu</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

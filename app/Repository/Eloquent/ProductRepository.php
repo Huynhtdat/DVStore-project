@@ -30,9 +30,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         ->get();
     }
 
-    /**
-     * Get best selling product
-     */
     public function getBestSellingProduct()
     {
         return DB::select('
@@ -44,13 +41,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             where orders.status = 3 and products.deleted_at is null
             group by products.id, products.name, products.price_sell, products.img
             order by sum desc
-            limit 12
+            limit 8
         ');
     }
 
-    /**
-     * Get new products
-     */
     public function getNewProducts()
     {
         return $this->model
