@@ -43,6 +43,8 @@ class UserLoginRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'email.required' => __('validation.required', ['attribute' => 'email']),
+            'email.email' => __('validation.email', ['attribute' => 'email']),
             'password.required' => __('validation.required', ['attribute' => 'mật khẩu']),
             'password.string' => __('validation.string', ['attribute' => 'mật khẩu']),
         ];
@@ -59,12 +61,9 @@ class UserLoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $credentials = [
-            'email' => $this->input('email'),
-            'password' => $this->input('password'),
-            'role_id' => Role::ROLE['user'],
-            'deleted_at' => null,
-        ];
+        $credentials = $this->only('email', 'password');
+        $credentials['role_id'] = Role::ROLE['user'];
+        $credentials['deleted_at'] = null;
 
         if (!Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
@@ -120,6 +119,6 @@ class UserLoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')) . '|' . $this->ip());
+        return Str::lower($this->input('email')) . '|' . $this->ip();
     }
 }

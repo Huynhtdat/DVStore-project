@@ -26,13 +26,13 @@ class UpdateProfileRequest extends FormRequest
     {
         $user = Auth::user();
         return [
-            'name' => 'required|string|min:1|max:30',
-            'email' => 'required|string|email|unique:users,email,' . $user->id . ',id,deleted_at,NULL',
-            'phone_number' => 'required|string|min:10|max:11',
-            'city' => 'required|integer',
-            'district' => 'required|integer',
-            'ward' => 'required|integer',
-            'apartment_number' => 'required|string|min:1|max:100',
+            'name' => ['required', 'string', 'min:1', 'max:30'],
+            'email' => ['required', 'string', 'email', 'unique:users,email,' . $user->id . ',id,deleted_at,NULL'],
+            'phone_number' => ['required', 'string', 'min:10', 'max:11'],
+            'city' => ['required', 'integer'],
+            'district' => ['required', 'integer'],
+            'ward' => ['required', 'integer'],
+            'apartment_number' => ['required', 'string', 'min:1', 'max:100'],
         ];
     }
 

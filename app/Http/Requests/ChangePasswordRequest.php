@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -50,21 +49,22 @@ class ChangePasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'confirm_password.same' => 'Xác nhận mật khẩu không trùng khớp',
+            'confirm_password.same' => __('validation.same', ['attribute' => 'mật khẩu']),
+            'current_password.required' => __('validation.required', ['attribute' => 'mật khẩu hiện tại']),
         ];
     }
 
     /**
      * Configure the validator instance.
      *
-     * @param Validator $validator
+     * @param \Illuminate\Contracts\Validation\Validator $validator
      * @return void
      */
-    public function withValidator(Validator $validator): void
+    public function withValidator($validator)
     {
         $validator->after(function ($validator) {
             if (!$this->matchCurrentPassword($this->input('current_password'))) {
-                $validator->errors()->add('current_password', 'Mật khẩu hiện tại không đúng');
+                $validator->errors()->add('current_password', __('auth.password'));
             }
         });
     }

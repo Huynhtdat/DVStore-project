@@ -24,24 +24,18 @@ class UserRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:1|max:30',
-            'email' => 'required|max:30|string|email|unique:users,email,NULL,id,deleted_at,NULL',
+            'name' => ['required', 'string', 'min:1', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:users,email,NULL,id,deleted_at,NULL'],
             'password' => [
-                'required',
-                'string',
-                'min:8',
-                'max:24',
-                'regex:/[a-z]/',
-                'regex:/[A-Z]/',
-                'regex:/[0-9]/',
-                'regex:/[@$!%*#?&]/',
+                'required', 'string', 'min:8', 'max:24',
+                'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/',
             ],
             'password_confirm' => 'required_with:password|same:password',
-            'phone_number' => 'required|string|min:10|max:11',
+            'phone_number' => ['required', 'string', 'min:10', 'max:11'],
             'city' => 'required|integer',
             'district' => 'required|integer',
             'ward' => 'required|integer',
-            'apartment_number' => 'required|string|min:1|max:100',
+            'apartment_number' => ['required', 'string', 'min:1', 'max:100'],
         ];
     }
 
@@ -69,7 +63,7 @@ class UserRegisterRequest extends FormRequest
             'password.regex' => __('message.password_invalidator', ['attribute' => 'mật khẩu']),
             'email.unique' => __('message.unique', ['attribute' => 'email']),
             'email.email' => __('message.email'),
-            'password_confirm.same' => 'Xác nhận mật khẩu không trùng khớp',
+            'password_confirm.same' => __('validation.same', ['attribute' => 'mật khẩu']),
             'email.max' => 'Email không được quá 30 ký tự',
         ];
     }

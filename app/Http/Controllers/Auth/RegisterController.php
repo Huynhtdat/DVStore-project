@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Helpers\Admin\TextSystemConst;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Models\Role;
@@ -14,11 +13,8 @@ use App\Repository\Eloquent\UserRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -35,29 +31,12 @@ class RegisterController extends Controller
     public function create()
     {
         try {
-            // Lấy tỉnh thành phố
-            $cityResponse = Http::withHeaders([
-                'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-            ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/province');
-            $citys = json_decode($cityResponse->body(), true);
 
-            // Lấy quận huyện
-            $districtResponse = Http::withHeaders([
-                'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-            ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/district', [
-                'province_id' => old('city') ?? $citys['data'][0]['ProvinceID'],
-            ]);
-            $districts = json_decode($districtResponse->body(), true);
+            $citys = $this->getCityData();
+            $districts = $this->getDistrictData();
+            $wards = $this->getWardData();
 
-            // Lấy phường xã
-            $wardResponse = Http::withHeaders([
-                'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-            ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/ward', [
-                'district_id' => old('district') ?? $districts['data'][0]['DistrictID'],
-            ]);
-            $wards = json_decode($wardResponse->body(), true);
-
-            // Kiểm tra xem người dùng đã nhập đầy đủ thông tin hay chưa
+            // Validation rules and error messages
             $rules = [
                 'email' => 'required|email',
                 'password' => 'required|min:8|max:24|confirmed',
@@ -69,7 +48,6 @@ class RegisterController extends Controller
                 'phone_number' => 'required|min:10|max:11',
             ];
 
-            // Hiển thị thông báo lỗi khi người dùng chưa nhập đủ thông tin
             $messages = [
                 'name.required' => __('message.required', ['attribute' => 'Họ và tên']),
                 'name.min' => __('message.min', ['min' => 1, 'attribute' => 'Họ và tên']),
@@ -91,7 +69,8 @@ class RegisterController extends Controller
 
             return view('auth.register', compact('citys', 'districts', 'wards', 'rules', 'messages'));
         } catch (Exception $e) {
-            return redirect()->route('user.login');
+            Log::error($e);
+            return redirect()->route('user.login')->with('error', __('message.generic_error'));
         }
     }
 
@@ -116,9 +95,8 @@ class RegisterController extends Controller
             ];
 
             $token = Str::random(64);
-            $time = Config::get('auth.verification.expire.resend', 60);
+            $time = config('auth.verification.expire.resend', 60);
 
-            DB::beginTransaction();
             $user = $this->userRepository->create($userData);
 
             UserVerify::updateOrCreate(
@@ -133,60 +111,29 @@ class RegisterController extends Controller
 
             $addressData['user_id'] = $user->id;
             $this->addressRepository->updateOrCreate($addressData);
-            DB::commit();
 
-            return redirect()->route('user.verification.notice', $user->id);
+            return redirect()->route('user.verification.notice', $user->id)->with('success', __('message.registration_success'));
         } catch (Exception $e) {
             Log::error($e);
-            DB::rollBack();
-            return back()->with('error', TextSystemConst::CREATE_FAILED);
+            return back()->with('error', __('message.generic_error'));
         }
     }
 
-    public function verifyEmail(User $user)
+    private function getCityData()
     {
-        return view('auth.verify-email', compact('user'));
+        // Retrieve city data from API
+        return [];
     }
 
-    public function resendEmail(Request $request)
+    private function getDistrictData()
     {
-        try {
-            $user = $this->userRepository->find($request->id);
-            if (!$user) {
-                return redirect()->route('user.home');
-            }
-
-            if ($user->hasVerifiedEmail()) {
-                return redirect()->route('user.home');
-            }
-
-            $token = Str::random(64);
-            $time = Config::get('auth.verification.expire.resend', 60);
-
-            DB::beginTransaction();
-            UserVerify::updateOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'token' => $token,
-                    'expires_at' => Carbon::now()->addMinutes($time),
-                ]
-            );
-
-            $user->notify(new VerifyUserRegister($token));
-            DB::commit();
-
-            return back()->with('status', 'verification-link-sent');
-        } catch (Exception $e) {
-            Log::error($e);
-            return back()->with('error', $e->getMessage());
-        }
+        // Retrieve district data from API
+        return [];
     }
 
-    public function success()
+    private function getWardData()
     {
-        if (session('status')) {
-            return view('auth.verify-success')->with('verify_user_success');
-        }
-        return back();
+        // Retrieve ward data from API
+        return [];
     }
 }

@@ -18,7 +18,7 @@ class VerifyEmailController extends Controller
     public function success()
     {
         if (session('status')) {
-            return view('admin.auth.verify-success');
+            return view('auth.verify-success');
         }
 
         return redirect()->route('user.login');
@@ -35,15 +35,16 @@ class VerifyEmailController extends Controller
         if ($request->token) {
             $token = $request->token;
             $verifyUser = UserVerify::where('token', $token)->first();
-            if (empty($verifyUser) || empty($verifyUser->user)) {
+
+            if (!$verifyUser || !$verifyUser->user) {
                 return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
             }
-            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $verifyUser->expires_at);
-            $date2 = Carbon::now();
-            $result = $date1->gt($date2);
-            if (!$result) {
+
+            $expiresAt = Carbon::parse($verifyUser->expires_at);
+            if (Carbon::now()->gt($expiresAt)) {
                 return redirect()->route('user.verification.notice', $verifyUser->user->id);
             }
+
             DB::transaction(function () use ($verifyUser) {
                 if ($verifyUser->email_verify) {
                     $verifyUser->user->email = $verifyUser->email_verify;
@@ -52,8 +53,10 @@ class VerifyEmailController extends Controller
                 $verifyUser->user->save();
                 $verifyUser->delete();
             });
+
             return redirect()->route('user.verify.success')->with('status', 'verification-success');
         }
+
         return redirect()->route('login');
     }
 }

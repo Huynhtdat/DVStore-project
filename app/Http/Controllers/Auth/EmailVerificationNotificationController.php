@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-
 class EmailVerificationNotificationController extends Controller
 {
     /**
@@ -24,7 +23,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(): \Illuminate\Http\RedirectResponse
     {
         try {
-            $user = Auth::guard()->user();
+            $user = Auth::user();
             if (!$user) {
                 return redirect()->route('login');
             }

@@ -34,7 +34,7 @@ class ChangeNewPasswordRequest extends FormRequest
                 'regex:/[0-9]/',
                 'regex:/[@$!%*#?&]/',
             ],
-            'password_confirmation' => 'required_with:password|same:password',
+            'password_confirmation' => ['required_with:password', 'same:password'],
         ];
     }
 
@@ -46,6 +46,12 @@ class ChangeNewPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'password.required' => 'Mật khẩu không được để trống',
+            'password.string' => 'Mật khẩu phải là chuỗi ký tự',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
+            'password.max' => 'Mật khẩu không được vượt quá 24 ký tự',
+            'password.regex' => 'Mật khẩu phải chứa ít nhất một ký tự thường, một ký tự hoa, một chữ số và một ký tự đặc biệt',
+            'password_confirmation.required_with' => 'Vui lòng nhập lại mật khẩu',
             'password_confirmation.same' => 'Xác nhận mật khẩu không trùng khớp',
         ];
     }
