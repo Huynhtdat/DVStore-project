@@ -1,3 +1,4 @@
+<!-- resources/views/layouts/user/footer.blade.php -->
 <div class="footer">
     <div class="footer-info">
         <div class="container">
@@ -31,7 +32,6 @@
         </div>
     </div>
 </div>
-</div>
 @if (Session::has('success'))
 <span id="toast__js" message="{{ session('success') }}" type="success"></span>
 @elseif (Session::has('error'))
@@ -50,5 +50,3 @@
 <script type="text/javascript" src="{{ asset('asset/client/js/script.min.js') }}"></script>
 <script defer src="{{ asset('asset/client/js/jquery.flexslider.js') }}"></script>
 @vite(['resources/admin/js/toast-message.js'])
-</body>
-</html>
