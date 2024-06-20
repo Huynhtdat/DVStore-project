@@ -14,20 +14,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->string('name');
-            $table->string('email')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone_number');
-            $table->bigInteger('role_id')->unsigned();
+            $table->string('google_id')->nullable()->unique();
+            $table->string('phone_number')->nullable();
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->integer('active')->default(1);
             $table->string('disable_reason')->nullable();
-            $table->rememberToken()->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('role_id')->references('id')->on('roles');
         });
+
         DB::table('users')->insert([
             'name' => 'Super Admin',
             'email' => 'superadmin@example.com',

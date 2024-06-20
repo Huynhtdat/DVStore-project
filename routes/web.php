@@ -4,8 +4,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\SocialController;
+
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -29,6 +30,9 @@ Route::middleware('guest')->group(function () {
 
     Route::get('register', [RegisterController::class, "create"])->name('user.register');
     Route::post('register', [RegisterController::class, "store"]);
+    Route::get('/api/tinh-thanh', [RegisterController::class, 'getCityData']);
+    Route::get('/api/quan-huyen/{cityId}', [RegisterController::class, 'getDistrictData']);
+    Route::get('/api/phuong-xa/{districtId}', [RegisterController::class, 'getWardData']);
     Route::get('verify-email/{user}', [RegisterController::class, "verifyEmail"])
         ->name('user.verification.notice');
     Route::get('account/verify/{id}', [VerifyEmailController::class, 'verifyAccount'])
@@ -40,10 +44,6 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [ForgotPasswordController::class, "store"])->name('user.forgot_password_store');
     Route::get('account/change-new-password', [ForgotPasswordController::class, "changePassword"])->name('user.change_new_password');
     Route::post('account/change-new-password', [ForgotPasswordController::class, "updatePassword"]);
-
-
+    Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+    Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
 });
-
-
-Route::get('auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('social.login');
-Route::get('auth/{provider}/callback', [SocialController::class, 'handleProviderCallback']);

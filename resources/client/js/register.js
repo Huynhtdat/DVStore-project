@@ -1,28 +1,24 @@
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
-            token: "24d5b95c-7cde-11ed-be76-3233f989b8f3"
-        },
+            'token': '24d5b95c-7cde-11ed-be76-3233f989b8f3'
+        }
     });
 
-    //khi người dùng thay đổi tỉnh thành
+    // When user changes city
     $(document).on('change', '#city', function(){
-        //xóa tất cả các html có trong quận huyện 
-        $('#district').html("");
-        //xóa tất cả các html có trong phường xã
-        $('#ward').html("");
-        //hiển thị lại thông quận huyên và phường xã
-        getProvind();
+        $('#district').html('<option value="">Chọn quận, huyện</option>');
+        $('#ward').html('<option value="">Chọn phường, xã</option>');
+        getDistrict();
     });
 
     $(document).on('change', '#district', function(){
-        $('#ward').html("");
-        // get list ward
+        $('#ward').html('<option value="">Chọn phường, xã</option>');
         getWard();
     });
-    //check click btn submit
+
+    // Check form submission
     $(document).on('submit', '#form__js', function(){
-        //display loading
         $('#loading__js').css('display', 'flex');
     });
 
@@ -41,7 +37,8 @@ $(document).ready(function(){
     $.validator.addMethod("checkspecialcharacter", function (value) {
         return value ? /[%#@_\-]/.test(value) : true;
     });
-    // kiểm tra xem người dùng nhập đầy thông tin hay chưa trước khi gửi liệu lên server
+
+    // Validate form
     $("#form__js").validate({
         rules: rules ?? "",
         messages: messages ?? "",
@@ -50,53 +47,54 @@ $(document).ready(function(){
             error.addClass('invalid-feedback');
             element.closest('.form-group').append(error);
         },
-        submitHandler: (form) => {
+        submitHandler: function (form) {
             form.submit();
             $('#loading__js').css('display', 'flex');
         },
     });
 });
 
-// fucntion get district
-function getProvind()
-{
+// Function to get districts
+function getDistrict() {
     let provinceId = $('#city').val();
-    // gửi mã thành phố hoặc tỉnh lên đường dẫn https://online-gateway.ghn.vn/shiip/public-api/master-data/district để lấy tất cả các quận huyện thuộc tỉnh đó
     $.ajax({
         type: 'GET',
-        url: 'https://online-gateway.ghn.vn/shiip/public-api/master-data/district',
-        data: {
-            province_id: provinceId
+        url: `https://esgoo.net/api-tinhthanh/2/${provinceId}.htm`,
+    }).done(function(response) {
+        console.log(response); // Debug line
+        let options = '<option value="">Chọn quận, huyện</option>';
+        if (Array.isArray(response)) {
+            response.forEach(function(element) {
+                options += `<option value="${element.DistrictID}">${element.DistrictName}</option>`;
+            });
+        } else {
+            console.error('Data is not an array:', response);
         }
-    }).done((respones) => {
-        let option = '';
-        //Hiển thị quận huyện thuộc tỉnh đó
-        respones.data.forEach(element => {
-            option = `<option value="${element.DistrictID}">${element.DistrictName}</option>`
-            $('#district').append(option);
-        });
-        //hiển thị phường xã
-        getWard();
+        $('#district').html(options);
+        $('#ward').html('<option value="">Chọn phường, xã</option>');
+    }).fail(function(error) {
+        console.error('Error fetching districts:', error);
     });
 }
 
-//function get ward
-function getWard()
-{
-    let district_id  = $('#district').val();
-    // lấy tất cả các phường xã thuộc quận huyện đó
+// Function to get wards
+function getWard() {
+    let districtId = $('#district').val();
     $.ajax({
         type: 'GET',
-        url: 'https://online-gateway.ghn.vn/shiip/public-api/master-data/ward',
-        data: {
-            district_id : district_id 
+        url: `https://esgoo.net/api-tinhthanh/3/${districtId}.htm`,
+    }).done(function(response) {
+        console.log(response); // Debug line
+        let options = '<option value="">Chọn phường, xã</option>';
+        if (Array.isArray(response)) {
+            response.forEach(function(element) {
+                options += `<option value="${element.WardCode}">${element.WardName}</option>`;
+            });
+        } else {
+            console.error('Data is not an array:', response);
         }
-    }).done((respones) => {
-        let option = '';
-        //Hiển thị phường xã thuộc quận huyện đó
-        respones.data.forEach(element => {
-            option = `<option value="${element.WardCode}">${element.NameExtension[0]}</option>`
-            $('#ward').append(option);
-        });
+        $('#ward').html(options);
+    }).fail(function(error) {
+        console.error('Error fetching wards:', error);
     });
 }

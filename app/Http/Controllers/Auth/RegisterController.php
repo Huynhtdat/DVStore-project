@@ -31,12 +31,10 @@ class RegisterController extends Controller
     public function create()
     {
         try {
+            $cities = $this->getCityData();
+            $districts = [];
+            $wards = [];
 
-            $citys = $this->getCityData();
-            $districts = $this->getDistrictData();
-            $wards = $this->getWardData();
-
-            // Validation rules and error messages
             $rules = [
                 'email' => 'required|email',
                 'password' => 'required|min:8|max:24|confirmed',
@@ -67,12 +65,13 @@ class RegisterController extends Controller
                 'phone_number.max' => __('message.max', ['attribute' => 'số điện thoại', 'max' => 11]),
             ];
 
-            return view('auth.register', compact('citys', 'districts', 'wards', 'rules', 'messages'));
+            return view('auth.register', compact('cities', 'districts', 'wards', 'rules', 'messages'));
         } catch (Exception $e) {
-            Log::error($e);
+            Log::error('Error in create method', ['exception' => $e]);
             return redirect()->route('user.login')->with('error', __('message.generic_error'));
         }
     }
+
 
     public function store(UserRegisterRequest $request)
     {
@@ -98,7 +97,6 @@ class RegisterController extends Controller
             $time = config('auth.verification.expire.resend', 60);
 
             $user = $this->userRepository->create($userData);
-
             UserVerify::updateOrCreate(
                 ['user_id' => $user->id],
                 [
@@ -106,34 +104,32 @@ class RegisterController extends Controller
                     'expires_at' => Carbon::now()->addMinutes($time),
                 ]
             );
-
             $user->notify(new VerifyUserRegister($token));
-
             $addressData['user_id'] = $user->id;
             $this->addressRepository->updateOrCreate($addressData);
-
             return redirect()->route('user.verification.notice', $user->id)->with('success', __('message.registration_success'));
         } catch (Exception $e) {
-            Log::error($e);
+            Log::error('Error in store method', ['exception' => $e]);
             return back()->with('error', __('message.generic_error'));
         }
     }
 
     private function getCityData()
     {
-        // Retrieve city data from API
-        return [];
-    }
+        try {
+            $response = Http::get('https://esgoo.net/api-tinhthanh/4/0.htm');
 
-    private function getDistrictData()
-    {
-        // Retrieve district data from API
-        return [];
-    }
+            if ($response->successful()) {
+                $data = $response->json();
+                Log::info('City data retrieved successfully', ['data' => $data]);
+                return $data;
+            } else {
+                Log::error('Error fetching city data', ['response' => $response->body()]);
+            }
+        } catch (Exception $e) {
+            Log::error('Exception while fetching city data', ['exception' => $e]);
+        }
 
-    private function getWardData()
-    {
-        // Retrieve ward data from API
         return [];
     }
 }

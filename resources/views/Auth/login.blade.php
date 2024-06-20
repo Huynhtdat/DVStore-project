@@ -39,10 +39,10 @@
                                                 <div class="card-footer text-center">
                                                     <p class="mb-0">Hoặc đăng nhập</p>
                                                     <div class="row justify-content-center mt-2">
-                                                        <a href="{{ route('social.login', 'facebook') }}" class="btn btn-primary social-btn col-5 mx-2">
+                                                        <a href="#" class="btn btn-primary social-btn col-5 mx-2">
                                                             <i class="fab fa-facebook-f"></i> Facebook
                                                         </a>
-                                                        <a href="{{ route('social.login', 'google') }}" class="btn btn-danger social-btn col-5 mx-2" style="margin-left: 10px;">
+                                                        <a href="{{ route('google-auth', 'google') }}" class="btn btn-danger social-btn col-5 mx-2" style="margin-left: 10px;">
                                                             <i class="fab fa-google"></i> Google
                                                         </a>
                                                     </div><br>
