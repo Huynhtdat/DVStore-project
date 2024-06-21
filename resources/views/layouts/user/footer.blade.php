@@ -1,52 +1,87 @@
-<!-- resources/views/layouts/user/footer.blade.php -->
-<div class="footer">
-    <div class="footer-info">
+<!--footer area start-->
+<div class="footer_area">
+    <div class="footer_top">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="footer-logo">
-                        <a href="{{ route('user.home') }}">
-                            <img src="{{ asset("asset/client/images/" . setting_website()->logo) }}" alt="">
-                        </a>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer_widget">
+                        <h3>Contact Info</h3>
+
+                        <div class="footer_widget_contect">
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ setting_website()->address }}</p>
+
+                            <p><i class="fa fa-mobile" aria-hidden="true"></i> {{ setting_website()->phone_number }}</p>
+                            <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ setting_website()->email }} </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <h4 class="title">Contact Information</h4>
-                    <p>{{ setting_website()->address }}</p>
-                    <p>Phone Number : {{ setting_website()->phone_number }}</p>
-                    <p>Email : {{ setting_website()->email }}</p>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer_widget">
+                        <h3>About Us</h3>
+                        <p>Chuyên bán thời trang an toàn. Tin cậy nhanh chóng. Chăm sóc khách hàng 24/24.</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <h4 class="title">Information about us</h4>
-                    <p>Chuyên bán thời trang an toàn. Tin cậy nhanh chóng. Chăm sóc khách hàng 24/24</p>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer_widget">
+                        <h3>My Account</h3>
+                        <ul>
+                            <li><a href="#">Your Account</a></li>
+                            <li><a href="{{ route('order_history.index')}}">History orders</a></li>
+                            <li><a href="{{route('user.login')}}">Login</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h4 class="title">Contact us</h4>
-                    <p>Thank you so much</p>
-                    <form class="newsletter">
-                        <input type="text" name="" placeholder="Your Email">
-                        <input type="submit" value="Send" class="button">
-                    </form>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer_widget">
+                        <h3>Contact</h3>
+                        <form action="#">
+                            <p>Sign up for your newsletter</p>
+                            <input placeholder="Your email address" type="text">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="copyright_area">
+                        <ul>
+                            <li><a href="#"> about us </a></li>
+                            <li><a href="#">  Customer Service  </a></li>
+                            <li><a href="#">  Privacy Policy  </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer_social text-right">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a class="pinterest" href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-wifi" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@if (Session::has('success'))
-<span id="toast__js" message="{{ session('success') }}" type="success"></span>
-@elseif (Session::has('error'))
-<span id="toast__js" message="{{ session('error') }}" type="error"></span>
-@endif
-{{-- Link css --}}
-<link rel="stylesheet" href="asser/client/css/custom-footer.css">
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset('asset/admin/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('asset/admin/plugins/jquery-validation/jquery.validate.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/jquery-1.10.2.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/jquery.easing.1.3.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/jquery.sequence-min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/jquery.carouFredSel-6.2.1-packed.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/client/js/script.min.js') }}"></script>
-<script defer src="{{ asset('asset/client/js/jquery.flexslider.js') }}"></script>
-@vite(['resources/admin/js/toast-message.js'])
+<!--footer area end-->
+<!-- all js here -->
+<script src="{{asset('assets\js\vendor\jquery-1.12.0.min.js')}}"></script>
+<script src="{{asset('assets\js\popper.js')}}"></script>
+<script src="{{asset('assets\js\bootstrap.min.js')}}"></script>
+<script src="{{asset('assets\js\ajax-mail.js')}}"></script>
+<script src="{{asset('assets\js\plugins.js')}}"></script>
+<script src="{{asset('assets\js\main.js')}}"></script>
+
+<!-- Bootstrap core JavaScript==================================================-->
+
+
+

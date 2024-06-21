@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Services\Admin\AdminService;
 use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 
 class AdminController extends Controller
@@ -57,7 +58,7 @@ class AdminController extends Controller
         return redirect()->route('admin.admins_index');
     }
 
-    public function update(UpdateUserRequest $request, User $admin)
+    public function update(UpdateAdminRequest $request, User $admin)
     {
         return $this->adminService->update($request, $admin);
     }

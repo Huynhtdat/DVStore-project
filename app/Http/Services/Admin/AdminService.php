@@ -4,6 +4,7 @@ namespace App\Http\Services\Admin;
 
 use App\Helpers\admin\TextSystemConst;
 use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -461,7 +462,7 @@ class AdminService
 
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateAdminRequest $request, User $user)
     {
         try {
             if ($user->role_id != Role::ROLE['admin']) {

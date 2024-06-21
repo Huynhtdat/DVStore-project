@@ -31,6 +31,16 @@ class Category extends Model
         'slug',
     ];
 
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
     public function setSlugAttribute($value)
     {
         $slug = Str::slug($value);

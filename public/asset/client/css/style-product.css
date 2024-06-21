@@ -204,7 +204,7 @@ li {
   -webkit-transition: all 0.2s ease-in-out 0s;
 }
 img {
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
 }
 /*~~ text align style ~~*/.center-text {
@@ -348,58 +348,55 @@ button:hover {
   padding-top: 30px;
   padding-bottom: 30px;
 }
-/* slide show */
-/* .slider {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-}
+/* search */
 
-.flexslider {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.flexslider .slides img {
-    width: 100%;
-    height: auto;
-    display: block;
-} */
-
-/* HEADER STYLE */
-#home {
+/* HEADER STYLE */#home {
   background: url(../images/bg.jpg) center top no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   background-attachment: fixed;
 }
 #home .header {
-  background: url(../images/black_transparent50.png) left top repeat;
   position: relative;
   z-index: 100;
   top: 0;
 }
 .header {
   position: relative;
-  background: #242424;
+  background: #333333;
 }
 .logo {
   float: left;
   position: relative;
-  padding: -10px 0;
+  padding: 0;
 }
 .header_top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  float: right;
+  width: 100%;
+  position: relative;
 }
 .header_bottom {
   float: left;
   width: 100%;
   position: relative;
+  /* margin-top: 50px; */
 }
+
+/*thumbnail*/
+.thumbnail{
+    margin: unset;
+    height: 260px;
+}
+
+.thumbnail img{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}
+.productname{
+    padding-top: 10px;
+}
+
 .option_nav {
   float: left;
   padding-top: 10px;
@@ -480,7 +477,7 @@ button:hover {
 .usermenu {
   float: right;
   padding-top: 15px;
-  line-height: 1.6em;
+  /* line-height: */
 }
 .usermenu li {
   float: left;
@@ -1185,7 +1182,7 @@ ul.dropdown-menu > li > a:hover {
 }
 #braldLogo .brand_item li {
   display: inline-block;
-  display: inline;
+  /* *display: inline; */
   margin-right: 2%;
   width: 18.4%;
 }
@@ -1308,9 +1305,7 @@ ul.dropdown-menu > li > a:hover {
 .fbplug span {
   margin-right: 5px;
 }
-/*!~~~~FOOTER STYLE~~~~*/
-
-.footer {
+/*!~~~~FOOTER STYLE~~~~*/.footer {
   width: 100%;
   background: #242424;
 }

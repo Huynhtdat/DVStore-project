@@ -2,6 +2,9 @@
 
 namespace App\Http\Services\User;
 
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Product;
 use App\Repository\Eloquent\ProductRepository;
 use App\Repository\Eloquent\ProductReviewRepository;
 
@@ -47,11 +50,23 @@ class HomeService
             $newProducts[$key]->avg_rating = $this->productReviewRepository->avgRatingProduct($newProduct->id)->avg_rating ?? 0;
             $newProducts[$key]->sum = $this->productRepository->getQuantityBuyProduct($newProduct->id);
         }
+
+        // lấy thông tin sản phẩm
+
+        //lấy danh mục
+        $categories = Category::where('parent_id', 0)->with('children')->get();
+        // $category = Category::where('parent_id', )
+
+        //lấy brand tag
+        $brands = Brand::all();
         // trả dữ liệu cho controller
         return [
             'title' => TextLayoutTitle("payment_method"),
             'sellingProducts' => $sellingProducts,
             'newProducts' => $newProducts,
+            'categories' => $categories,
+            'brands' => $brands,
+
         ];
     }
 }

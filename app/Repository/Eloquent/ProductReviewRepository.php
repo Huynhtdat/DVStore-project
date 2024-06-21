@@ -29,7 +29,7 @@ class ProductReviewRepository extends BaseRepository
             join products_size on products_color.id = products_size.product_color_id
             join order_details on order_details.product_size_id = products_size.id
             join orders on orders.id = order_details.order_id
-            where orders.order_status = 3 and products.id = $productId and orders.user_id = $userId;
+            where orders.status = 3 and products.id = $productId and orders.user_id = $userId;
         ");
     }
 

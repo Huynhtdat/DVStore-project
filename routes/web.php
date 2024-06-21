@@ -5,8 +5,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\User\SocialController;
 use Illuminate\Support\Facades\Route;
-
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -20,10 +20,27 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
+// Routes under maintenance middleware
 Route::middleware(['maintenance'])->group(function () {
     Route::get('/', [App\Http\Controllers\User\HomeController::class, "index"])->name('user.home');
+    Route::get('product-detail/{product}', [App\Http\Controllers\User\ProductDetailController::class, "show"])->name('user.products_detail');
+    Route::get('products/{slug}', [App\Http\Controllers\User\ShowProductController::class, "index"])->name('user.products');
 });
 
+Route::middleware(['maintenance_active'])->group(function () {
+    Route::get('maintenance', [App\Http\Controllers\User\HomeController::class, "maintenance"])->name('user.maintenance');
+});
+
+// Routes under auth.user middleware
+Route::middleware(['auth.user'])->group(function () {
+    Route::group(['prefix' => 'order-history'], function(){
+        Route::get('/', [App\Http\Controllers\User\OrderHistoryController::class, 'index'])->name('order_history.index');
+        Route::get('/detail/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'show'])->name('order_history.show');
+        Route::get('/update/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'update'])->name('order_history.update');
+    });
+});
+
+// Routes for guest users
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, "create"])->name('user.login');
     Route::post('login', [AuthenticatedSessionController::class, "store"]);
@@ -44,6 +61,10 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [ForgotPasswordController::class, "store"])->name('user.forgot_password_store');
     Route::get('account/change-new-password', [ForgotPasswordController::class, "changePassword"])->name('user.change_new_password');
     Route::post('account/change-new-password', [ForgotPasswordController::class, "updatePassword"]);
+
     Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
     Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
 });
+
+
+?>

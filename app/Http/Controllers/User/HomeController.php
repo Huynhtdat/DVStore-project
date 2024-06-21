@@ -34,4 +34,11 @@ class HomeController extends Controller
     {
         return view('user.index', $this->homeService->index());
     }
+    public function maintenance()
+    {
+        $setting = Setting::first();
+        return view('user.maintenance', [
+            'setting' => $setting
+        ]);
+    }
 }
