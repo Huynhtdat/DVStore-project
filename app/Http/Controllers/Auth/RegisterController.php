@@ -6,15 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UserVerify;
 use App\Notifications\VerifyUserRegister;
 use App\Repository\Eloquent\AddressRepository;
 use App\Repository\Eloquent\UserRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -31,18 +30,18 @@ class RegisterController extends Controller
     public function create()
     {
         try {
-            $cities = $this->getCityData();
-            $districts = [];
-            $wards = [];
+            $cities = []; // Example: ['Hà Nội', 'Hồ Chí Minh']
+            $districts = []; // Example: ['Quận 1', 'Quận 2']
+            $wards = []; // Example: ['Phường 1', 'Phường 2']
 
             $rules = [
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:8|max:24|confirmed',
                 'name' => 'required|min:1|max:30',
                 'apartment_number' => 'required',
-                'city' => 'required',
-                'district' => 'required',
-                'ward' => 'required',
+                'city' => 'required|string|max:50',
+                'district' => 'required|string|max:50',
+                'ward' => 'required|string|max:50',
                 'phone_number' => 'required|min:10|max:11',
             ];
 
@@ -52,6 +51,7 @@ class RegisterController extends Controller
                 'name.max' => __('message.max', ['max' => 30, 'attribute' => 'Họ và tên']),
                 'email.required' => __('message.required', ['attribute' => 'email']),
                 'email.email' => __('message.email'),
+                'email.unique' => __('message.unique', ['attribute' => 'email']),
                 'password.required' => __('message.required', ['attribute' => 'mật khẩu']),
                 'password.min' => __('message.min', ['attribute' => 'Mật khẩu', 'min' => 8]),
                 'password.max' => __('message.max', ['attribute' => 'Mật khẩu', 'max' => 24]),
@@ -72,7 +72,6 @@ class RegisterController extends Controller
         }
     }
 
-
     public function store(UserRegisterRequest $request)
     {
         try {
@@ -81,55 +80,27 @@ class RegisterController extends Controller
             $userData = [
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'password' => bcrypt($data['password']),
+                'password' => Hash::make($data['password']),
                 'phone_number' => $data['phone_number'],
                 'role_id' => Role::ROLE['user'],
             ];
+
+            $user = $this->userRepository->create($userData);
 
             $addressData = [
                 'city' => $data['city'],
                 'district' => $data['district'],
                 'ward' => $data['ward'],
                 'apartment_number' => $data['apartment_number'],
+                'user_id' => $user->id,
             ];
 
-            $token = Str::random(64);
-            $time = config('auth.verification.expire.resend', 60);
+            $this->addressRepository->create($addressData);
 
-            $user = $this->userRepository->create($userData);
-            UserVerify::updateOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'token' => $token,
-                    'expires_at' => Carbon::now()->addMinutes($time),
-                ]
-            );
-            $user->notify(new VerifyUserRegister($token));
-            $addressData['user_id'] = $user->id;
-            $this->addressRepository->updateOrCreate($addressData);
-            return redirect()->route('user.verification.notice', $user->id)->with('success', __('message.registration_success'));
+            return redirect()->route('user.login')->with('success', __('message.registration_success'));
         } catch (Exception $e) {
             Log::error('Error in store method', ['exception' => $e]);
             return back()->with('error', __('message.generic_error'));
         }
-    }
-
-    private function getCityData()
-    {
-        try {
-            $response = Http::get('https://esgoo.net/api-tinhthanh/4/0.htm');
-
-            if ($response->successful()) {
-                $data = $response->json();
-                Log::info('City data retrieved successfully', ['data' => $data]);
-                return $data;
-            } else {
-                Log::error('Error fetching city data', ['response' => $response->body()]);
-            }
-        } catch (Exception $e) {
-            Log::error('Exception while fetching city data', ['exception' => $e]);
-        }
-
-        return [];
     }
 }

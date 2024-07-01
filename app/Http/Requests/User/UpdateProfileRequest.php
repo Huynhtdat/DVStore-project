@@ -29,9 +29,9 @@ class UpdateProfileRequest extends FormRequest
             'name' => 'required|string|min:1|max:30',
             'email' => 'required|string|email|unique:users,email,' . $user->id . ',id,deleted_at,"NULL"',
             'phone_number' => 'required',
-            'city' => 'required',
-            'district' => 'required',
-            'ward' => 'required',
+            'city' => 'required|string|max:50',
+            'district' => 'required|string|max:50',
+            'ward' => 'required|string|max:50',
             'apartment_number' => 'required|string|min:1|max:100',
         ];
     }

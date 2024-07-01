@@ -32,9 +32,9 @@ class UserRegisterRequest extends FormRequest
             ],
             'password_confirm' => 'required_with:password|same:password',
             'phone_number' => ['required', 'string', 'min:10', 'max:11'],
-            'city' => 'required|integer',
-            'district' => 'required|integer',
-            'ward' => 'required|integer',
+            'city' => 'required|string|max:50',
+            'district' => 'required|string|max:50',
+            'ward' => 'required|string|max:50',
             'apartment_number' => ['required', 'string', 'min:1', 'max:100'],
         ];
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\User\SocialController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -35,14 +36,14 @@ Route::middleware(['maintenance_active'])->group(function () {
 // Routes under auth.user middleware
 Route::middleware(['auth.user'])->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, "destroy"])->name('user.logout');
-    Route::group(['prefix' => 'order-history'], function(){
+    Route::group(['prefix' => 'order-history'], function () {
         Route::get('/', [App\Http\Controllers\User\OrderHistoryController::class, 'index'])->name('order_history.index');
         Route::get('/detail/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'show'])->name('order_history.show');
         Route::get('/update/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'update'])->name('order_history.update');
     });
     Route::post('product-review/{product}', [App\Http\Controllers\User\ProductReviewController::class, "store"])->name('product_review.store');
     #cart
-    Route::group(['prefix' => 'cart'], function(){
+    Route::group(['prefix' => 'cart'], function () {
         Route::get('/', [App\Http\Controllers\User\CartController::class, 'index'])->name('cart.index');
         Route::post('add-to-cart', [App\Http\Controllers\User\CartController::class, 'store'])->name('cart.store');
         Route::post('update-cart', [App\Http\Controllers\User\CartController::class, 'update'])->name('cart.update');
@@ -51,14 +52,14 @@ Route::middleware(['auth.user'])->group(function () {
     });
 
     #prodfile
-    Route::group(['prefix' => 'profile'], function(){
+    Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.index');
         Route::post('/change-password', [App\Http\Controllers\User\ProfileController::class, 'changePassword'])->name('profile.change_password');
         Route::post('/change-profile', [App\Http\Controllers\User\ProfileController::class, 'changeProfile'])->name('profile.change_profile');
     });
 
     #check out
-    Route::group(['prefix' => 'checkout'], function(){
+    Route::group(['prefix' => 'checkout'], function () {
         Route::get('/', [App\Http\Controllers\User\CheckOutController::class, 'index'])->name('checkout.index');
         Route::post('/', [App\Http\Controllers\User\CheckOutController::class, 'store']);
         Route::get('/callback-momo', [App\Http\Controllers\User\CheckOutController::class, 'callbackMomo'])->name('checkout.callback_momo');
@@ -73,13 +74,13 @@ Route::middleware('guest')->group(function () {
 
     Route::get('register', [RegisterController::class, "create"])->name('user.register');
     Route::post('register', [RegisterController::class, "store"]);
-    Route::get('/api/tinh-thanh', [RegisterController::class, 'getCityData']);
-    Route::get('/api/quan-huyen/{cityId}', [RegisterController::class, 'getDistrictData']);
-    Route::get('/api/phuong-xa/{districtId}', [RegisterController::class, 'getWardData']);
-    Route::get('verify-email/{user}', [RegisterController::class, "verifyEmail"])
-        ->name('user.verification.notice');
-    Route::get('account/verify/{id}', [VerifyEmailController::class, 'verifyAccount'])
-        ->name('user.verify');
+
+    Route::get('/api/city', [RegisterController::class, 'getCityData']);
+    Route::get('/api/districts', [RegisterController::class, 'getDistricts']);
+    Route::get('/api/wards', [RegisterController::class, 'getWards']);
+
+    Route::get('verify-email/{user}', [RegisterController::class, "verifyEmail"])->name('user.verification.notice');
+    Route::get('account/verify/{id}', [VerifyEmailController::class, 'verifyAccount'])->name('user.verify');
     Route::post('resend-email', [RegisterController::class, "resendEmail"])->name('user.resend_email');
     Route::get('verify-success', [RegisterController::class, "success"])->name('user.verify.success');
 
@@ -91,6 +92,3 @@ Route::middleware('guest')->group(function () {
     Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
     Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
 });
-
-
-?>
