@@ -5,6 +5,7 @@ namespace App\Http\Services\User;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Repository\Eloquent\CartRepository;
 use App\Repository\Eloquent\ProductRepository;
 use App\Repository\Eloquent\ProductReviewRepository;
 
@@ -20,15 +21,21 @@ class HomeService
      */
     private $productReviewRepository;
 
+     /**
+     * @var CartRepository
+     */
+    private $cartRepository;
+
     /**
      * ProductService constructor.
      *
      * @param ProductRepository $productRepository
      */
-    public function __construct(ProductRepository $productRepository, ProductReviewRepository $productReviewRepository)
+    public function __construct(ProductRepository $productRepository, ProductReviewRepository $productReviewRepository, CartRepository $cartRepository)
     {
         $this->productRepository = $productRepository;
         $this->productReviewRepository = $productReviewRepository;
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -51,7 +58,9 @@ class HomeService
             $newProducts[$key]->sum = $this->productRepository->getQuantityBuyProduct($newProduct->id);
         }
 
-        // lấy thông tin sản phẩm
+        // lấy thông tin giỏ hàng
+        $cart = $this->cartRepository->getCart();
+
 
         //lấy danh mục
         $categories = Category::where('parent_id', 0)->with('children')->get();
@@ -66,7 +75,7 @@ class HomeService
             'newProducts' => $newProducts,
             'categories' => $categories,
             'brands' => $brands,
-
+            'carts' => $cart
         ];
     }
 }

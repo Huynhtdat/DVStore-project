@@ -33,7 +33,7 @@
           </div>
           <div class="col-md-12">
              <!-- STACKED BAR CHART -->
-             {{-- <div class="card card-success">
+             <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Doanh Thu Tháng {{ $month }} Năm {{ $year }}</h3>
                 <div id="data-statistics" days="{{ $days }}" parameters="{{ $parameters }}"></div>
@@ -52,9 +52,9 @@
                 </div>
               </div>
               <!-- /.card-body -->
-            </div> --}}
+            </div>
             <!-- /.card -->
-          {{-- </div>
+           </div>
           <div class="col-md-12">
             <!-- PIE CHART -->
             <div class="card card-success">
@@ -98,22 +98,10 @@
             </div>
             <!-- /.card -->
           </div>
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Đơn Hàng Gần Đây</h3>
-              </div>
-              <x-table-crud
-                :headers="$tableCrud['headers']"
-                :list="$tableCrud['list']"
-                :actions="$tableCrud['actions']"
-                :routes="$tableCrud['routes']"
-              />
-            </div>
-            <!-- /.card -->
-          </div>
 
-        </div> --}}
+
+
+        </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>

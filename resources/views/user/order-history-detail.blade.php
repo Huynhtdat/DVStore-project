@@ -5,13 +5,28 @@
     color:black !important;
   }
 </style>
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumb_content">
+                <ul>
+                    <li><a href="{{ route('user.home') }}">home</a></li>
+                    <li><a href="{{ route('order_history.index') }}">Order History</a></li>
+                    <li><i class="fa fa-angle-right"></i></li>
+                    <li>Order Details {{ $order->id }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
 <div class="container_fullwidth">
     <div class="container shopping-cart">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="title">
-            Order Details {{ $order->id }}
-          </h3>
+
           <div style="padding-bottom: 30px;">
             <a href="{{ route('order_history.index') }}" class="btn-a">Back</a>
           </div>

@@ -45,10 +45,11 @@
                      <ul>
                         @if (Auth::check())
                             <li><a href="wishlist.html" title="wishlist">My wishlist</a></li>
-                            <li><a href="my-account.html" title="My account">
+                            <li><a href="{{ route('profile.index') }}" title="My account">
                                 <span>{{ Auth::user()->name }}</span>
                             </a></li>
-                            <li><a href="cart.html" title="My cart">My cart</a></li>
+                            <li><a href="{{route('cart.index')}}" title="My cart">My cart</a></li>
+                            <li><a href="{{route('order_history.index')}}" title="Order history">Order history</a></li>
                         @else
                             <li><a href="{{route('user.login')}}" title="Login">Login</a></li>
                             <li><a href="{{route('user.register')}}" title="Register">Register</a></li>
@@ -73,58 +74,45 @@
              <div class="col-lg-9 col-md-9">
                  <div class="header_right_info">
                      <div class="search_bar">
-                         <form action="#">
-                             <input placeholder="Search..." type="text">
+                         <form method="GET" action="{{ route('user.search') }}">
+                             <input class="search-input" value="" name="keyword"
+                                placeholder="Search..." type="text">
                              <button type="submit"><i class="fa fa-search"></i></button>
                          </form>
                      </div>
                      <div class="shopping_cart">
-                         <a href="#"><i class="fa fa-shopping-cart"></i> 2Items - $209.44 <i class="fa fa-angle-down"></i></a>
+                        {{-- @if (Auth::check())
+                            <a href="#"><i class="fa fa-shopping-cart"></i>
+                                {{ $carts->sum('cart_quantity') }} Items -
+                                {{ format_number_to_money($carts->sum(fn($cart) => $cart->product_price * $cart->cart_quantity)) }} VNĐ
+                                <i class="fa fa-angle-down"></i>
+                            </a> --}}
 
-                         <!--mini cart-->
-                         <div class="mini_cart">
-                             <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
-                                </div>
-                                 <div class="cart_info">
-                                     <a href="#">lorem ipsum dolor</a>
-                                     <span class="cart_price">$115.00</span>
-                                     <span class="quantity">Qty: 1</span>
-                                 </div>
-                                 <div class="cart_remove">
-                                     <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                 </div>
-                             </div>
-                             <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                </div>
-                                 <div class="cart_info">
-                                     <a href="#">Quisque ornare dui</a>
-                                     <span class="cart_price">$105.00</span>
-                                     <span class="quantity">Qty: 1</span>
-                                 </div>
-                                 <div class="cart_remove">
-                                     <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                 </div>
-                             </div>
-                             <div class="shipping_price">
-                                 <span> Shipping </span>
-                                 <span>  $7.00  </span>
-                             </div>
-                             <div class="total_price">
-                                 <span> total </span>
-                                 <span class="prices">  $227.00  </span>
-                             </div>
-                             <div class="cart_button">
-                                 <a href="checkout.html"> Check out</a>
-                             </div>
-                         </div>
-                         <!--mini cart end-->
-                     </div>
+                            <!--mini cart-->
+                            {{-- <div class="mini_cart">
+                                @foreach ($carts as $cartItem)
 
-                 </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="{{ asset('asset/client/images/products/small/' . $cartItem->product_image) }}" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">{{ $cartItem->product_name }}</a>
+                                                <span class="cart_price">Price: {{ $cartItem->product_price }} VND</span>
+                                                <span class="quantity">Quantity: {{ $cartItem->cart_quantity }}</span>
+                                            </div>
+                                        </div>
+
+                                @endforeach
+                                <div class="cart_button">
+                                    <a href="{{ route('checkout.index' )}}"> Check out</a>
+                                </div>
+                            </div> --}}
+                            <!--mini cart end-->
+                        {{-- @else --}}
+                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                        {{-- @endif --}}
+                    </div>
              </div>
          </div>
      </div>
@@ -136,7 +124,7 @@
                      <div class="main_menu d-none d-lg-block">
                          <nav>
                              <ul>
-                                 <li class="active"><a href="{{route('user.home')}}">Home</a></li>
+                                 <li class=""><a href="{{route('user.home')}}">Home</a></li>
 
                                  </li>
                                  @foreach (category_header() as $category)

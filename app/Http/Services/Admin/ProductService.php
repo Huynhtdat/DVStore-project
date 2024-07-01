@@ -206,6 +206,7 @@ class ProductService
         try {
             $data = $request->validated();
             $imageName = time().'.'.request()->img->getClientOriginalExtension();
+
             request()->img->move(public_path('asset/client/images/products/small'), $imageName);
             $data['img'] = $imageName;
             $product = $this->productRepository->create($data);

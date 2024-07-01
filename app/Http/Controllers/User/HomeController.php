@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Services\User\HomeService;
+use App\Repository\Eloquent\CartRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,9 +22,15 @@ class HomeController extends Controller
      *
      * @param HomeService $homeService
      */
-    public function __construct(HomeService $homeService)
+
+     /**
+     * @var CartRepository
+     */
+    private $cartRepository;
+    public function __construct(HomeService $homeService, CartRepository $cartrepository)
     {
         $this->homeService = $homeService;
+        $this->cartRepository = $cartrepository;
     }
     /**
      * Displays home website.
@@ -37,8 +44,10 @@ class HomeController extends Controller
     public function maintenance()
     {
         $setting = Setting::first();
+        $cart = $this->cartRepository->getCart();
         return view('user.maintenance', [
-            'setting' => $setting
+            'setting' => $setting,
+            'cart' => $cart
         ]);
     }
 }

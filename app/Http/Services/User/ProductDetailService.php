@@ -114,21 +114,6 @@ class ProductDetailService
             $relatedProducts[$key]->sum = $this->productRepository->getQuantityBuyProduct($relatedProduct->id);
         }
 
-        // Fetch colors related to the product
-        $productColors = ProductColor::where('product_id', $product->id)->pluck('color_id');
-
-        // Fetch sizes and their quantities related to the product's colors
-        $productSizes = ProductSize::join('sizes', 'products_size.size_id', '=', 'sizes.id')
-            ->join('products_color', 'products_size.product_color_id', '=', 'products_color.id')
-            ->whereIn('products_color.color_id', $productColors)
-            ->select('products_size.product_color_id', 'sizes.name as size_name', 'products_size.quantity')
-            ->get();
-
-        // Group sizes by color
-        $sizesByColor = [];
-        foreach ($productSizes as $productSize) {
-            $sizesByColor[$productSize->product_color_id][] = $productSize;
-        }
 
         //trả dữ liệu cho controller
         return [
@@ -137,7 +122,6 @@ class ProductDetailService
             'productColor' => $productColor,
             'productSize' => $productsize,
             'productImage' => $productImage,
-            'sizesByColor' => $sizesByColor,
             'product' => $product,
             'checkReviewProduct' => $checkReviewProduct,
             'ratingStatistics' => $ratingStatistics,

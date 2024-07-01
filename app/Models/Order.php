@@ -35,7 +35,7 @@ class Order extends Model
     ];
 
     const STATUS_ORDER = [
-        'wait' => 0,
+        'wait' => 0, //pending
         'transporting' => 1,
         'cancel' => 2,
         'received' => 3,

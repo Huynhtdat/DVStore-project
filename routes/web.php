@@ -25,6 +25,7 @@ Route::middleware(['maintenance'])->group(function () {
     Route::get('/', [App\Http\Controllers\User\HomeController::class, "index"])->name('user.home');
     Route::get('product-detail/{product}', [App\Http\Controllers\User\ProductDetailController::class, "show"])->name('user.products_detail');
     Route::get('products/{slug}', [App\Http\Controllers\User\ShowProductController::class, "index"])->name('user.products');
+    Route::get('search', [App\Http\Controllers\User\SearchController::class, "search"])->name('user.search');
 });
 
 Route::middleware(['maintenance_active'])->group(function () {
@@ -33,10 +34,35 @@ Route::middleware(['maintenance_active'])->group(function () {
 
 // Routes under auth.user middleware
 Route::middleware(['auth.user'])->group(function () {
+    Route::get('logout', [AuthenticatedSessionController::class, "destroy"])->name('user.logout');
     Route::group(['prefix' => 'order-history'], function(){
         Route::get('/', [App\Http\Controllers\User\OrderHistoryController::class, 'index'])->name('order_history.index');
         Route::get('/detail/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'show'])->name('order_history.show');
         Route::get('/update/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'update'])->name('order_history.update');
+    });
+    Route::post('product-review/{product}', [App\Http\Controllers\User\ProductReviewController::class, "store"])->name('product_review.store');
+    #cart
+    Route::group(['prefix' => 'cart'], function(){
+        Route::get('/', [App\Http\Controllers\User\CartController::class, 'index'])->name('cart.index');
+        Route::post('add-to-cart', [App\Http\Controllers\User\CartController::class, 'store'])->name('cart.store');
+        Route::post('update-cart', [App\Http\Controllers\User\CartController::class, 'update'])->name('cart.update');
+        Route::get('delete/{id}', [App\Http\Controllers\User\CartController::class, 'delete'])->name('cart.delete');
+        Route::get('clear', [App\Http\Controllers\User\CartController::class, 'clearAllCart'])->name('cart.clear');
+    });
+
+    #prodfile
+    Route::group(['prefix' => 'profile'], function(){
+        Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.index');
+        Route::post('/change-password', [App\Http\Controllers\User\ProfileController::class, 'changePassword'])->name('profile.change_password');
+        Route::post('/change-profile', [App\Http\Controllers\User\ProfileController::class, 'changeProfile'])->name('profile.change_profile');
+    });
+
+    #check out
+    Route::group(['prefix' => 'checkout'], function(){
+        Route::get('/', [App\Http\Controllers\User\CheckOutController::class, 'index'])->name('checkout.index');
+        Route::post('/', [App\Http\Controllers\User\CheckOutController::class, 'store']);
+        Route::get('/callback-momo', [App\Http\Controllers\User\CheckOutController::class, 'callbackMomo'])->name('checkout.callback_momo');
+        Route::get('/callback-vnpay', [App\Http\Controllers\User\CheckOutController::class, 'callbackVNPay'])->name('checkout.callback_vnpay');
     });
 });
 
