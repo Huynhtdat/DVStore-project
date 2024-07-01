@@ -7,3 +7,13 @@
   .prev-thum{
     width: 100% !important;
   }
+
+.btn-lg {
+    font-size: 1.25rem;
+    padding: 10px 20px;
+}
+
+.wided-box button {
+    width: 50%;
+}
+

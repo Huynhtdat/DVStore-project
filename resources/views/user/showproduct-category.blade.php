@@ -25,7 +25,7 @@
                     <!-- Category Section -->
                     <div class="sidebar_widget shop_c " style="margin-left: 2rem;" >
                         <div class="categorie__titile">
-                            <h4>Category</h4>
+                            <h4 class="title">Category</h4>
                         </div>
                         <div class="layere_categorie">
                             <ul>
@@ -43,7 +43,7 @@
                     <!-- Brand Section -->
                     <div class="sidebar_widget shop_c" style="margin-left: 2rem;">
                         <div class="categorie__titile">
-                            <h4>Brand</h4>
+                            <h4 class="title">Brand</h4>
                         </div>
                         <div class="layere_categorie">
                             <ul>
@@ -63,20 +63,22 @@
                     <!-- Brand Section End -->
 
                     <!-- Price Filter Section -->
-                    <div class="price-filter leftbar" style="width:100%; magin-left: 2rem;">
-                        <h3 class="title">Price</h3>
-                        <div style="display: flex; width: 100%;">
-                            <input id="min-price" type="text" value="{{ $request->min_price ?? '' }}" class="form-control price-filter" placeholder="From" name="min_price">
-                            <span class="separate">-</span>
-                            <input id="max-price" type="text" value="{{ $request->max_price ?? '' }}" class="form-control price-filter" placeholder="To" name="max_price">
+                    <div class="price-filter leftbar" style="width: 100%; margin-left: 2rem;">
+                        <h4 class="title">Price</h4>
+                        <div class="d-flex">
+                            <input id="min-price" type="text" value="{{ $request->min_price ?? '' }}" class="form-control mr-2" placeholder="From" name="min_price">
+                            <span class="separate">_</span>
+                            <input id="max-price" type="text" value="{{ $request->max_price ?? '' }}" class="form-control ml-2" placeholder="To" name="max_price">
                         </div>
                     </div>
+
                     <!-- Price Filter Section End -->
 
                     <!-- Filter Button -->
-                    <div style="display: flex; width: 100%; margin-top: 10px; justify-content: center;">
-                        <button id="filter-price" url="{{ $request->fullUrl() }}">filter</button>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">Filter Products</button>
                     </div>
+
                 </div>
 
                 <div class="col-lg-9">

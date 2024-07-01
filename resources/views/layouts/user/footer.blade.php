@@ -35,10 +35,16 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_widget">
                         <h3>Contact</h3>
-                        <form action="#">
-                            <p>Sign up for your newsletter</p>
-                            <input placeholder="Your email address" type="text">
-                            <button type="submit">Subscribe</button>
+                        <form action="#" class="mt-3">
+                            <div class="form-group">
+                                <p for="emailInput">Sign up for your newsletter</p>
+                                <div class="input-group">
+                                    <input id="emailInput" type="email" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="subscribeButton">
+                                </div>
+                                <div class="input-group mt-3 w-50">
+                                    <button class="btn btn-success btn-block" type="submit" id="subscribeButton">Subscribe</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

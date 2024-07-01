@@ -64,10 +64,14 @@
                                             </td>
                                             <td class="product_total">{{ format_number_to_money($cart->price * $cart->quantity) }}</td>
                                             <td class="product_remove">
-                                                <div class="cart_submit">
-                                                    <button type="submit">Update</button>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="cart_submit mr-2">
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                    <a href="{{ route('cart.delete', $cart->id) }}">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </a>
                                                 </div>
-                                                <a class="fa fa-trash-o" href="{{ route('cart.delete', $cart->id) }}"></a>
                                             </td>
                                         </tr>
                                     @endforeach

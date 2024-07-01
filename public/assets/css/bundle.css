@@ -69,12 +69,13 @@ a,
     transition: all 0.3s ease-out 0s;
 }
 .btn {
-    border-radius: 0px;
-    font-size: 14px;
-    padding: 0px 15px;
-    height: 30px;
-    line-height: 30px;
+    border-radius: 0px; /* Bo tròn nút */
+    font-size: 16px; /* Tăng kích thước chữ */
+    padding: 10px 30px; /* Tăng khoảng đệm */
+    height: auto; /* Điều chỉnh chiều cao tự động theo nội dung */
+    line-height: 1; /* Điều chỉnh chiều cao dòng */
 }
+
 a:focus,
 .btn:focus {
     text-decoration: none;

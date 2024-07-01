@@ -2,15 +2,16 @@
 
 @section('content-client')
 <!--breadcrumbs area start-->
-<div class="breadcrumbs_area">
-    <div class="row">
-        <div class="col-12">
-            <div class="breadcrumb_content">
-                <ul>
-                    <li><a href="{{ route('user.home') }}">home</a></li>
-                    <li><i class="fa fa-angle-right"></i></li>
-                    <li>wishlist</li>
-                </ul>
+<div class="breadcrumbs_area py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('user.home') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Wishlist</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -18,60 +19,62 @@
 <!--breadcrumbs area end-->
 
 <!--shopping cart area start -->
-<div class="shopping_cart_area">
-    <form action="#">
-         <div class="row">
-             <div class="col-12">
-                 <div class="table_desc wishlist">
-                     <div class="cart_page table-responsive">
-                         <table>
-                             <thead>
-                                 <tr>
-                                     <th class="product_remove">Delete</th>
-                                     <th class="product_thumb">Image</th>
-                                     <th class="product_name">Product</th>
-                                     <th class="product-price">Price</th>
-                                     <th class="product_quantity">Stock Status</th>
-                                     <th class="product_total">Add To Cart</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                @foreach ($products as $product)
-                                 <tr>
-                                     <td class="product_remove">
-                                         <form action="{{ route('wishlist.remove') }}" method="POST">
-                                             @csrf
-                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                             <button type="submit">X</button>
-                                         </form>
-                                     </td>
-                                     <td class="product_thumb">
-                                         <a href="{{ route('user.products_detail', $product->id) }}">
-                                             <img src="{{ asset('asset/client/images/products/small/' . $product->img) }}" alt="{{ $product->name }}">
-                                         </a>
-                                     </td>
-                                     <td class="product_name">
-                                         <a href="{{ route('user.products_detail', $product->id) }}">{{ $product->name }}</a>
-                                     </td>
-                                     <td class="product-price">{{ format_number_to_money($product->price_sell) }} VND</td>
-                                     <td class="product_quantity">{{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}</td>
-                                     <td class="product_total">
-                                         <form action="{{ route('cart.store') }}" method="POST">
-                                             @csrf
-                                             <input type="hidden" name="id" value="{{ $product->id }}">
-                                             <input type="hidden" name="quantity" value="1">
-                                             <button type="submit">Add To Cart</button>
-                                         </form>
-                                     </td>
-                                 </tr>
-                                 @endforeach
-                             </tbody>
-                         </table>
-                     </div>
-                 </div>
-              </div>
-          </div>
+<div class="shopping_cart_area py-5">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc wishlist">
+                        <div class="cart_page table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        <th>Delete</th>
+                                        <th>Image</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Stock Status</th>
+                                        <th>Add To Cart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($products as $product)
+                                    <tr class="text-center align-middle">
+                                        <td class="product_remove align-middle">
+                                            <form action="{{ route('wishlist.remove') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <button type="submit" class="btn btn-danger btn-sm">X</button>
+                                            </form>
+                                        </td>
+                                        <td class="product_thumb align-middle">
+                                            <a href="{{ route('user.products_detail', $product->id) }}">
+                                                <img src="{{ asset('asset/client/images/products/small/' . $product->img) }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 100px;">
+                                            </a>
+                                        </td>
+                                        <td class="product_name align-middle">
+                                            <a href="{{ route('user.products_detail', $product->id) }}">{{ $product->name }}</a>
+                                        </td>
+                                        <td class="product-price align-middle">{{ format_number_to_money($product->price_sell) }} VND</td>
+                                        <td class="product_quantity align-middle">{{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}</td>
+                                        <td class="product_total align-middle">
+                                            <form action="{{ route('cart.store') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="btn btn-primary btn-sm">Add To Cart</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
+    </div>
 </div>
 <!--shopping cart area end -->
 @endsection

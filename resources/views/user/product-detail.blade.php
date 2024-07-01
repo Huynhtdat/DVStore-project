@@ -105,39 +105,42 @@
                 <form action="{{ route('cart.store') }}" method="POST">
                     @csrf
                     <div class="wided row">
-                        <div class="col-md-3 wided-box">
-                            Màu &nbsp;&nbsp;:
-                            <select id="data-color">
+                        <div class="col-md-3 wided-box mb-3">
+                            <label for="data-color">Màu:</label>
+                            <select id="data-color" class="form-control">
                                 @foreach ($productColor as $color)
-                                  <option value="{{ $color->id }}">{{ $color->color_name }}</option>
+                                    <option value="{{ $color->id }}">{{ $color->color_name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3 wided-box">
-                            Size &nbsp;&nbsp;:
-                            <select id="data-size" data-sizes="{{ json_encode($productSize) }}" name="id"></select>
+                        <div class="col-md-3 wided-box mb-3">
+                            <label for="data-size">Size:</label>
+                            <select id="data-size" data-sizes="{{ json_encode($productSize) }}" name="id" class="form-control"></select>
                         </div>
-                        <div class="col-md-3 wided-box">
-                            <div style="display: flex; align-items: center; height: 30px;">
-                                Stock &nbsp;&nbsp;: <span id="quantity_remain" style="margin-left: 10px;"></span>
+                        <div class="col-md-3 wided-box mb-3">
+                            <div class="d-flex align-items-center h-100">
+                                <span>Stock:</span>
+                                <span id="quantity_remain" class="ml-2"></span>
                             </div>
                         </div>
-                        <div class="col-md-3 wided-box" style="display: flex">
-                            <div style="display: flex; align-items: center;">
-                                <span>Quantity&nbsp;&nbsp;:</span>
-                            </div>
-                            <div style="margin-left: 10px;">
-                                <input type="number" value="1" min="1" name="quantity" style="max-width: 70px; height: 30px;">
+                        <div class="col-md-3 wided-box mb-3">
+                            <div class="d-flex align-items-center">
+                                <span>Quantity:</span>
+                                <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
-                        <div class="col-md-12 wided-box text-center">
-                            <button type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <div class="col-md-6 wided-box text-center mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <div class="col-md-6 wided-box text-center mb-3">
+                            <button id="add-to-wishlist" data-product-id="{{ $product->id }}" class="btn btn-outline-danger btn-lg">
+                                <i class="fa fa-heart"></i> Add to Wishlist
+                            </button>
                         </div>
                     </div>
                 </form>
-                <div class="col-md-12 wided-box text-center">
-                    <button id="add-to-wishlist" data-product-id="{{ $product->id }}"><i class="fa fa-heart"></i> Add to Wishlist</button>
-                </div>
                 <div class="wishlist-share">
                     <h4>Share on:</h4>
                     <ul>
