@@ -44,7 +44,7 @@
                                             <form action="{{ route('wishlist.remove') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit" class="btn btn-danger btn-sm">X</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                                             </form>
                                         </td>
                                         <td class="product_thumb align-middle">
