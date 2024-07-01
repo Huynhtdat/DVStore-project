@@ -28,4 +28,3 @@ class TextSystemConst
         'reorder' => "Bạn đã đặt lại đơn hàng thành công", // You have successfully reordered
     ];
 }
-?>

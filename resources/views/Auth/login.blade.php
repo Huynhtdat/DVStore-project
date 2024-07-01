@@ -1,5 +1,4 @@
 @extends('layouts.user.main-client')
-
 @section('content-client')
 <div class="container py-5">
     <div class="row justify-content-center">

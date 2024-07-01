@@ -1,33 +1,88 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('city').addEventListener('change', function() {
-        let cityId = this.value;
-        if (cityId) {
-            fetch('/api/districts/' + cityId)
-                .then(response => response.json())
-                .then(data => {
-                    let districtSelect = document.getElementById('district');
-                    districtSelect.innerHTML = '<option value="">Chọn quận, huyện</option>';
-                    data.forEach(district => {
-                        districtSelect.innerHTML += `<option value="${district.id}">${district.name}</option>`;
-                    });
-                })
-                .catch(error => console.error('Error fetching districts:', error));
-        }
+$(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            token: "24d5b95c-7cde-11ed-be76-3233f989b8f3"
+        },
     });
 
-    document.getElementById('district').addEventListener('change', function() {
-        let districtId = this.value;
-        if (districtId) {
-            fetch('/api/wards/' + districtId)
-                .then(response => response.json())
-                .then(data => {
-                    let wardSelect = document.getElementById('ward');
-                    wardSelect.innerHTML = '<option value="">Chọn phường, xã</option>';
-                    data.forEach(ward => {
-                        wardSelect.innerHTML += `<option value="${ward.id}">${ward.name}</option>`;
-                    });
-                })
-                .catch(error => console.error('Error fetching wards:', error));
-        }
+    $(document).on('change', '#city', function(){
+        $('#district').html("");
+        $('#ward').html("");
+        getProvind();
+    });
+
+    $(document).on('change', '#district', function(){
+        $('#ward').html("");
+        getWard();
+    });
+    $(document).on('submit', '#form__js', function(){
+        $('#loading__js').css('display', 'flex');
+    });
+
+    const rules = $("#form-data").data("rules");
+    const messages = $("#form-data").data("messages");
+
+    $.validator.addMethod("checklower", function (value) {
+        return value ? /[a-z]/.test(value) : true;
+    });
+    $.validator.addMethod("checkupper", function (value) {
+        return value ? /[A-Z]/.test(value) : true;
+    });
+    $.validator.addMethod("checkdigit", function (value) {
+        return value ? /[0-9]/.test(value) : true;
+    });
+    $.validator.addMethod("checkspecialcharacter", function (value) {
+        return value ? /[%#@_\-]/.test(value) : true;
+    });
+    $("#form__js").validate({
+        rules: rules ?? "",
+        messages: messages ?? "",
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        submitHandler: (form) => {
+            form.submit();
+            $('#loading__js').css('display', 'flex');
+        },
     });
 });
+
+
+function getProvind()
+{
+    let provinceId = $('#city').val();
+    $.ajax({
+        type: 'GET',
+        url: 'https://online-gateway.ghn.vn/shiip/public-api/master-data/district',
+        data: {
+            province_id: provinceId
+        }
+    }).done((respones) => {
+        let option = '';
+        respones.data.forEach(element => {
+            option = `<option value="${element.DistrictID}">${element.DistrictName}</option>`
+            $('#district').append(option);
+        });
+        getWard();
+    });
+}
+
+function getWard()
+{
+    let district_id  = $('#district').val();
+    $.ajax({
+        type: 'GET',
+        url: 'https://online-gateway.ghn.vn/shiip/public-api/master-data/ward',
+        data: {
+            district_id : district_id
+        }
+    }).done((respones) => {
+        let option = '';
+        respones.data.forEach(element => {
+            option = `<option value="${element.WardCode}">${element.NameExtension[0]}</option>`
+            $('#ward').append(option);
+        });
+    });
+}
