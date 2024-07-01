@@ -42,6 +42,13 @@ Route::middleware(['auth.user'])->group(function () {
         Route::get('/update/{order}', [App\Http\Controllers\User\OrderHistoryController::class, 'update'])->name('order_history.update');
     });
     Route::post('product-review/{product}', [App\Http\Controllers\User\ProductReviewController::class, "store"])->name('product_review.store');
+
+    #wishlist
+    Route::group(['prefix' => 'wishlist'], function() {
+        Route::get('/', [App\Http\Controllers\User\WishlistController::class, 'index'])->name('wishlist.index');
+        Route::post('/add', [App\Http\Controllers\User\WishlistController::class, 'add'])->name('wishlist.add');
+        Route::post('/remove', [App\Http\Controllers\User\WishlistController::class, 'remove'])->name('wishlist.remove');
+    });
     #cart
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/', [App\Http\Controllers\User\CartController::class, 'index'])->name('cart.index');

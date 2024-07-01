@@ -44,7 +44,7 @@
                  <div class="header_links">
                      <ul>
                         @if (Auth::check())
-                            <li><a href="wishlist.html" title="wishlist">My wishlist</a></li>
+                            <li><a href="{{ route('wishlist.index') }}" title="wishlist">My wishlist</a></li>
                             <li><a href="{{ route('profile.index') }}" title="My account">
                                 <span>{{ Auth::user()->name }}</span>
                             </a></li>
