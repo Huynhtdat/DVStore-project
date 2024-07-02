@@ -9,6 +9,7 @@ use App\Http\Requests\Auth\UserLoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
+
     /**
      * Display the login view.
      *
@@ -29,7 +30,6 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-
         return redirect()->route('user.home');
     }
 
@@ -42,8 +42,9 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard()->logout();
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return redirect()->route('user.home');
     }

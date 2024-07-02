@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="card border-0 shadow-lg rounded-3">
                 <div class="card-header bg-white text-dark text-center rounded-top border-bottom">
-                    <h2 class="section-title mb-0">Đăng Nhập</h2>
+                    <h2 class="section-title mb-0">Đăng Ký Tài Khoản</h2>
                 </div>
                 <div class="card-body">
                     <div id="form-data" hidden data-rules="{{ json_encode($rules) }}"data-messages="{{ json_encode($messages) }}"></div>
