@@ -129,14 +129,12 @@
                                 <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
-                        <div class="col-md-6 wided-box text-center mb-3">
+                        <div class="col-md-12 text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="fa fa-shopping-cart"></i> Add to Cart
                             </button>
-                        </div>
-                        <div class="col-md-6 wided-box text-center mb-3">
-                            <button id="add-to-wishlist" data-product-id="{{ $product->id }}" class="btn btn-outline-danger btn-lg">
-                                <i class="fa fa-heart"></i> Add to Wishlist
+                            <button id="add-to-wishlist" data-product-id="{{ $product->id }}" class="btn btn-lg ml-2" style="color: red">
+                                <i class="fa fa-heart"></i>
                             </button>
                         </div>
                     </div>

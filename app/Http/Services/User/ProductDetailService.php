@@ -37,8 +37,7 @@ class ProductDetailService
         ProductRepository $productRepository,
         ProductReviewService $productReviewService,
         ProductReviewRepository $productReviewRepository,
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->productReviewService = $productReviewService;
         $this->productReviewReprository = $productReviewRepository;
@@ -69,12 +68,12 @@ class ProductDetailService
             ->whereNull('products_color.deleted_at')
             ->whereNull('products_size.deleted_at')
             ->get();
-            $productSizeJson = json_encode($productsize);
+        $productSizeJson = json_encode($productsize);
         //lấy hình ảnh chi tiết sản phẩm
         $productImage = DB::table('products_image')
-        ->where('product_id', $product->id)
-        ->whereNull('deleted_at')
-        ->get();
+            ->where('product_id', $product->id)
+            ->whereNull('deleted_at')
+            ->get();
         // lấy tổng số lượng sao được đánh giá và thông tin
         $ratingsByProduct = $this->productReviewReprository->getRatingByProduct($product->id);
 
@@ -109,7 +108,7 @@ class ProductDetailService
         //lấy những sản phẩm liên quan
         $relatedProducts = $this->productRepository->getRelatedProducts($product);
 
-        foreach($relatedProducts as $key => $relatedProduct) {
+        foreach ($relatedProducts as $key => $relatedProduct) {
             $relatedProducts[$key]->avg_rating = $this->productReviewReprository->avgRatingProduct($relatedProduct->id)->avg_rating ?? 0;
             $relatedProducts[$key]->sum = $this->productRepository->getQuantityBuyProduct($relatedProduct->id);
         }
@@ -131,4 +130,3 @@ class ProductDetailService
         ];
     }
 }
-?>
