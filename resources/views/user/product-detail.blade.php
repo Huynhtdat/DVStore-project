@@ -105,27 +105,28 @@
                 <form action="{{ route('cart.store') }}" method="POST">
                     @csrf
                     <div class="wided row">
-                        <div class="col-md-3 wided-box mb-3">
-                            <label for="data-color">Màu:</label>
+                        <div class="col-md-3 wided-box mb-3 d-flex align-items-center">
+                            <label for="data-color" class="mb-0 mr-2"><strong>Màu:</strong></label>
                             <select id="data-color" class="form-control">
                                 @foreach ($productColor as $color)
                                     <option value="{{ $color->id }}">{{ $color->color_name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3 wided-box mb-3">
-                            <label for="data-size">Size:</label>
-                            <select id="data-size" data-sizes="{{ json_encode($productSize) }}" name="id" class="form-control"></select>
+                        <div class="col-md-3 wided-box mb-3 d-flex align-items-center">
+                            <label for="data-size" class="mb-0 mr-2"><strong>Size:</strong></label>
+                            <select id="data-size" data-sizes="{{ json_encode($productSize) }}" name="id" class="form-control">
+                            </select>
                         </div>
                         <div class="col-md-3 wided-box mb-3">
-                            <div class="d-flex align-items-center h-100">
-                                <span>Stock:</span>
-                                <span id="quantity_remain" class="ml-2"></span>
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <span class="mr-2"><strong>Stock:</strong></span>
+                                <span id="quantity_remain"></span>
                             </div>
                         </div>
                         <div class="col-md-3 wided-box mb-3">
                             <div class="d-flex align-items-center">
-                                <span>Quantity:</span>
+                                <span><strong>Quantity:</strong></span>
                                 <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
