@@ -18,7 +18,7 @@ class VerifyEmailController extends Controller
     public function success()
     {
         if (session('status')) {
-            return view('auth.verify-success');
+            return view('admin.auth.verify-success');
         }
 
         return redirect()->route('user.login');

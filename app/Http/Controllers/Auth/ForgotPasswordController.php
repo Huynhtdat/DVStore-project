@@ -3,19 +3,37 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ChangePasswordRequest;
+use App\Http\Requests\Auth\ChangeNewPasswordRequest;
 use App\Models\User;
 use App\Models\UserVerify;
 use App\Notifications\VerifyUserForgotPassword;
+use App\Notifications\VerifyUserRegister;
+use App\Repository\Eloquent\UserRepository;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 
 class ForgotPasswordController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * UserService constructor.
+     *
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     public function create()
     {
         return view('auth.forgot-password');
@@ -23,17 +41,14 @@ class ForgotPasswordController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ], [
-            'email.exists' => 'Địa chỉ email không tồn tại',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
+        $user = $this->userRepository->whereFirst(['email' => $request->email]);
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => 'Địa chỉ email không tồn tại',
+            ]);
+        }
         $token = Str::random(64);
         $time = Config::get('auth.verification.expire.resend', 60);
-
         DB::beginTransaction();
         UserVerify::updateOrCreate(
             ['user_id' => $user->id],
@@ -44,47 +59,85 @@ class ForgotPasswordController extends Controller
         );
         $user->notify(new VerifyUserForgotPassword($token));
         DB::commit();
-
         return back()->with('notify', 'Chúng tôi đã gởi liên kết xác nhận vào email của bạn vui lòng kiểm tra');
     }
 
     public function changePassword(Request $request)
     {
-        $verifyUser = UserVerify::where('token', $request->token)->first();
+        if ($request->token) {
+            $token = $request->token;
+            $verifyUser = UserVerify::where('token', $token)->first();
+            if (empty($verifyUser) || empty($verifyUser->user)) {
+                return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
+            }
+            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $verifyUser->expires_at);
+            $date2 = Carbon::now();
+            $result = $date1->gt($date2);
+            if (!$result) {
+                return redirect()->route('user.login');
+            }
 
-        if (!$verifyUser || !$verifyUser->user || !$this->isValidToken($verifyUser->expires_at)) {
-            return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
+            $rules = [
+                'password' => [
+                    'required' => true,
+                    'minlength' => 8,
+                    'maxlength' => 24,
+                    'checklower' => true,
+                    'checkupper' => true,
+                    'checkdigit' => true,
+                    'checkspecialcharacter' => true,
+                ],
+                'password_confirm' => [
+                    'equalTo' => '#password',
+                ],
+            ];
+            $messages = [
+                'password' => [
+                    'required' => __('message.required', ['attribute' => 'mật khẩu mới']),
+                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu mới', 'min' => 8]),
+                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu mới', 'max' => 24]),
+                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
+                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
+                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
+                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                ],
+                'password_confirm' => [
+                    'equalTo' => 'Xác nhận mật khẩu không trùng khớp',
+                ],
+            ];
+
+            return view('auth.change-password', [
+                'rules' => $rules,
+                'messages' => $messages,
+                'token' => $request->token,
+            ]);
         }
-
-        return view('auth.change-password', [
-            'token' => $request->token,
-        ]);
+        return redirect()->route('user.login');
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(ChangeNewPasswordRequest $request)
     {
-        $request->validate([
-            'token' => 'required',
-            'password' => 'required|min:8|max:24|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|confirmed',
-        ]);
+        if ($request->token) {
+            $token = $request->token;
+            $verifyUser = UserVerify::where('token', $token)->first();
+            if (empty($verifyUser) || empty($verifyUser->user)) {
+                return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
+            }
+            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $verifyUser->expires_at);
+            $date2 = Carbon::now();
+            $result = $date1->gt($date2);
+            if (!$result) {
+                return redirect()->route('user.login');
+            }
 
-        $verifyUser = UserVerify::where('token', $request->token)->first();
-
-        if (!$verifyUser || !$verifyUser->user || !$this->isValidToken($verifyUser->expires_at)) {
-            return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
+            $data = [
+                'password' => $request->password,
+                'updated_by' => $verifyUser->user->id,
+            ];
+            $this->userRepository->update($verifyUser->user, $data);
+            $verifyUser->delete();
+            return redirect()->route('user.verify.success')->with('status', 'forgot-password-success');
         }
-
-        $user = $verifyUser->user;
-        $user->password = bcrypt($request->password);
-        $user->save();
-
-        $verifyUser->delete();
-
-        return redirect()->route('user.verify.success')->with('status', 'forgot-password-success');
-    }
-
-    private function isValidToken($expiresAt): bool
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $expiresAt)->gt(Carbon::now());
+        return redirect()->route('user.login');
     }
 }
