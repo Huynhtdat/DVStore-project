@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                    <label for="exampleInputEmail1">Họ Và Tên</label>
+                                    <label for="exampleInputEmail1"><strong>Họ Và Tên</strong></label>
                                     <input type="text" class="form-control" value="{{ old('name') }}" id="name" name="name" aria-describedby="emailHelp" placeholder="Nhập họ và tên">
                                     @if ($errors->get('name'))
                                         <span id="name-error" class="error invalid-feedback" style="display: block">
@@ -24,7 +24,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group mb-3">
-                                    <label for="exampleInputEmail1">Email</label>
+                                    <label for="exampleInputEmail1"><strong>Email</strong></label>
                                     <input type="email" class="form-control" value="{{ old('email') }}" id="email" name="email" aria-describedby="emailHelp" placeholder="Nhập email">
                                     @if ($errors->get('email'))
                                         <span id="email-error" class="error invalid-feedback" style="display: block">
@@ -33,7 +33,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group mb-3">
-                                    <label for="exampleInputPassword1">Mật Khẩu</label>
+                                    <label for="exampleInputPassword1"><strong>Mật Khẩu</strong></label>
                                     <input type="password" class="form-control" value="{{ old('password') }}" id="password" name="password" placeholder="Nhập mật khẩu">
                                     @if ($errors->get('password'))
                                         <span id="password-error" class="error invalid-feedback" style="display: block">
@@ -42,7 +42,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group mb-3">
-                                    <label for="exampleInputPassword1">Xác Nhận Mật Khẩu</label>
+                                    <label for="exampleInputPassword1"><strong>Xác Nhận Mật Khẩu</strong></label>
                                     <input type="password" class="form-control" value="{{ old('password_confirmation') }}" id="password_confirm" name="password_confirm" placeholder="Xác nhận mật khẩu">
                                     @if ($errors->get('password_confirm'))
                                         <span id="password_confirm-error" class="error invalid-feedback" style="display: block">
@@ -51,7 +51,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group mb-3">
-                                    <label for="exampleInputEmail1">Số Điện Thoại</label>
+                                    <label for="exampleInputEmail1"><strong>Số Điện Thoại</strong></label>
                                     <input type="text" class="form-control" value="{{ old('phone_number') }}" id="phone_number" name="phone_number" aria-describedby="emailHelp" placeholder="Nhập số điện thoại">
                                     @if ($errors->get('phone_number'))
                                         <span id="phone_number-error" class="error invalid-feedback" style="display: block">
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1">Tỉnh, Thành Phố</label>
+                                    <label for="exampleInputEmail1"><strong>Tỉnh, Thành Phố</strong></label>
                                     <select class="form-control form-select" id="city" name="city">
                                         @foreach ($citys as $city)
                                             <option value="{{ $city['ProvinceID'] }}"
@@ -79,7 +79,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1">Quận, Huyện</label>
+                                    <label for="exampleInputEmail1"><strong>Quận, Huyện</strong></label>
                                     <select class="form-control form-select" id="district" name="district">
                                         @foreach ($districts as $district)
                                             <option value="{{ $district['DistrictID'] }}"
@@ -96,7 +96,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1">Phường Xã</label>
+                                    <label for="exampleInputEmail1"><strong>Phường Xã</strong></label>
                                     <select class="form-control form-select" id="ward" name="ward">
                                         @foreach ($wards as $ward)
                                             <option value="{{ $ward['WardCode'] }}"
@@ -113,7 +113,7 @@
                                     @endif
                                     </div>
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1">Địa Chỉ Nhà</label>
+                                    <label for="exampleInputEmail1"><strong>Địa Chỉ Nhà</strong></label>
                                     <input type="text" class="form-control" value="{{ old('apartment_number') }}" id="apartment_number" name="apartment_number" aria-describedby="emailHelp" placeholder="Nhập địa chỉ nhà">
                                     @if ($errors->get('apartment_number'))
                                         <span id="apartment_number-error" class="error invalid-feedback" style="display: block">

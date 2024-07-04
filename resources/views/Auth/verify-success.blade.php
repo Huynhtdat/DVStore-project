@@ -8,10 +8,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="title-steps text-center">
-                            @if (Session::has('status') && session('status') == 'verifify-success')
-                                Xác Thực Tài Khoản Thành Công
-                            @elseif(Session::has('status') && session('status') == 'forgot-password-success')
-                                Thay Đổi Mật Khẩu Thành Công
+                            @if (Session::has('status') && session('status') == 'verifify-success')Xác Thực Tài Khoản Thành Công
+                            @elseif(Session::has('status') && session('status') == 'forgot-password-success')Thay Đổi Mật Khẩu Thành Công
                             @endif
                         </h4>
                         <div class="step-description">
