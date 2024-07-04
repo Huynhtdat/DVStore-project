@@ -25,7 +25,6 @@
               <p class="text-center text-notification">
                 Chúng tôi đã gởi một liên kết xác nhận đến địa chỉ email {{ $user->email }} của bạn. Vui lòng xác thực tài khoản để tiếp tục sử dụng dịch vụ. Nếu bạn không nhận được liên kết, vui lòng bấm nút bên dưới để gửi lại.
               </p>
-
               @if (session('status') == 'verification-link-sent')
                 <p class="text-success text-notification text-center">
                   Một liên kết xác nhận mới đã được gửi đến địa chỉ email của bạn.
