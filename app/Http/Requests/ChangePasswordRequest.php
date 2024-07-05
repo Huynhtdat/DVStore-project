@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,7 @@ class ChangePasswordRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -23,7 +24,7 @@ class ChangePasswordRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'current_password' => 'required',
@@ -41,42 +42,36 @@ class ChangePasswordRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
+    public function messages()
     {
         return [
-            'confirm_password.same' => __('validation.same', ['attribute' => 'mật khẩu']),
-            'current_password.required' => __('validation.required', ['attribute' => 'mật khẩu hiện tại']),
+            'confirm_password.same' => 'Xác nhận mật khẩu không trùng khớp'
         ];
     }
 
     /**
      * Configure the validator instance.
      *
-     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @param Validator $validator
      * @return void
      */
-    public function withValidator($validator)
+    public function withValidator(Validator $validator)
     {
         $validator->after(function ($validator) {
-            if (!$this->matchCurrentPassword($this->input('current_password'))) {
-                $validator->errors()->add('current_password', __('auth.password'));
+            if ($this->matchCurrentPassword($this->current_password)) {
+                $validator->errors()->add('current_password', 'Mật khẩu hiện tại không đúng');
             }
         });
     }
 
     /**
-     * Check current password.
+     * Check current password
      *
      * @param string $currentPassword
      * @return bool
      */
-    private function matchCurrentPassword(string $currentPassword): bool
+    private function matchCurrentPassword($currentPassword)
     {
-        return Hash::check($currentPassword, Auth::user()->password);
+        return !Hash::check($currentPassword, Auth::user()->password);
     }
 }

@@ -16,20 +16,20 @@
                                                 <input type="text" value="{{ $token }}" hidden name="token">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="password"><strong>Mật Khẩu Mới</strong></label>
-                                                    <input type="password" class="form-control" value="{{ old('password') }}" id="password" name="password" placeholder="Nhập mật khẩu mới">
-                                                    @if ($errors->get('password'))
-                                                        <span id="password-error" class="error invalid-feedback" style="display: block">
+                                                    <label for="exampleInputPassword1"><strong>Mật Khẩu Mới</strong></label>
+                                                        <input type="password" class="form-control" value="{{ old('password') }}" id="password" name="password" placeholder="Nhập mật khẩu">
+                                                        @if ($errors->get('password'))
+                                                            <span id="password-error" class="error invalid-feedback" style="display: block">
                                                             {{ implode(", ",$errors->get('password')) }}
-                                                        </span>
-                                                    @endif
+                                                            </span>
+                                                        @endif
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="password_confirm"><strong>Xác Nhận Mật Khẩu Mới</strong></label>
-                                                    <input type="password" class="form-control" value="{{ old('password_confirm') }}" id="password_confirm" name="password_confirm" placeholder="Xác nhận mật khẩu mới">
+                                                    <label for="exampleInputPassword1"><strong>Xác Nhận Mật Khẩu Mới</strong></label>
+                                                    <input type="password" class="form-control" value="{{ old('password_confirmation') }}" id="password_confirm" name="password_confirm" placeholder="Xác nhận mật khẩu">
                                                     @if ($errors->get('password_confirm'))
                                                         <span id="password_confirm-error" class="error invalid-feedback" style="display: block">
-                                                            {{ implode(", ",$errors->get('password_confirm')) }}
+                                                        {{ implode(", ",$errors->get('password_confirm')) }}
                                                         </span>
                                                     @endif
                                                 </div>
