@@ -46,12 +46,12 @@ class CategoryService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Category Name',
+                    'text' => 'Tên danh mục',
                     'key' => 'name',
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -86,12 +86,12 @@ class CategoryService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Category Name',
+                    'label' => 'Tên thương hiệu',
                     'type' => 'text',
                 ],
                 [
                     'attribute' => 'parent_id',
-                    'label' => 'Fashion',
+                    'label' => 'Thời trang',
                     'type' => 'select',
                     'list' => $categoryParent,
                 ],
@@ -109,9 +109,9 @@ class CategoryService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter the category name",
-                    'minlength' => "The category name must be at least 1 character long",
-                    'maxlength' => "The category name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'minlength' => "Tên thương hiệu có tối thiểu 1 ký tự",
+                    'maxlength' => "Tên thương hiệu có tối đa 100 ký tự",
                 ],
             ];
 
@@ -159,13 +159,13 @@ class CategoryService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Category Name',
+                    'label' => 'Tên thương hiệu',
                     'type' => 'text',
                     'value' => $category->name,
                 ],
                 [
                     'attribute' => 'parent_id',
-                    'label' => 'Fashion',
+                    'label' => 'Thời trang',
                     'type' => 'select',
                     'list' => $categoryParent,
                 ],
@@ -183,9 +183,9 @@ class CategoryService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter the category name",
-                    'minlength' => "The category name must be at least 1 character long",
-                    'maxlength' => "The category name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'minlength' => "Tên thương hiệu có tối thiểu 1 ký tự",
+                    'maxlength' => "Tên thương hiệu có tối đa 100 ký tự",
                 ],
             ];
 

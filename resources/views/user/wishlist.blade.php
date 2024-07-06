@@ -8,8 +8,8 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('user.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Wishlist</li>
+                        <li class="breadcrumb-item"><a href="{{ route('user.home') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Danh sách yêu thích</li>
                     </ul>
                 </div>
             </div>
@@ -29,12 +29,12 @@
                             <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr class="text-center">
-                                        <th>Delete</th>
-                                        <th>Image</th>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Stock Status</th>
-                                        <th>Add To Cart</th>
+                                        <th>Xóa</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá tiền</th>
+                                        <th>Tồn kho</th>
+                                        <th>Thêm vào giỏ hàng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +62,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $product->id }}">
                                                 <input type="hidden" name="quantity" value="1">
-                                                <button type="submit" class="btn btn-primary btn-sm">Add To Cart</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Thêm vào giỏ hàng</button>
                                             </form>
                                         </td>
                                     </tr>

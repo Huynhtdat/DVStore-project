@@ -7,9 +7,9 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="index.html">home</a></li>
+                    <li><a href="index.html">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li>Profile</li>
+                    <li>Trang cá nhân</li>
                 </ul>
             </div>
         </div>
@@ -25,10 +25,10 @@
                 <!-- Nav tabs -->
                 <div class="dashboard_tab_button">
                     <ul role="tablist" class="nav flex-column dashboard-list">
-                        <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Personal information</a></li>
-                        <li><a href="#orders" data-toggle="tab" class="nav-link">Reset password</a></li>
-                        <li><a href="#address" data-toggle="tab" class="nav-link">Addresses</a></li>
-                        <li><a href="{{ route('user.logout') }}" class="nav-link">Logout</a></li>
+                        <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Thông tin cá nhân</a></li>
+                        <li><a href="#orders" data-toggle="tab" class="nav-link">Đổi mật khẩu</a></li>
+                        <li><a href="#address" data-toggle="tab" class="nav-link">Thay đổi địa chỉ</a></li>
+                        <li><a href="{{ route('user.logout') }}" class="nav-link">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content dashboard_content">
                     <div class="tab-pane fade show active" id="dashboard">
-                        <h3>Personal information</h3>
+                        <h3>Thông tin cá nhân</h3>
                         <div class="step-description">
                             <div class="your-details row">
                                 <form action="{{ route('profile.change_profile') }}" method="post" style="width: 100%;">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="orders">
-                        <h3>Reset Password</h3>
+                        <h3>Thay đổi mật khẩu</h3>
                         <form action="{{ route('profile.change_password') }}" method="post">
                             @csrf
                             <div class="form-group">
@@ -159,6 +159,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="address">
+                        <h3>Thay đổi địa chỉ</h3>
                         <form action="{{ route('profile.change_profile') }}" method="post">
                             @csrf
                             <div class="form-group">

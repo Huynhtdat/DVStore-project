@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_widget">
-                        <h3>Contact Info</h3>
+                        <h3>Thông tin liên hệ</h3>
 
                         <div class="footer_widget_contect">
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ setting_website()->address }}</p>
@@ -18,13 +18,13 @@
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_widget">
-                        <h3>About Us</h3>
+                        <h3>Về chúng tôi</h3>
                         <p>Chuyên bán thời trang an toàn. Tin cậy nhanh chóng. Chăm sóc khách hàng 24/24.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_widget">
-                        <h3>My Account</h3>
+                        <h3>Các chức năng của bạn</h3>
                         <ul>
                             <li><a href="#">Your Account</a></li>
                             <li><a href="{{ route('order_history.index')}}">History orders</a></li>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_widget">
-                        <h3>Contact</h3>
+                        <h3>Liện hệ</h3>
                         <form action="#" class="mt-3">
                             <div class="form-group">
                                 <p for="emailInput">Sign up for your newsletter</p>

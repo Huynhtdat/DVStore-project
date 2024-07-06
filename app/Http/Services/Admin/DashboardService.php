@@ -149,7 +149,7 @@ class DashboardService
                 ],
             ],
             'actions' => [
-                'text'          => "Thao Tác",
+                'text'          => "Chức năng",
                 'create'        => false,
                 'createExcel'   => false,
                 'edit'          => true,

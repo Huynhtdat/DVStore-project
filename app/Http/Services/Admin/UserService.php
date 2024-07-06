@@ -21,6 +21,8 @@ use Illuminate\Support\Str;
 use \Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
+use App\Http\Services\Address\Address;
+
 class UserService
 {
     /**
@@ -61,7 +63,7 @@ class UserService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Customer Name',
+                    'text' => 'Tên khách hàng',
                     'key' => 'name',
                 ],
                 [
@@ -69,20 +71,20 @@ class UserService
                     'key' => 'email',
                 ],
                 [
-                    'text' => 'Phone Number',
+                    'text' => 'Số điện thoại',
                     'key' => 'phone_number',
                 ],
                 [
-                    'text' => 'Status',
+                    'text' => 'Trạng thái',
                     'key' => 'active',
                     'status' => [
                         [
-                            'text' => 'Availiable',
+                            'text' => 'Hoạt động',
                             'value' => 1,
                             'class' => 'badge badge-success'
                         ],
                         [
-                            'text' => 'Disable',
+                            'text' => 'Vô hiệu hóa',
                             'value' => 0,
                             'class' => 'badge badge-danger'
                         ],
@@ -90,7 +92,7 @@ class UserService
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -124,7 +126,7 @@ class UserService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Fullname',
+                    'label' => 'Họ và tên',
                     'type' => 'text',
                 ],
                 [
@@ -134,7 +136,7 @@ class UserService
                 ],
                 [
                     'attribute' => 'password',
-                    'label' => 'New-Password',
+                    'label' => 'Mật khẩu mới',
                     'type' => 'password',
                     'autocomplete' => 'new-password',
                 ],
@@ -146,25 +148,24 @@ class UserService
                 ],
                 [
                     'attribute' => 'city',
-                    'label' => 'City',
+                    'label' => 'Tỉnh, thành phố',
                     'type' => 'text',
-                    // 'list' => $provinces,
                 ],
                 [
                     'attribute' => 'district',
-                    'label' => 'District',
+                    'label' => 'Quận, huyện',
                     'type' => 'text',
-                    // 'list' => $districts,
+
                 ],
                 [
                     'attribute' => 'ward',
-                    'label' => 'Ward',
+                    'label' => 'Phường, xã',
                     'type' => 'text',
-                    // 'list' => $wards,
+
                 ],
                 [
                     'attribute' => 'apartment_number',
-                    'label' => 'Apartmant Number',
+                    'label' => 'Số nhà',
                     'type' => 'text',
                 ],
             ];
@@ -211,41 +212,42 @@ class UserService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => 'Please enter your full name',
-                    'minlength' => 'Full name must be at least 1 character long',
-                    'maxlength' => 'Full name cannot be longer than 24 characters',
+                    'required' => 'Vui lòng nhập họ tên đầy đủ của bạn',
+                    'minlength' => 'Họ tên phải có ít nhất 1 ký tự',
+                    'maxlength' => 'Họ tên không được dài quá 24 ký tự',
                 ],
                 'email' => [
-                    'required' => 'Please enter your email',
-                    'email' => 'Invalid email address',
+                    'required' => 'Vui lòng nhập email của bạn',
+                    'email' => 'Địa chỉ email không hợp lệ',
                 ],
                 'password' => [
-                    'required' => 'Please enter your password',
-                    'minlength' => 'Password must be at least 8 characters long',
-                    'maxlength' => 'Password cannot be longer than 24 characters',
-                    'checklower' => 'Password must contain at least one lowercase letter',
-                    'checkupper' => 'Password must contain at least one uppercase letter',
-                    'checkdigit' => 'Password must contain at least one digit',
-                    'checkspecialcharacter' => 'Password must contain at least one special character (%, #, @, _, /, -)',
+                    'required' => 'Vui lòng nhập mật khẩu của bạn',
+                    'minlength' => 'Mật khẩu phải có ít nhất 8 ký tự',
+                    'maxlength' => 'Mật khẩu không được dài quá 24 ký tự',
+                    'checklower' => 'Mật khẩu phải chứa ít nhất một chữ cái thường',
+                    'checkupper' => 'Mật khẩu phải chứa ít nhất một chữ cái viết hoa',
+                    'checkdigit' => 'Mật khẩu phải chứa ít nhất một chữ số',
+                    'checkspecialcharacter' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt (%, #, @, _, /, -)',
                 ],
                 'phone_number' => [
-                    'required' => 'Please enter your phone number',
-                    'minlength' => 'Phone number must be at least 10 characters long',
-                    'maxlength' => 'Phone number cannot be longer than 10 characters',
+                    'required' => 'Vui lòng nhập số điện thoại của bạn',
+                    'minlength' => 'Số điện thoại phải có ít nhất 10 ký tự',
+                    'maxlength' => 'Số điện thoại không được dài quá 10 ký tự',
                 ],
                 'city' => [
-                    'required' => 'Please enter your city',
+                    'required' => 'Vui lòng nhập tỉnh, thành phố của bạn',
                 ],
                 'district' => [
-                    'required' => 'Please enter your district',
+                    'required' => 'Vui lòng nhập quận, huyện của bạn',
                 ],
                 'ward' => [
-                    'required' => 'Please enter your ward',
+                    'required' => 'Vui lòng nhập phường, xã của bạn',
                 ],
                 'apartment_number' => [
-                    'required' => 'Please enter your apartment number',
+                    'required' => 'Vui lòng nhập số nhà của bạn',
                 ],
             ];
+
 
 
 
@@ -311,7 +313,7 @@ class UserService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Fullname',
+                    'label' => 'Họ và tên',
                     'type' => 'text',
                     'value' => $user->name,
                 ],
@@ -323,38 +325,38 @@ class UserService
                 ],
                 [
                     'attribute' => 'password',
-                    'label' => 'New-Password',
+                    'label' => 'Mật khẩu mới',
                     'type' => 'password',
                     'autocomplete' => 'new-password',
                 ],
                 [
                     'attribute' => 'phone_number',
-                    'label' => 'Phone Number',
+                    'label' => 'Số điện thoai',
                     'type' => 'text',
                     'format_phone' => true,
                     'value' => $user->phone_number,
                 ],
                 [
                     'attribute' => 'city',
-                    'label' => 'City',
+                    'label' => 'Tỉnh, thành phố',
                     'type' => 'text',
                     'value' => $user->address->city ?? '',
                 ],
                 [
                     'attribute' => 'district',
-                    'label' => 'District',
+                    'label' => 'Quận, huyện',
                     'type' => 'text',
                     'value' => $user->address->district ?? '',
                 ],
                 [
                     'attribute' => 'ward',
-                    'label' => 'Ward',
+                    'label' => 'Phường, xã',
                     'type' => 'text',
                     'value' => $user->address->ward ?? '',
                 ],
                 [
                     'attribute' => 'apartment_number',
-                    'label' => 'Apartmant Number',
+                    'label' => 'Số nhà',
                     'type' => 'text',
                     'value' => $user->address->apartment_number ?? '',
                 ],
@@ -400,39 +402,39 @@ class UserService
 
             $messages = [
                 'name' => [
-                    'required' => 'Please enter your full name',
-                    'minlength' => 'Full name must be at least 1 character long',
-                    'maxlength' => 'Full name cannot be longer than 24 characters',
+                    'required' => 'Vui lòng nhập họ tên đầy đủ của bạn',
+                    'minlength' => 'Họ tên phải có ít nhất 1 ký tự',
+                    'maxlength' => 'Họ tên không được dài quá 24 ký tự',
                 ],
                 'email' => [
-                    'required' => 'Please enter your email',
-                    'email' => 'Invalid email address',
+                    'required' => 'Vui lòng nhập email của bạn',
+                    'email' => 'Địa chỉ email không hợp lệ',
                 ],
                 'password' => [
-                    'required' => 'Please enter your password',
-                    'minlength' => 'Password must be at least 8 characters long',
-                    'maxlength' => 'Password cannot be longer than 24 characters',
-                    'checklower' => 'Password must contain at least one lowercase letter',
-                    'checkupper' => 'Password must contain at least one uppercase letter',
-                    'checkdigit' => 'Password must contain at least one digit',
-                    'checkspecialcharacter' => 'Password must contain at least one special character (%, #, @, _, /, -)',
+                    'required' => 'Vui lòng nhập mật khẩu của bạn',
+                    'minlength' => 'Mật khẩu phải có ít nhất 8 ký tự',
+                    'maxlength' => 'Mật khẩu không được dài quá 24 ký tự',
+                    'checklower' => 'Mật khẩu phải chứa ít nhất một chữ cái thường',
+                    'checkupper' => 'Mật khẩu phải chứa ít nhất một chữ cái viết hoa',
+                    'checkdigit' => 'Mật khẩu phải chứa ít nhất một chữ số',
+                    'checkspecialcharacter' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt (%, #, @, _, /, -)',
                 ],
                 'phone_number' => [
-                    'required' => 'Please enter your phone number',
-                    'minlength' => 'Phone number must be at least 10 characters long',
-                    'maxlength' => 'Phone number cannot be longer than 10 characters',
+                    'required' => 'Vui lòng nhập số điện thoại của bạn',
+                    'minlength' => 'Số điện thoại phải có ít nhất 10 ký tự',
+                    'maxlength' => 'Số điện thoại không được dài quá 10 ký tự',
                 ],
                 'city' => [
-                    'required' => 'Please enter your city',
+                    'required' => 'Vui lòng nhập tỉnh, thành phố của bạn',
                 ],
                 'district' => [
-                    'required' => 'Please enter your district',
+                    'required' => 'Vui lòng nhập quận, huyện của bạn',
                 ],
                 'ward' => [
-                    'required' => 'Please enter your ward',
+                    'required' => 'Vui lòng nhập phường, xã của bạn',
                 ],
                 'apartment_number' => [
-                    'required' => 'Please enter your apartment number',
+                    'required' => 'Vui lòng nhập số nahf của bạn',
                 ],
             ];
 

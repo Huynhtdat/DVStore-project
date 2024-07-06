@@ -5,10 +5,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b></a>
+      <a href="../../index2.html" class="h1"><b>Quản trị viên</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg"><b>Login System</b></p>
+      <p class="login-box-msg"><b>Đăng nhaaph hệ thống</b></p>
       @if ($errors->get('disable_reason'))
         <span class="error invalid-feedback" style="display: block">
           {{ implode(", ",$errors->get('disable_reason')) }}
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group mb-3">
           <div class="input-group">
-            <x-admin-input id="password" type="password" value="{{ old('password') }}" name="password" placeholder="Password" />
+            <x-admin-input id="password" type="password" value="{{ old('password') }}" name="password" placeholder="Mật khẩu" />
             <div class="input-group-append">
               <span class="input-group-text" id="toggle-password">
                 <i class="fas fa-eye"></i>
@@ -42,7 +42,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button id="btn-submit" type="submit" class="btn btn-primary btn-block">LOGIN</button>
+            <button id="btn-submit" type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
           </div>
           <!-- /.col -->
         </div>

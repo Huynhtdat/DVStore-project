@@ -16,10 +16,9 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('payment_id')->unsigned();
             $table->double('total_money');
-            $table->integer('order_status')->default(0)->change();
             $table->integer('payment_status')->default(0);
             $table->double('transport_fee');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('payment_id')->references('id')->on('payments');

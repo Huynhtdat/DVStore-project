@@ -44,12 +44,12 @@ class BrandService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Brand Name',
+                    'text' => 'Tên thương hiệu',
                     'key' => 'name',
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -83,7 +83,7 @@ class BrandService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Name Brand',
+                    'label' => 'Tên thương hiệu',
                     'type' => 'text',
                 ],
             ];
@@ -100,9 +100,9 @@ class BrandService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter the brand name", // Vui lòng nhập tên thương hiệu
-                    'maxlength' => "The brand name can have a maximum of 100 characters", // Tên thương hiệu có tối đa 100 ký tự
-                    'minlength' => "The brand name must have at least 1 character", // Tên thương hiệu ít nhất có 1 ký tự
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'maxlength' => "Tên thương hiệu có tối đa 100 ký tự",
+                    'minlength' => "Tên thương hiệu ít nhất có 1 ký tự",
                 ],
             ];
 
@@ -147,7 +147,7 @@ class BrandService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Brand Name',
+                    'label' => 'Tên thương hiệu',
                     'type' => 'text',
                     'value' => $category->name,
                 ],
@@ -165,9 +165,9 @@ class BrandService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter the brand name", // Vui lòng nhập tên thương hiệu
-                    'maxlength' => "The brand name can have a maximum of 100 characters", // Tên thương hiệu có tối đa 100 ký tự
-                    'minlength' => "The brand name must have at least 1 character", // Tên thương hiệu ít nhất có 1 ký tự
+                    'required' => "Vui lòng nhập tên thương hiệu",
+                    'maxlength' => "Tên thương hiệu có tối đa 100 ký tự",
+                    'minlength' => "Tên thương hiệu ít nhất có 1 ký tự",
                 ],
             ];
 

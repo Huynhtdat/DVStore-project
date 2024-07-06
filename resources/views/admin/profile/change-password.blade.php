@@ -6,7 +6,7 @@
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Change Password</h3>
+            <h3 class="card-title">Thay đổi mật khẩu</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>

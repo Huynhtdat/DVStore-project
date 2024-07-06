@@ -48,12 +48,12 @@ class SizeService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Size Name',
+                    'text' => 'Tên kích thước',
                     'key' => 'name',
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -87,7 +87,7 @@ class SizeService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Size Name',
+                    'label' => 'Tên kích thước',
                     'type' => 'text',
                 ],
 
@@ -105,9 +105,9 @@ class SizeService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a size name",
-                    'minlength' => "The size name must be at least 1 character long",
-                    'maxlength' => "The size name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên kích thước",
+                    'minlength' => "Tên kích thước có tối thiểu 1 ký tự",
+                    'maxlength' => "tên Kích thước có tối đa 100 ký tự",
                 ],
             ];
 
@@ -152,7 +152,7 @@ class SizeService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Size Number',
+                    'label' => 'Tên kích thước',
                     'type' => 'text',
                     'value' => $size->name,
                 ],
@@ -171,9 +171,9 @@ class SizeService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a size name",
-                    'minlength' => "The size name must be at least 1 character long",
-                    'maxlength' => "The size name can be up lo 100 characters long",
+                    'required' => "Vui lòng nhập tên kích thước",
+                    'minlength' => "Tên kích thước có tối thiểu 1 ký tự",
+                    'maxlength' => "tên kích thước có tối đa 100 ký tự",
                 ],
             ];
 

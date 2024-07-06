@@ -6,16 +6,16 @@
 			<div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
 						<li class="breadcrumb-item">
-                            <a href="{{ $routeProduct }}">Product</a>
+                            <a href="{{ $routeProduct }}">Sản phẩm</a>
                         </li>
 						<li class="breadcrumb-item">
-                            <a href="{{ $routeColor }}">Product Color</a>
+                            <a href="{{ $routeColor }}">Màu sản phẩm</a>
                         </li>
 						<li class="breadcrumb-item active">
-							Product Size
+							Kích thước sản phẩm
 						</li>
                         <li class="breadcrumb-item">
-                            <a href="{{ $routeImage }}">Product Image detail</a>
+                            <a href="{{ $routeImage }}">Hình ảnh chi tiết sản phẩm</a>
                         </li>
 				</ol>
 			</div>
@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-header text-right">
 						<button class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-							<i class="fas fa-plus"></i> Add Size
+							<i class="fas fa-plus"></i> Thêm kích thước
 						</button>
 					</div>
 					<!-- /.card-header -->
@@ -32,10 +32,10 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Size Name</th>
-									<th>Color</th>
-									<th>Quantity</th>
-									<th>Tools</th>
+									<th>Kích thước</th>
+									<th>Màu</th>
+									<th>Số lượng</th>
+									<th>Chức năng</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,7 +73,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Add New Size</h4>
+				<h4 class="modal-title">Thêm kích thước mới</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -100,8 +100,8 @@
 					</x-admin-input-prepend>
 				</div>
 				<div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default" data-dismiss="modal">CACEL</button>
-					<button type="submit" class="btn btn-primary">ADD</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+					<button type="submit" class="btn btn-primary">Thêm</button>
 				</div>
 			</form>
 		</div>
@@ -113,7 +113,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Edit Product Size</h4>
+				<h4 class="modal-title">Chỉnh sửa kích thước sản phẩm</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>

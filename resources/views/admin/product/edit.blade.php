@@ -5,15 +5,15 @@
     <div class="row">
       <div class="col-sm-12">
 				<ol class="breadcrumb float-sm-left">
-						<li class="breadcrumb-item">Product</li>
+						<li class="breadcrumb-item">Sản phẩm</li>
 						<li class="breadcrumb-item active">
-							<a href="{{ $routeColor }}">Product Color</a>
+							<a href="{{ $routeColor }}">Màu sản phẩm</a>
                         </li>
 						<li class="breadcrumb-item">
-							<a href="{{ $routeSize }}">Product Size</a>
+							<a href="{{ $routeSize }}">Kích thước sản phẩm</a>
 						</li>
                         <li class="breadcrumb-item">
-							<a href="{{ $routeImage }}">Product Image Detail</a>
+							<a href="{{ $routeImage }}">Hình ảnh chi tiết sản phẩm</a>
 						</li>
 				</ol>
 			</div>
@@ -24,7 +24,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12">
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title">Base Information</h3>
+              <h3 class="card-title">Thông tin sản phẩm</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -90,7 +90,7 @@
                   <div class="card card-outline card-info col-12">
                     <div class="card-header">
                       <h3 class="card-title">
-                        Product Description
+                        Mô tả sản phẩm
                       </h3>
                     </div>
                     <!-- /.card-header -->
@@ -107,15 +107,15 @@
                   <div class="container">
                     <div class="preview">
                       <img id="img-preview" src="{{ asset("asset/client/images/products/small/$product->img") }}" />
-                      <label for="file-input">Image</label>
+                      <label for="file-input">Hình ảnh</label>
                       <input hidden accept="image/*" type="file" id="file-input" name="img"/>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-12 text-center" style="padding-bottom: 10px;">
-                <button class="btn btn-success">UPDATE</button>
-                <button class="btn btn-danger">CANCEL</button>
+                <button class="btn btn-success">Cập nhật</button>
+                <button class="btn btn-danger">Hủy</button>
               </div>
             </div>
           </div>

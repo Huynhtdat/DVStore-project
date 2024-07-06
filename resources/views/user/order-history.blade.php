@@ -11,9 +11,9 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="{{ route('user.home') }}">home</a></li>
+                    <li><a href="{{ route('user.home') }}">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li>Order History</li>
+                    <li>Lịch sử đặt hàng</li>
                 </ul>
             </div>
         </div>
@@ -31,12 +31,12 @@
           <table class="table table-bordered table-cart">
             <thead>
               <tr>
-                <th scope="col" class="text-center">Order ID</th>
-                <th scope="col" class="text-center">Total Amount</th>
-                <th scope="col" class="text-center">Order Date</th>
-                <th scope="col" class="text-center">Payment Method</th>
-                <th scope="col" class="text-center">Order Status</th>
-                <th scope="col" class="text-center">Actions</th>
+                <th scope="col" class="text-center">ID đơn hàng</th>
+                <th scope="col" class="text-center">Tổng số lượng</th>
+                <th scope="col" class="text-center">Ngày đặt hàng</th>
+                <th scope="col" class="text-center">Phương thức thanh toán</th>
+                <th scope="col" class="text-center">Trạng thái đơn hàng</th>
+                <th scope="col" class="text-center">Chức năng</th>
               </tr>
             </thead>
             <tbody>
@@ -48,28 +48,28 @@
                     <td>{{ $orderHistory->created_at }}</td>
                     <td><span class="badge badge-info">{{ $orderHistory->payment_name }}</span></td>
                     <td>
-                      @if ($orderHistory->status == 0)
-                          <span class="badge badge-warning">Pending</span>
-                      @elseif($orderHistory->status == 1)
-                          <span class="badge badge-info">In Transit</span>
-                      @elseif($orderHistory->status == 2)
-                          <span class="badge badge-danger">Cancelled</span>
-                      @elseif($orderHistory->status == 3)
-                          <span class="badge badge-success">Delivered</span>
-                      @endif
+                        @if ($orderHistory->status == 0)
+                            <span class="badge badge-warning">Chờ xử lý</span>
+                        @elseif($orderHistory->status == 1)
+                            <span class="badge badge-info">Đang giao hàng</span>
+                        @elseif($orderHistory->status == 2)
+                            <span class="badge badge-danger">Đã hủy</span>
+                        @elseif($orderHistory->status == 3)
+                            <span class="badge badge-success">Đã nhận hàng</span>
+                        @endif
                     </td>
 
                     <td>
                       <div style="padding: 8px; display: flex; justify-content: start;">
-                        <a class="btn-a" href="{{ route('order_history.show', $orderHistory->id) }}">Details</a>
-                        @if ($orderHistory->status == 0)
-                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Cancel Order</a>
-                        @elseif($orderHistory->status == 1)
-                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Confirm</a>
-                        @elseif($orderHistory->status == 2)
-                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Delete Order</a>
-                        @elseif($orderHistory->status == 3)
-                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Delete Order</a>
+                        <a class="btn-a" href="{{ route('order_history.show', $orderHistory->id) }}">Chi tiết</a>
+                        @if ($orderHistory->order_status == 0)
+                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Hủy Đơn</a>
+                        @elseif($orderHistory->order_status == 1)
+                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xác Nhận</a>
+                        @elseif($orderHistory->order_status == 2)
+                        <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xóa Đơn</a>
+                        @elseif($orderHistory->order_status == 3)
+                          <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xóa Đơn</a>
                         @endif
                       </div>
                     </td>
@@ -78,7 +78,7 @@
               @else
                 <tr>
                   <td colspan="7">
-                    No data available
+                    Không có dữ liệu
                   </td>
                 </tr>
               @endif

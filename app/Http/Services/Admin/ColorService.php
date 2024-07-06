@@ -45,12 +45,12 @@ class ColorService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Color Name',
+                    'text' => 'Tên màu',
                     'key' => 'name',
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -84,7 +84,7 @@ class ColorService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Color Name',
+                    'label' => 'Tên màu',
                     'type' => 'text',
                 ],
             ];
@@ -101,9 +101,9 @@ class ColorService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a color name",
-                    'minlength' => "The color name must be at least 1 character long",
-                    'maxlength' => "The color name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên màu",
+                    'minlength' => "Tên màu có tối thiểu 1 ký tự",
+                    'maxlength' => "Tên màu có tối đa 100 ký tự",
                 ],
             ];
 
@@ -148,7 +148,7 @@ class ColorService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Color Name',
+                    'label' => 'Tên màu',
                     'type' => 'text',
                     'value' => $category->name,
                 ],
@@ -166,9 +166,9 @@ class ColorService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a name color",
-                    'minlength' => "The color name must be at least 1 character long",
-                    'maxlength' => "The color name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên màu",
+                    'minlength' => "Tên màu có tối thiểu 1 ký tự",
+                    'maxlength' => "Tên màu có tối đa 100 ký tự",
                 ],
             ];
 

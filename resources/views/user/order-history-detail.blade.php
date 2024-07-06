@@ -11,10 +11,10 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="{{ route('user.home') }}">home</a></li>
-                    <li><a href="{{ route('order_history.index') }}">Order History</a></li>
+                    <li><a href="{{ route('user.home') }}">Trang chủ</a></li>
+                    <li><a href="{{ route('order_history.index') }}">Lịch sử đặt hàng</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li>Order Details {{ $order->id }}</li>
+                    <li>Chi tiết đơn hàng {{ $order->id }}</li>
                 </ul>
             </div>
         </div>
@@ -35,14 +35,14 @@
           <table class="table table-bordered table-cart">
             <thead>
               <tr>
-                <th scope="col" class="text-center" style="width: 100px;">Product ID</th>
-                <th scope="col" class="text-center">Product Name</th>
-                <th scope="col" class="text-center">Image</th>
-                <th scope="col" class="text-center">Color</th>
-                <th scope="col" class="text-center">Size</th>
-                <th scope="col" class="text-center">Quantity</th>
-                <th scope="col" class="text-center">Unit Price</th>
-                <th scope="col" class="text-center">Total</th>
+                <th scope="col" class="text-center" style="width: 100px;">ID Sản phẩm</th>
+                <th scope="col" class="text-center">Tên sản phẩm</th>
+                <th scope="col" class="text-center">Hình ảnh</th>
+                <th scope="col" class="text-center">Màu sắc</th>
+                <th scope="col" class="text-center">Kích thước</th>
+                <th scope="col" class="text-center">Số lượng</th>
+                <th scope="col" class="text-center">Giá</th>
+                <th scope="col" class="text-center">Tổng tiền</th>
               </tr>
             </thead>
             <tbody>
@@ -65,21 +65,21 @@
                 </tr>
               @endforeach
               <tr>
-                <td colspan="7">Total Product Amount</td>
+                <td colspan="7">Tổng số lượng sản phẩm</td>
                 <td style="font-weight: 600;">{{ format_number_to_money($totalProductMoney) }} VND</td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td colspan="7">Shipping Fee</td>
                 <td style="font-weight: 600;">{{ format_number_to_money($infomationUser->orders_transport_fee) }} VND</td>
-              </tr>
+              </tr> --}}
               <tr>
-                <td colspan="7">Payment Method</td>
+                <td colspan="7">Phương thức thanh toán</td>
                 <td>
                     <span class="badge badge-info">{{ $infomationUser->payment_name }}</span>
                 </td>
               </tr>
               <tr>
-                <td colspan="7">Total Order Amount</td>
+                <td colspan="7">Tổng tiền đơn hàng</td>
                 <td style="font-weight: 600;"   >
                     {{ format_number_to_money($order->total_money) }} VND
                 </td>

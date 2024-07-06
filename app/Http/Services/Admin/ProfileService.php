@@ -58,7 +58,7 @@ class ProfileService
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Fullname',
+                    'label' => 'Họ và tên',
                     'type' => 'text',
                     'value' => $user->name,
                 ],
@@ -70,32 +70,32 @@ class ProfileService
                 ],
                 [
                     'attribute' => 'phone_number',
-                    'label' => 'Phone Number',
+                    'label' => 'Số điện thoại',
                     'type' => 'text',
                     'format_phone' => true,
                     'value' => $user->phone_number,
                 ],
                 [
                     'attribute' => 'city',
-                    'label' => 'City',
+                    'label' => 'Tỉnh, thành phố',
                     'type' => 'text',
                     'value' => $user->address->city ?? '',
                 ],
                 [
                     'attribute' => 'district',
-                    'label' => 'District',
+                    'label' => 'Quận, huyện',
                     'type' => 'text',
                     'value' => $user->address->district ?? '',
                 ],
                 [
                     'attribute' => 'ward',
-                    'label' => 'Ward',
+                    'label' => 'Phường, xã',
                     'type' => 'text',
                     'value' => $user->address->ward ?? '',
                 ],
                 [
                     'attribute' => 'apartment_number',
-                    'label' => 'Apartment Number',
+                    'label' => 'Số nhà',
                     'type' => 'text',
                     'value' => $user->address->apartment_number ?? '',
                 ],
@@ -134,33 +134,34 @@ class ProfileService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a fullname",
-                    'minlength' => "The fullname must be at least 1 character long",
-                    'maxlength' => "The fullname can be up to 100 characters long ",
+                    'required' => "Vui lòng nhập họ tên đầy đủ",
+                    'minlength' => "Họ tên phải có ít nhất 1 ký tự",
+                    'maxlength' => "Họ tên có thể dài đến 100 ký tự",
                 ],
                 'email' => [
-                    'required' => "Please enter a email",
-                    'email' => "This email is not avail",
+                    'required' => "Vui lòng nhập email",
+                    'email' => "Email này không hợp lệ",
                 ],
                 'phone_number' => [
-                    'required' => "Please enter a phone number",
-                    'minlength' => "Phone number must be at least 10 characters long",
-                    'maxlength' => "Phone number can be up to 10 characters long",
+                    'required' => "Vui lòng nhập số điện thoại",
+                    'minlength' => "Số điện thoại phải có ít nhất 10 ký tự",
+                    'maxlength' => "Số điện thoại có thể dài đến 10 ký tự",
                 ],
                 'city' => [
-                    'required' =>  "Please enter a city",
+                    'required' => "Vui lòng nhập tỉnh, thành phố",
                 ],
-                'district' =>[
-                    'required' =>  "Please enter a district",
+                'district' => [
+                    'required' => "Vui lòng nhập quận, huyện",
                 ],
                 'ward' => [
-                    'required' => "Please enter a ward",
+                    'required' => "Vui lòng nhập phường, xã",
                 ],
                 'apartment_number' => [
-                    'required' =>  "Please enter a apartment number",
+                    'required' => "Vui lòng nhập số nhà",
                 ],
-
             ];
+
+
             return [
                 'title' => TextLayoutTitle("profile"),
                 'fields' => $fields,
@@ -237,19 +238,19 @@ class ProfileService
             $fields = [
                 [
                     'attribute' => 'current_password',
-                    'label' => 'Current Password',
+                    'label' => 'Mật khẩu cũ',
                     'type' => 'password',
                     'autocomplete' => 'new-password',
                 ],
                 [
                     'attribute' => 'new_password',
-                    'label' => 'New Pasword',
+                    'label' => 'Mật khẩu mới',
                     'type' => 'password',
                     'autocomplete' => 'new-password',
                 ],
                 [
                     'attribute' => 'confirm_password',
-                    'label' => 'Confirm Password',
+                    'label' => 'Xác nhận mật khẩu mới',
                     'type' => 'password',
                     'autocomplete' => 'new-password',
                 ],
@@ -277,21 +278,22 @@ class ProfileService
             // Messages eror rules
             $messages = [
                 'current_password' => [
-                    'required' => "Please enter a current password",
+                    'required' => "Vui lòng nhập mật khẩu hiện tại",
                 ],
                 'new_password' => [
-                    "required" => "Enter a new password",
-                    "minlength" =>  "New password must be at least 8 characters long",
-                    "maxlength" => "New password can be up to 24 characters long",
-                    "checklower" => "Password must contain at least 1 lowercase letter",
-                    "checkupper" => "Password must contain at least 1 uppercase letter",
-                    "checkdigit"=> "Password must contain at least 1 digit",
-                    "checkspecialcharacter" => "Password must contain at least 1 special character (%, #, @, _, /, -)"
+                    "required" => "Vui lòng nhập mật khẩu mới",
+                    "minlength" => "Mật khẩu mới phải có ít nhất 8 ký tự",
+                    "maxlength" => "Mật khẩu mới có thể dài đến 24 ký tự",
+                    "checklower" => "Mật khẩu phải chứa ít nhất 1 chữ cái thường",
+                    "checkupper" => "Mật khẩu phải chứa ít nhất 1 chữ cái viết hoa",
+                    "checkdigit" => "Mật khẩu phải chứa ít nhất 1 chữ số",
+                    "checkspecialcharacter" => "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt (%, #, @, _, /, -)"
                 ],
                 'confirm_password' => [
-                    'equalTo' => "Password confirmation does not match",
+                    'equalTo' => "Mật khẩu xác nhận không khớp",
                 ],
             ];
+
             return [
                 'title' => TextLayoutTitle("change_password"),
                 'fields' => $fields,

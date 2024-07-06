@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="{{route('user.home')}}">Home</a></li>
+                    <li><a href="{{route('user.home')}}">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
                         <li>shop</li>
                 </ul>
@@ -25,7 +25,7 @@
                     <!-- Category Section -->
                     <div class="sidebar_widget shop_c " style="margin-left: 2rem;" >
                         <div class="categorie__titile">
-                            <h4 class="title">Category</h4>
+                            <h4 class="title">Danh mục</h4>
                         </div>
                         <div class="layere_categorie">
                             <ul>
@@ -43,7 +43,7 @@
                     <!-- Brand Section -->
                     <div class="sidebar_widget shop_c" style="margin-left: 2rem;">
                         <div class="categorie__titile">
-                            <h4 class="title">Brand</h4>
+                            <h4 class="title">Thương hiệu</h4>
                         </div>
                         <div class="layere_categorie">
                             <ul>
@@ -76,7 +76,7 @@
 
                     <!-- Filter Button -->
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">Filter Products</button>
+                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">lọc sản phẩm</button>
                     </div>
 
                 </div>
@@ -95,7 +95,7 @@
                                                 <a href="{{ route('user.products_detail', $product->id) }}">
                                                     <img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt=""></a>
                                                 <div class="product_action">
-                                                    <a href=""> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                    <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                                 </div>
                                             </div>
                                             <div class="product_content">

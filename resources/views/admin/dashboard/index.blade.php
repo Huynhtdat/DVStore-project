@@ -7,29 +7,29 @@
         <div class="row">
           <div class="col-lg-4 col-6">
             <!-- small box -->
-           <x-box-dashboard :data="$revenue" title="Total Tevenue (Tổng doanh thu)" route="doanhthu" boxtype="warning"/>
+           <x-box-dashboard :data="$revenue" title="Tổng doanh thu" route="doanhthu" boxtype="warning"/>
           </div>
           <!-- ./col -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <x-box-dashboard :data="$orders" title="Total Order (Tổng Đơn Hàng)" route="donhang" boxtype="success"/>
+            <x-box-dashboard :data="$orders" title="Tổng Đơn Hàng" route="donhang" boxtype="success"/>
           </div>
           <!-- ./col -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <x-box-dashboard :data="$admins" title="Total User (Tổng Thành Viên)" route="sanpham" boxtype="info"/>
+            <x-box-dashboard :data="$admins" title="Tổng Thành Viên" route="sanpham" boxtype="info"/>
           </div>
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <x-box-dashboard :data="$profit" title="Total Profit (Tổng Lợi Nhuận)" route="loinhuan" boxtype="danger"/>
+            <x-box-dashboard :data="$profit" title="Tổng Lợi Nhuận" route="loinhuan" boxtype="danger"/>
           </div>
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <x-box-dashboard :data="$products" title="Total Product Inventory (Tổng Sản Phẩm Tồn Kho)" route="tonkho" boxtype="primary"/>
+            <x-box-dashboard :data="$products" title="Tổng Sản Phẩm Tồn Kho" route="tonkho" boxtype="primary"/>
           </div>
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <x-box-dashboard :data="$users" title="Total Custommer (Tổng Khách Hàng)" route="khachhang" boxtype="warning"/>
+            <x-box-dashboard :data="$users" title="Tổng Khách Hàng" route="khachhang" boxtype="warning"/>
           </div>
           <div class="col-md-12">
              <!-- STACKED BAR CHART -->

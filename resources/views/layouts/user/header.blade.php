@@ -30,13 +30,11 @@
              <div class="col-lg-6 col-md-6">
                 <div class="switcher">
                      <ul>
-                         <li class="languages"><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
-                             <ul class="dropdown_languages">
-                                 <li><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English</a></li>
-                                 <li><a href="#"><img src="assets\img\logo\fontlogo2.jpg" alt=""> French </a></li>
-                             </ul>
-                         </li>
-
+                        @if (Auth::check())
+                        <li><a href="{{ route('profile.index') }}" title="My account">
+                            <span>{{ Auth::user()->name }}</span>
+                        </a></li>
+                        @endif
                      </ul>
                  </div>
              </div>
@@ -44,15 +42,13 @@
                  <div class="header_links">
                      <ul>
                         @if (Auth::check())
-                            <li><a href="{{ route('wishlist.index') }}" title="wishlist">My wishlist</a></li>
-                            <li><a href="{{ route('profile.index') }}" title="My account">
-                                <span>{{ Auth::user()->name }}</span>
-                            </a></li>
-                            <li><a href="{{route('cart.index')}}" title="My cart">My cart</a></li>
-                            <li><a href="{{route('order_history.index')}}" title="Order history">Order history</a></li>
+                            <li><a href="{{ route('wishlist.index') }}" title="wishlist">Yêu thích</a></li>
+
+                            <li><a href="{{route('cart.index')}}" title="My cart">Giỏ hàng</a></li>
+                            <li><a href="{{route('order_history.index')}}" title="Order history">Đơn hàng</a></li>
                         @else
-                            <li><a href="{{route('user.login')}}" title="Login">Login</a></li>
-                            <li><a href="{{route('user.register')}}" title="Register">Register</a></li>
+                            <li><a href="{{route('user.login')}}" title="Login">Đăng nhập</a></li>
+                            <li><a href="{{route('user.register')}}" title="Register">Đăng ký</a></li>
                         @endif
                      </ul>
                  </div>
@@ -67,7 +63,7 @@
             <!--logo start-->
              <div class="col-lg-3 col-md-3">
                  <div class="logo">
-                    <img src="{{ asset("asset/client/images/"  ) }}" alt="DVShop" style="width: 50px; height: auto;">
+                    <img src="{{ asset("asset/client/images/". setting_website()->logo)  ) }}" alt="DVShop" style="width: 50px; height: auto;">
                  </div>
              </div>
              <!--logo end-->
@@ -124,7 +120,7 @@
                         <div class="main_menu d-none d-lg-block">
                             <nav>
                                 <ul>
-                                    <li class=""><a href="{{route('user.home')}}">Home</a></li>
+                                    <li class=""><a href="{{route('user.home')}}">Trang chủ</a></li>
 
                                     </li>
                                     @foreach (category_header() as $category)
@@ -136,82 +132,7 @@
                                         <a href="{{ route('user.products', $category->slug) }}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
-                                    {{-- <li><a href="#">women</a>
-                                        <div class="mega_menu">
-                                            <div class="mega_top fix">
-                                                <div class="mega_items">
-                                                    <h3><a href="#">Accessories</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Cocktai</a></li>
-                                                        <li><a href="#">day</a></li>
-                                                        <li><a href="#">Evening</a></li>
-                                                        <li><a href="#">Sundresses</a></li>
-                                                        <li><a href="#">Belts</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mega_items">
-                                                    <h3><a href="#">HandBags</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Accessories</a></li>
-                                                        <li><a href="#">Hats and Gloves</a></li>
-                                                        <li><a href="#">Lifestyle</a></li>
-                                                        <li><a href="#">Bras</a></li>
-                                                        <li><a href="#">Scarves</a></li>
-                                                        <li><a href="#">Small Leathers</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mega_items">
-                                                    <h3><a href="#">Tops</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Evening</a></li>
-                                                        <li><a href="#">Long Sleeved</a></li>
-                                                        <li><a href="#">Shrot Sleeved</a></li>
-                                                        <li><a href="#">Tanks and Camis</a></li>
-                                                        <li><a href="#">Sleeveless</a></li>
-                                                        <li><a href="#">Sleeveless</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="mega_bottom fix">
-                                                <div class="mega_thumb">
-                                                    <a href="#"><img src="assets\img\banner\banner1.jpg" alt=""></a>
-                                                </div>
-                                                <div class="mega_thumb">
-                                                    <a href="#"><img src="assets\img\banner\banner2.jpg" alt=""></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">men</a>
-                                        <div class="mega_menu">
-                                            <div class="mega_top fix">
-                                                <div class="mega_items">
-                                                    <h3><a href="#">Rings</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Platinum Rings</a></li>
-                                                        <li><a href="#">Gold Ring</a></li>
-                                                        <li><a href="#">Silver Ring</a></li>
-                                                        <li><a href="#">Tungsten Ring</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mega_items">
-                                                    <h3><a href="#">Bands</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Platinum Bands</a></li>
-                                                        <li><a href="#">Gold Bands</a></li>
-                                                        <li><a href="#">Silver Bands</a></li>
-                                                        <li><a href="#">Silver Bands</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mega_items">
-                                                    <a href="#"><img src="assets\img\banner\banner3.jpg" alt=""></a>
-                                                </div>
-                                            </div>
 
-                                        </div> --}}
                                     </li>
 
                                     <li><a href="blog.html">blog</a>
@@ -233,7 +154,7 @@
                         <div class="mobile-menu d-lg-none">
                             <nav>
                                 <ul>
-                                    <li><a href="{{route('user.home')}}">Home</a></li>
+                                    <li><a href="{{route('user.home')}}">Trang chủ</a></li>
                                     @foreach (category_header() as $category)
                                     <li class=" @php
                                         if (isset($request->slug) && $request->slug == $category->slug) {
@@ -243,83 +164,7 @@
                                         <a href="{{ route('user.products', $category->slug) }}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
-                                    {{-- <li><a href="#">women</a>
-                                        <div>
-                                            <div>
-                                                <div>
-                                                    <h3><a href="#">Accessories</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Cocktai</a></li>
-                                                        <li><a href="#">day</a></li>
-                                                        <li><a href="#">Evening</a></li>
-                                                        <li><a href="#">Sundresses</a></li>
-                                                        <li><a href="#">Belts</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3><a href="#">HandBags</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Accessories</a></li>
-                                                        <li><a href="#">Hats and Gloves</a></li>
-                                                        <li><a href="#">Lifestyle</a></li>
-                                                        <li><a href="#">Bras</a></li>
-                                                        <li><a href="#">Scarves</a></li>
-                                                        <li><a href="#">Small Leathers</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3><a href="#">Tops</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Evening</a></li>
-                                                        <li><a href="#">Long Sleeved</a></li>
-                                                        <li><a href="#">Shrot Sleeved</a></li>
-                                                        <li><a href="#">Tanks and Camis</a></li>
-                                                        <li><a href="#">Sleeveless</a></li>
-                                                        <li><a href="#">Sleeveless</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    <a href="#"><img src="assets\img\banner\banner1.jpg" alt=""></a>
-                                                </div>
-                                                <div>
-                                                    <a href="#"><img src="assets\img\banner\banner2.jpg" alt=""></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">men</a>
-                                        <div>
-                                            <div>
-                                                <div>
-                                                    <h3><a href="#">Rings</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Platinum Rings</a></li>
-                                                        <li><a href="#">Gold Ring</a></li>
-                                                        <li><a href="#">Silver Ring</a></li>
-                                                        <li><a href="#">Tungsten Ring</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <h3><a href="#">Bands</a></h3>
-                                                    <ul>
-                                                        <li><a href="#">Platinum Bands</a></li>
-                                                        <li><a href="#">Gold Bands</a></li>
-                                                        <li><a href="#">Silver Bands</a></li>
-                                                        <li><a href="#">Silver Bands</a></li>
-                                                        <li><a href="#">Sweets</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div>
-                                                    <a href="#"><img src="assets\img\banner\banner3.jpg" alt=""></a>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </li> --}}
 
 
                                     <li><a href="blog.html">blog</a>

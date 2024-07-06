@@ -43,27 +43,27 @@ class PaymentMethodService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Payment Method',
+                    'text' => 'Tên PT Thanh Toán',
                     'key' => 'name',
                 ],
                 [
-                    'text' => 'Status',
+                    'text' => 'Trạng thái',
                     'key' => 'status',
                     'status' => [
                         [
-                            'text' => 'Availiable',
+                            'text' => 'Hoạt động',
                             'value' => Payment::STATUS['active'],
                             'class' => 'badge badge-success'
                         ],
                         [
-                            'text' => 'Disable',
+                            'text' => 'Vô hiệu hóa',
                             'value' => Payment::STATUS['unactive'],
                             'class' => 'badge badge-danger'
                         ],
                     ],
                 ],
                 [
-                    'text' => 'Image',
+                    'text' => 'Hình ảnh',
                     'key' => 'img',
                     'img' => [
                         'url' => 'asset/imgs/',
@@ -72,7 +72,7 @@ class PaymentMethodService
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => false,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -98,31 +98,31 @@ class PaymentMethodService
             // Fields form
             $status = [
                 [
-                    'text' => 'Availiable',
+                    'text' => 'Hoạt động',
                     'value' => 1,
                 ],
                 [
-                    'text' => 'Disable',
+                    'text' => 'Vô hiệu hóa',
                     'value' => 0,
                 ]
             ];
             $fields = [
                 [
                     'attribute' => 'name',
-                    'label' => 'Payment Name',
+                    'label' => 'Tên PT Thanh toán',
                     'type' => 'text',
                     'value' => $payment->name,
                 ],
                 [
                     'attribute' => 'status',
-                    'label' => 'Status',
+                    'label' => 'Trạng thái',
                     'type' => 'select',
                     'value' => $payment->status,
                     'list' => $status
                 ],
                 [
                     'attribute' => 'img',
-                    'label' => 'Image',
+                    'label' => 'Hình ảnh',
                     'type' => 'file',
                     'value' => $payment->img,
                 ],
@@ -140,9 +140,9 @@ class PaymentMethodService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a payment method name",
-                    'minlength' => "The payment method name must be at least 1 character long",
-                    'maxlength' => "The paymrnt method name can be up to 100 characters long",
+                    'required' => "Vui lòng nhập tên pương thức thanh toán",
+                    'minlength' => "Phương thức thanh toán có tối thiểu 1 ký tự",
+                    'maxlength' => "Phương thức thanh toán có tối đa 100 ksy tự",
                 ],
             ];
 

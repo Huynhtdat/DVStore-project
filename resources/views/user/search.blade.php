@@ -58,7 +58,7 @@
                                     <a href="{{ route('user.products_detail', $product->id) }}">
                                         <img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt=""></a>
                                     <div class="product_action">
-                                        <a href=""> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                     </div>
                                 </div>
                                 <div class="product_content">
@@ -68,8 +68,8 @@
                                 </div>
                                 <div class="product_info">
                                     <ul>
-                                        <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                        <li><a href="#" data-toggle="modal" data-target="#modal_box" title="">View Detail</a></li>
+                                        <li><a href="#" title=" Add to Wishlist ">Thêm vào danh sách yêu thích</a></li>
+                                        <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="">View Detail</a></li>
                                     </ul>
                                 </div>
                             </div>

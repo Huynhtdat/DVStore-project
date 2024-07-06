@@ -23,22 +23,22 @@
           @endif
         </select>
       @elseif($field['type'] == 'file')
-      <div class="custom-file">
-        <input type="file" name="{{$field['attribute']}}" class="custom-file-input inputFile__js" id="{{$field['attribute']}}">
-        <label class="custom-file-label" for="inputFile__js">Choose Image</label>
-      </div>
+        <div class="custom-file">
+            <input type="file" name="{{$field['attribute']}}" class="custom-file-input inputFile__js" id="{{$field['attribute']}}">
+            <label class="custom-file-label" for="inputFile__js">Chọn hình ảnh</label>
+        </div>
       @else
-      <input
-        id="{{$field['attribute']}}"
-        type="{{$field['type']}}"
-        value="{{old($field['attribute']) ?? $field['value'] ?? null }}"
-        name="{{$field['attribute']}}"
-        autocomplete="{{$field['autocomplete'] ?? null}}"
-        {{$field['other'] ?? null}}
-        @if (isset($field['format_phone']))
-          data-inputmask='"mask": "999 999-9999"' data-mask
-        @endif
-        class="form-control">
+        <input
+            id="{{$field['attribute']}}"
+            type="{{$field['type']}}"
+            value="{{old($field['attribute']) ?? $field['value'] ?? null }}"
+            name="{{$field['attribute']}}"
+            autocomplete="{{$field['autocomplete'] ?? null}}"
+            {{$field['other'] ?? null}}
+            @if (isset($field['format_phone']))
+            data-inputmask='"mask": "999 999-9999"' data-mask
+            @endif
+            class="form-control">
       @endif
       @if ($errors->get($field['attribute']))
         <span id="{{$field['attribute']}}-error" class="error invalid-feedback" style="display: block">
@@ -53,9 +53,11 @@
   <div class="card-header text-center">
     <button class="btn btn-success">{{$textSubmit}}</button>
     @if ($cancelBtn == "true")
-      <a href="{{ route($cancel) }}" class="btn btn-danger next-link__js">Cancel</a>
+      <a href="{{ route($cancel) }}" class="btn btn-danger next-link__js">Hủy</a>
     @endif
   </div>
 </form>
+
+
 @vite(['resources/common/js/form.js',
 'resources/common/css/form.css'])

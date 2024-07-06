@@ -14,7 +14,7 @@
             </div>
           </div>
           <!-- /.card-header -->
-          <x-form-crud route="{{ route('admin.colors_update', $category->id) }}" cancel="admin.colors_index" :fields="$fields" :rules="$rules" :messages="$messages" textSubmit="Update"/>
+          <x-form-crud route="{{ route('admin.colors_update', $category->id) }}" cancel="admin.colors_index" :fields="$fields" :rules="$rules" :messages="$messages" textSubmit="Cập nhật"/>
         </div>
       </div>
     </div>

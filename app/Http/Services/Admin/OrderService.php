@@ -46,7 +46,7 @@ class OrderService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Customer name',
+                    'text' => 'Tên KH',
                     'key' => 'user_name',
                 ],
                 [
@@ -54,39 +54,39 @@ class OrderService
                     'key' => 'user_email',
                 ],
                 [
-                    'text' => 'Money Total',
+                    'text' => 'Tổng tiền',
                     'key' => 'total_money',
                     'format' => true,
                 ],
                 [
-                    'text' => 'Payment Menthod',
+                    'text' => 'PT Thanh Toán',
                     'key' => 'payment_name',
                 ],
                 [
-                    'text' => 'Order date',
+                    'text' => 'Ngày đặt hàng',
                     'key' => 'created_at',
                 ],
                 [
-                    'text' => 'Status order',
+                    'text' => 'Trạng thái',
                     'key' => 'status',
                     'status' => [
                         [
-                            'text' => 'Pending',
+                            'text' => 'Đang chờ duyệt',
                             'value' => Order::STATUS_ORDER['wait'],
                             'class' => 'badge badge-warning'
                         ],
                         [
-                            'text' => 'Stransporting',
+                            'text' => 'Đang vận chuyển',
                             'value' => Order::STATUS_ORDER['transporting'],
                             'class' => 'badge badge-info'
                         ],
                         [
-                            'text' => 'Cancelled',
+                            'text' => 'Đã hủy',
                             'value' => Order::STATUS_ORDER['cancel'],
                             'class' => 'badge badge-danger'
                         ],
                         [
-                            'text' => 'Received',
+                            'text' => 'Đã giao',
                             'value' => Order::STATUS_ORDER['received'],
                             'class' => 'badge badge-success'
                         ],
@@ -94,7 +94,7 @@ class OrderService
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => false,
                 'createExcel'   => false,
                 'edit'          => true,

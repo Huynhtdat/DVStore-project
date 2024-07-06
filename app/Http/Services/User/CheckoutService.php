@@ -69,15 +69,12 @@ class CheckOutService
     public function store(CheckOutRequest $request)
     {
         try {
-            $fee = $this->getTransportFee()."";
             $dataOrder = [
                 'id' => time() . mt_rand(111, 999),
                 'payment_id' => $request->payment_method,
                 'user_id' => Auth::user()->id,
-                'total_money' => Cart::getTotal() + $fee,
+                'total_money' => Cart::getTotal(),
                 'order_status' => Order::STATUS_ORDER['wait'],
-                'transport_fee' => $fee,
-                'note' => null,
             ];
             DB::beginTransaction();
             $order = $this->orderRepository->create($dataOrder);
@@ -119,7 +116,7 @@ class CheckOutService
     public function paymentMomo()
     {
         $orderId = time() . mt_rand(111, 999)."";
-        $amount = Cart::getTotal() + $this->getTransportFee()."";
+        $amount = Cart::getTotal();
         $returnUrl = route('checkout.callback_momo');
         $notifyUrl = route('checkout.callback_momo');
         return $this->payWithMoMo($orderId, $amount, $returnUrl, $notifyUrl);
@@ -127,35 +124,7 @@ class CheckOutService
 
     public function getTransportFee()
     {
-        $fromDistrict = "1530";
-        $shopId = "3577591";
-        $toDistrict = Auth::user()->address->district;
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/available-services', [
-            "shop_id" => $shopId,
-            "from_district" => $fromDistrict,
-            "to_district" => $toDistrict,
-        ]);
-        $serviceId = $response['data'][0]['service_id'];
 
-        $dataGetFee = [
-            "service_id" => $serviceId,
-            "insurance_value" => 500000,
-            "coupon" => null,
-            "from_district_id" => $fromDistrict,
-            "to_district_id" => Auth::user()->address->district,
-            "to_ward_code" => Auth::user()->address->ward,
-            "height" => 15,
-            "length" => 15,
-            "weight" => 1000,
-            "width" => 15
-        ];
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee', $dataGetFee);
-
-        return $response['data']['total'];
     }
 
     public function callbackMomo(Request $request)
@@ -168,7 +137,6 @@ class CheckOutService
                     'user_id' => Auth::user()->id,
                     'total_money' => $request->amount ?? $request->vnp_Amount / 100,
                     'order_status' => Order::STATUS_ORDER['wait'],
-                    'transport_fee' => $this->getTransportFee(),
                     'note' => null,
                 ];
                 DB::beginTransaction();
@@ -297,6 +265,7 @@ class CheckOutService
         return redirect($jsonResult['payUrl']);
     }
 
+
     public function handlePaymentWithVNPAY($vnp_Returnurl, $vnp_Amount, $vnp_TxnRef)
     {
         $startTime = date("YmdHis");
@@ -354,7 +323,7 @@ class CheckOutService
     public function paymentVNPAY()
     {
         $orderId = time() . mt_rand(111, 999)."";
-        $amount = Cart::getTotal() + $this->getTransportFee()."";
+        $amount = Cart::getTotal();
         $returnUrl = route('checkout.callback_vnpay');
         return $this->handlePaymentWithVNPAY($returnUrl, $amount, $orderId);
     }
@@ -369,8 +338,6 @@ class CheckOutService
                 'user_id' => Auth::user()->id,
                 'total_money' => $request->vnp_Amount / 100,
                 'order_status' => Order::STATUS_ORDER['wait'],
-                'transport_fee' => $this->getTransportFee(),
-                'note' => null,
             ];
             DB::beginTransaction();
             // create order

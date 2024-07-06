@@ -1,6 +1,26 @@
 @extends('layouts.user.main-client')
 @section('content-client')
+ <!--breadcrumbs area start-->
+ <div class="breadcrumbs_area">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumb_content">
+                <ul>
+                    <li><a href="{{ route('user.home') }}">home</a></li>
+                    <li><i class="fa fa-angle-right"></i></li>
+                    <li><a href="{{ route('cart.index') }}">cart</a></li>
+                    <li><i class="fa fa-angle-right"></i></li>
+                    <li>checkout</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
 <div class="container_fullwidth">
+
     <div class="container">
       <form action="{{ route('checkout.index') }}" method="POST">
         @csrf
@@ -42,15 +62,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tỉnh, Thành Phố</label>
-                      <select class="form-control form-select" disabled id="city" name="city">
-                        @foreach ($citys as $item)
-                            <option value="{{ $item['ProvinceID'] }}"
-                            @if ( $item['ProvinceID'] == $city)
-                                selected
-                            @endif
-                            >{{ $item['NameExtension'][1] }}</option>
-                        @endforeach
-                      </select>
+                      <input type="text" class="form-control" disabled value="{{ $city }}" id="city" name="city" placeholder="Nhập thành phố">
                       @if ($errors->get('city'))
                         <span id="city-error" class="error invalid-feedback" style="display: block">
                           {{ implode(", ",$errors->get('city')) }}
@@ -59,15 +71,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Quận, Huyện</label>
-                      <select class="form-control form-select" id="district" disabled name="district">
-                        {{-- @foreach ($districts as $item)
-                            <option value="{{ $item['DistrictID'] }}"
-                            @if ( $item['DistrictID'] == $district)
-                                selected
-                            @endif
-                            >{{ $item['DistrictName'] }}</option>
-                        @endforeach --}}
-                      </select>
+                      <input type="text" class="form-control" disabled value="{{ $district }}" id="district" name="district" placeholder="Nhập quận, huyện">
                       @if ($errors->get('district'))
                         <span id="district-error" class="error invalid-feedback" style="display: block">
                           {{ implode(", ",$errors->get('district')) }}
@@ -76,15 +80,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Phường Xã</label>
-                      <select class="form-control form-select" id="ward" disabled name="ward">
-                        {{-- @foreach ($wards as $item)
-                            <option value="{{ $item['WardCode'] }}"
-                            @if ( $item['WardCode'] == $ward)
-                              selected
-                            @endif
-                            >{{ $item['WardName'] }}</option>
-                        @endforeach --}}
-                      </select>
+                      <input type="text" class="form-control" disabled value="{{ $ward }}" id="ward" name="ward" placeholder="Nhập phường, xã">
                       @if ($errors->get('ward'))
                         <span id="ward-error" class="error invalid-feedback" style="display: block">
                           {{ implode(", ",$errors->get('ward')) }}
@@ -114,14 +110,7 @@
                     </h4>
                     <div class="step-description">
                       <div class="your-details row">
-                        {{-- <div class="info-order">
-                          <div class="discount">
-                              <input type="text" name="discount_code" placeholder="Nhập mã giảm giá nếu có">
-                              <div>
-                                <button>Áp dụng</button>
-                              </div>
-                          </div>
-                        </div> --}}
+
                         <div class="info-order">
                           <div class="info__order-box">
                             <span>Tổng tiền sản phẩm</span>
@@ -185,6 +174,7 @@
       </div>
     </div>
   </div>
+
 @vite(['resources/client/js/checkout.js', 'resources/client/css/checkout.css'])
 
 @endsection

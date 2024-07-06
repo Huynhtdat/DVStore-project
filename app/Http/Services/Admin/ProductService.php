@@ -83,11 +83,11 @@ class ProductService
                     'key' => 'id',
                 ],
                 [
-                    'text' => 'Product Name',
+                    'text' => 'Tên Sản phẩm',
                     'key' => 'name',
                 ],
                 [
-                    'text' => 'Image',
+                    'text' => 'Hình ảnh',
                     'key' => 'img',
                     'img' => [
                         'url' => 'asset/client/images/products/small/',
@@ -95,17 +95,17 @@ class ProductService
                     ],
                 ],
                 [
-                    'text' => 'Category',
+                    'text' => 'Danh mục',
                     'key' => 'category.name',
                 ],
                 [
-                    'text' => 'Price',
+                    'text' => 'Giá',
                     'key' => 'price_sell',
                     'format' => true,
                 ],
             ],
             'actions' => [
-                'text'          => "Tools",
+                'text'          => "Chức năng",
                 'create'        => true,
                 'createExcel'   => false,
                 'edit'          => true,
@@ -168,25 +168,25 @@ class ProductService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => "Please enter a product name",
+                    'required' => "Vui lòng nhập tên sản phẩm",
                 ],
                 'price_import' => [
-                    'required' => "Please enter a product price import",
+                    'required' => "Vui lòng nhập giá nhập sản phẩm",
                 ],
                 'price_sell' => [
-                    'required' => "Please enter a product sell",
+                    'required' => "Vui lòng nhập giá bán sản phẩm",
                 ],
                 'brand' => [
-                    'required' => "Please choose a brand",
+                    'required' => "Vui lòng chọn thương hiệu cho sản phẩm",
                 ],
                 'category_id' => [
-                    'required' => "Please choose a category",
+                    'required' => "Vui lòng chọn danh mục cho sản phẩm",
                 ],
                 'summernote' => [
-                    'required' => "Please enter a product description",
+                    'required' => "Vui lòng nhập mô tả sản phẩm",
                 ],
                 'file-input' => [
-                    'required' => "Please choose a product image",
+                    'required' => "Vui lòng thêm ảnh đại diện cho sản phẩm",
                 ],
             ];
             return [
@@ -252,25 +252,25 @@ class ProductService
         // Messages eror rules
         $messages = [
             'name' => [
-                'required' => "please enter a product name",
+                'required' => "Vui lòng nhập tên sản phẩm",
             ],
             'price_import' => [
-                'required' => "Please enter a product price import",
+                'required' => "Vui lòng nhập giá nhập của sản phẩm",
             ],
             'price_sell' => [
-                'required' => "Please enter a product price sell",
+                'required' => "Vui lòng nhập giá bán của sản phẩm",
             ],
             'brand' => [
-                'required' => "Please choose a brand",
+                'required' => "Vui lòng chọn thương hiệu sản phẩm",
             ],
             'category_id' => [
-                'required' => "Please choose a category",
+                'required' => "Vui lòng chọn danh mục sản phẩm",
             ],
             'summernote' => [
-                'required' => "Please enter a product description",
+                'required' => "Vui lòng nhập mô tả sản phẩm",
             ],
             'file-input' => [
-                'required' => "Please choose a product image",
+                'required' => "Vui lòng thêm hình ảnh đại diện cho sản phẩm",
             ],
         ];
         return [
@@ -366,7 +366,7 @@ class ProductService
                 'color_id' => $colorId,
                 'product_id' => $product->id
             ]);
-            Session::flash('success', 'Added color successfully');
+            Session::flash('success', 'Thêm màu thành công');
             // trả về kết quả
             return response()->json([
                 'status' => true,
@@ -375,7 +375,7 @@ class ProductService
         } catch (Exception) {
             return response()->json([
                 'status' => false,
-                'message' => 'An error occrurred, please try again'
+                'message' => 'Có lỗi xảy ra, vui lòng thử lại sau'
             ], 200);
         }
     }
@@ -408,7 +408,7 @@ class ProductService
                 $data['img'] = $imageName;
             }
             $productColor->update($data);
-            Session::flash('success', 'Color edit successfully');
+            Session::flash('success', 'Chỉnh sửa màu sắc thành công');
             return response()->json([
                 'status' => true,
                 'route' => route('admin.products_color', $productColor->product_id),
@@ -416,7 +416,7 @@ class ProductService
         } catch (Exception) {
             return response()->json([
                 'status' => false,
-                'message' => 'An error occrurred, please try again'
+                'message' => 'Có lỗi xảy ra, vui lỏng thử lại sau'
             ], 200);
         }
     }
@@ -426,12 +426,12 @@ class ProductService
         if ($productColor->delete()) {
             $data = [
                 'status' => true,
-                'message' => 'Delete color successfully'
+                'message' => 'Xóa màu sắc thành công'
             ];
         } else {
             $data = [
                 'status' => false,
-                'message' => 'Delete failed, please try again'
+                'message' => 'Xóa thất bại, vui lòng thử lại sau'
             ];
         }
         return response()->json($data, 200);
@@ -490,7 +490,7 @@ class ProductService
             'product_color_id' => $request->product_color_id,
             'quantity' => $request->quantity,
         ]);
-        Session::flash('success', 'Added product size successfully');
+        Session::flash('success', 'Thêm kích thước sản phẩm thành công ');
 
         return response()->json([
             'status' => true,
@@ -520,7 +520,7 @@ class ProductService
         try {
             $data = $request->validated();
             $productSize->update($data);
-            Session::flash('success', 'Edit product size successfully');
+            Session::flash('success', 'Chỉnh sửa kích thước sản phẩm thành công');
             return response()->json([
                 'status' => true,
                 'route' => route('admin.products_size', $product->id),
@@ -528,7 +528,7 @@ class ProductService
         } catch (Exception) {
             return response()->json([
                 'status' => false,
-                'message' => 'An error occrurred, please try again'
+                'message' => 'Có lỗi xảy ra, vui lòng thử lại sau'
             ], 200);
         }
     }
@@ -539,12 +539,12 @@ class ProductService
         if ($productSize->delete()) {
             $data = [
                 'status' => true,
-                'message' => 'Delete product size successfully'
+                'message' => 'Xóa kích thước sản phẩm thành công'
             ];
         } else {
             $data = [
                 'status' => false,
-                'message' => 'Delete failed, please try again'
+                'message' => 'Xóa kích thước sản phẩm thất bại, vui lòng thử lại sau'
             ];
         }
         return response()->json($data, 200);
@@ -576,7 +576,7 @@ class ProductService
                 'img' => $imageName,
                 'product_id' => $product->id
             ]);
-            Session::flash('success', 'Add product image detail successfully');
+            Session::flash('success', 'Thêm hình ảnh chi tiết sản phẩm thành công');
             // trả về kết quả
             return response()->json([
                 'status' => true,
@@ -585,7 +585,7 @@ class ProductService
         } catch (Exception) {
             return response()->json([
                 'status' => false,
-                'message' => 'An error occrurred, please try again'
+                'message' => 'Có lỗi xảy ra, vui lòng thử lại sau'
             ], 200);
         }
     }
@@ -608,7 +608,7 @@ class ProductService
                 $data['img'] = $imageName;
             }
             $productImage->update($data);
-            Session::flash('success', 'Edit product image detail successfully');
+            Session::flash('success', 'Chỉnh sauwr hình ảnh chi tiết sản phẩm thành công');
             return response()->json([
                 'status' => true,
                 'route' => route('admin.products_image', $productImage->product_id),
@@ -616,7 +616,7 @@ class ProductService
         } catch (Exception) {
             return response()->json([
                 'status' => false,
-                'message' => 'An error occrurred, please try again'
+                'message' => 'Có lỗi xảy ra, vui lòng thử lại sau'
             ], 200);
         }
     }
@@ -626,12 +626,12 @@ class ProductService
         if ($productImage->delete()) {
             $data = [
                 'status' => true,
-                'message' => 'Delete product image detail successfully'
+                'message' => 'Xóa hình ảnh chi tiết sản phẩm thành công'
             ];
         } else {
             $data = [
                 'status' => false,
-                'message' => 'Delete failed, please try again'
+                'message' => 'Xóa hỉnh ảnh chi tiết sản phẩm thất bại, vui lòng thửu lại saus'
             ];
         }
         return response()->json($data, 200);

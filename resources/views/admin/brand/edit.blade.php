@@ -6,7 +6,7 @@
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Information of Brand</h3>
+            <h3 class="card-title">Thông tin của thương hiệu</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -14,7 +14,7 @@
             </div>
           </div>
           <!-- /.card-header -->
-          <x-form-crud route="{{ route('admin.brands_update', $category->id) }}" cancel="admin.brands_index" :fields="$fields" :rules="$rules" :messages="$messages" textSubmit="Update"/>
+          <x-form-crud route="{{ route('admin.brands_update', $category->id) }}" cancel="admin.brands_index" :fields="$fields" :rules="$rules" :messages="$messages" textSubmit="Cập nhật"/>
         </div>
       </div>
     </div>

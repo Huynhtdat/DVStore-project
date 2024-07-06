@@ -15,7 +15,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12">
               <div class="card card-default">
                 <div class="card-header">
-                  <h3 class="card-title">Setting</h3>
+                  <h3 class="card-title">Cài đặt</h3>
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -66,10 +66,10 @@
                           <option value="1"
                           @if ($setting->maintenance == 1)
                               @selected(true)
-                          @endif>ON</option>
+                          @endif>BẬT</option>
                           <option value="0" @if ($setting->maintenance == 0)
                             @selected(true)
-                        @endif>OFF</option>
+                        @endif>TẮT</option>
                         </select>
                       </x-admin-input-prepend>
                       <div class="form-group col-12">
@@ -77,7 +77,7 @@
                           <div class="card card-outline card-info col-12">
                             <div class="card-header">
                               <h3 class="card-title">
-                                Maintenance Content
+                                Nội dung bảo trì
                               </h3>
                             </div>
                             <!-- /.card-header -->
@@ -94,7 +94,7 @@
                           <div class="card card-outline card-info col-12">
                             <div class="card-header">
                               <h3 class="card-title">
-                            Website Introduce
+                            Giới thiệu website
                               </h3>
                             </div>
                             <!-- /.card-header -->
@@ -109,7 +109,7 @@
                     </div>
                   </div>
                   <div class="col-12 text-center" style="padding-bottom: 10px;">
-                    <button class="btn btn-success">UPDATE</button>
+                    <button class="btn btn-success">Cập nhật</button>
                   </div>
                 </div>
               </div>

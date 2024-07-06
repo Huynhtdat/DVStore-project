@@ -7,9 +7,9 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="{{ route('user.home') }}">home</a></li>
+                    <li><a href="{{ route('user.home') }}">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li>Cart</li>
+                    <li>Giỏ hàng</li>
                 </ul>
             </div>
         </div>
@@ -20,10 +20,10 @@
 <!--shopping cart area start -->
 <div class="shopping_cart_area">
     @if (count(\Cart::getContent()) <= 0)
-        <h3 class="text-center">Your cart is empty</h3>
+        <h3 class="text-center"> Giỏ hàng cảu bạn đang trống</h3>
         <div class="text-center" style="padding-top: 50px">
             <div class="col-md-12 wided-box text-center">
-                <button type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                <button type="submit"><i class="fa fa-shopping-cart"></i>Mua ngay</button>
             </div>
         </div>
     @else
@@ -36,12 +36,12 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="product_thumb">Image</th>
-                                        <th class="product_name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product_quantity">Quantity</th>
-                                        <th class="product_total">Total</th>
-                                        <th class="product_remove">Tools</th>
+                                        <th class="product_thumb">hình ảnh</th>
+                                        <th class="product_name">Sản phẩm</th>
+                                        <th class="product-price">Giá =</th>
+                                        <th class="product_quantity">Số lượng</th>
+                                        <th class="product_total">Tổng tiền</th>
+                                        <th class="product_remove">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,8 +53,8 @@
                                             <td class="product_name">
                                                 <a href="#">
                                                     {{ $cart->name }}
-                                                    <p>Color: <strong>{{ $cart->attributes->color }}</strong></p>
-                                                    <p>Size: <strong>{{ $cart->attributes->size }}</strong></p>
+                                                    <p>Màu sắc: <strong>{{ $cart->attributes->color }}</strong></p>
+                                                    <p>Kích thước: <strong>{{ $cart->attributes->size }}</strong></p>
                                                 </a>
                                             </td>
                                             <td class="product-price">{{ format_number_to_money($cart->price) }}</td>
@@ -66,7 +66,7 @@
                                             <td class="product_remove">
                                                 <div class="d-flex align-items-center">
                                                     <div class="cart_submit mr-2">
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                                                     </div>
                                                     <a href="{{ route('cart.delete', $cart->id) }}">
                                                         <i class="fa fa-trash-o"></i>
@@ -87,18 +87,18 @@
                     <div class="col-lg-6 col-md-6"></div>
                     <div class="col-lg-6 col-md-6">
                         <div class="coupon_code">
-                            <h3>Cart Totals</h3>
+                            <h3>Tổng giỏ hàng</h3>
                             <div class="coupon_inner">
                                 <div class="cart_subtotal">
                                     <p>Quantity total: </p>
-                                    <p class="cart_amount"><span>{{ Cart::getTotalQuantity()}}</span>Items</p>
+                                    <p class="cart_amount"><span>{{ Cart::getTotalQuantity()}}</span> Sản phẩm</p>
                                 </div>
                                 <div class="cart_subtotal">
                                     <p>Total</p>
-                                    <p class="cart_amount">{{ format_number_to_money(Cart::getTotal()) }}</p>
+                                    <p class="cart_amount">{{ format_number_to_money(Cart::getTotal())}} VNĐ</p>
                                 </div>
                                 <div class="checkout_btn">
-                                    <a href="{{ route('checkout.index') }}">Proceed to Checkout</a>
+                                    <a href="{{ route('checkout.index') }}">Thanh toán</a>
                                 </div>
                             </div>
                         </div>

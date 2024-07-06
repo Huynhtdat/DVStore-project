@@ -32,9 +32,9 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="{{route('user.home')}}">Home</a></li>
+                    <li><a href="{{route('user.home')}}">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li>Product Detail</li>
+                    <li>Chi tiết sản phẩm</li>
                 </ul>
             </div>
         </div>
@@ -114,25 +114,25 @@
                             </select>
                         </div>
                         <div class="col-md-3 wided-box mb-3 d-flex align-items-center">
-                            <label for="data-size" class="mb-0 mr-2"><strong>Size:</strong></label>
+                            <label for="data-size" class="mb-0 mr-2"><strong>Kích thước:</strong></label>
                             <select id="data-size" data-sizes="{{ json_encode($productSize) }}" name="id" class="form-control">
                             </select>
                         </div>
                         <div class="col-md-3 wided-box mb-3">
                             <div class="d-flex align-items-center justify-content-center h-100">
-                                <span class="mr-2"><strong>Stock:</strong></span>
+                                <span class="mr-2"><strong>Tồn kho:</strong></span>
                                 <span id="quantity_remain"></span>
                             </div>
                         </div>
                         <div class="col-md-3 wided-box mb-3">
                             <div class="d-flex align-items-center">
-                                <span><strong>Quantity:</strong></span>
+                                <span><strong>Sô lượng:</strong></span>
                                 <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
                         <div class="col-md-12 text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                             </button>
                             <button id="add-to-wishlist" data-product-id="{{ $product->id }}" class="btn btn-lg ml-2" style="color: red">
                                 <i class="fa fa-heart"></i>
@@ -164,13 +164,13 @@
                 <div class="product_info_button">
                     <ul class="nav" role="tablist">
                         <li>
-                            <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Description</a>
+                            <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Mô tả sản phẩm</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Data sheet</a>
-                        </li>
+                        </li> --}}
                         <li>
-                            <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+                            <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Đánh giá</a>
                         </li>
                     </ul>
                 </div>
@@ -235,7 +235,7 @@
     <div class="row">
         <div class="col-12">
             <div class="block_title">
-            <h3> Related Product </h3>
+            <h3> Sản phẩm liên quan </h3>
         </div>
         </div>
     </div>
@@ -259,8 +259,8 @@
                     </div>
                     <div class="product_info">
                         <ul>
-                            <li><a href="#" class="add-to-wishlist" data-product-id="{{ $relatedProduct->id }}" title="Add to Wishlist">Add to Wishlist</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modal_box" title="">View Detail</a></li>
+                            <li><a href="#" class="add-to-wishlist" data-product-id="{{ $relatedProduct->id }}" title="Add to Wishlist">Thêm vào yêu thích</a></li>
+                            <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="">Xem chi tiết</a></li>
                         </ul>
                     </div>
                 </div>
