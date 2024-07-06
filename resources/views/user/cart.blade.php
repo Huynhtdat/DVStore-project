@@ -90,11 +90,11 @@
                             <h3>Tổng giỏ hàng</h3>
                             <div class="coupon_inner">
                                 <div class="cart_subtotal">
-                                    <p>Quantity total: </p>
+                                    <p>Tổng số lượng: </p>
                                     <p class="cart_amount"><span>{{ Cart::getTotalQuantity()}}</span> Sản phẩm</p>
                                 </div>
                                 <div class="cart_subtotal">
-                                    <p>Total</p>
+                                    <p>Tổng cộng</p>
                                     <p class="cart_amount">{{ format_number_to_money(Cart::getTotal())}} VNĐ</p>
                                 </div>
                                 <div class="checkout_btn">

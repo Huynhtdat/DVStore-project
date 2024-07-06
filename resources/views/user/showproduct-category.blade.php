@@ -105,8 +105,7 @@
                                             </div>
                                             <div class="product_info">
                                                 <ul>
-
-                                                    <li><a href="{{ route('user.products_detail', $product->id) }}" data-toggle="modal" data-target="#modal_box" title="">Xem chi tiết</a></li>
+                                                    <li><a href="{{ route('user.products_detail', $product->id) }}" title="">Xem chi tiết</a></li>
                                                 </ul>
                                             </div>
                                         </div>

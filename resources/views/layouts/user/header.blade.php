@@ -106,7 +106,7 @@
                             </div> --}}
                             <!--mini cart end-->
                         {{-- @else --}}
-                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="{{route('cart.index')}}" title="My cart"><i class="fa fa-shopping-cart"></i></a>
                         {{-- @endif --}}
                     </div>
              </div>
@@ -121,7 +121,6 @@
                             <nav>
                                 <ul>
                                     <li class=""><a href="{{route('user.home')}}">Trang chủ</a></li>
-
                                     </li>
                                     @foreach (category_header() as $category)
                                     <li class=" @php
@@ -146,8 +145,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li><a href="contact.html">contact us</a></li>
-
+                                    <li><a href="contact.html">Liên Hệ</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -164,9 +162,6 @@
                                         <a href="{{ route('user.products', $category->slug) }}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
-
-
-
                                     <li><a href="blog.html">blog</a>
                                         <div>
                                             <div>

@@ -26,9 +26,9 @@
                     <div class="footer_widget">
                         <h3>Các chức năng của bạn</h3>
                         <ul>
-                            <li><a href="#">Your Account</a></li>
-                            <li><a href="{{ route('order_history.index')}}">History orders</a></li>
-                            <li><a href="{{route('user.login')}}">Login</a></li>
+                            <li><a href="{{ route('profile.index') }}" title="My account">Tài khoản của bạn</a></li>
+                            <li><a href="{{ route('order_history.index')}}">Lịch sử đặt hàng</a></li>
+                            <li><a href="{{route('user.login')}}">Đăng nhập</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,12 +37,12 @@
                         <h3>Liện hệ</h3>
                         <form action="#" class="mt-3">
                             <div class="form-group">
-                                <p for="emailInput">Sign up for your newsletter</p>
+                                <p for="emailInput">Đăng ký nhận bản tin của bạn</p>
                                 <div class="input-group">
-                                    <input id="emailInput" type="email" class="form-control" placeholder="Your email address" aria-label="Your email address" aria-describedby="subscribeButton">
+                                    <input id="emailInput" type="email" class="form-control" placeholder="Địa chỉ email của bạn" aria-label="Your email address" aria-describedby="subscribeButton">
                                 </div>
                                 <div class="input-group mt-3 w-50">
-                                    <button class="btn btn-success btn-block" type="submit" id="subscribeButton">Subscribe</button>
+                                    <button class="btn btn-success btn-block" type="submit" id="subscribeButton">Gửi</button>
                                 </div>
                             </div>
                         </form>

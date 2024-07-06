@@ -70,7 +70,7 @@
                                         <div class="product_info">
                                             <ul>
 
-                                                <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" >Xem chi tiết</a></li>
+                                                <li><a href="{{ route('user.products_detail', $newProduct->id) }}">Xem chi tiết</a></li>
                                             </ul>
                                         </div>
                                     </div>
