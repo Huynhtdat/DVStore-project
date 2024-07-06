@@ -250,7 +250,7 @@
                             <img src="" alt="">
                         </div>
                         <div class="product_action">
-                            <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+
                         </div>
                     </div>
                     <div class="product_content">
@@ -259,8 +259,8 @@
                     </div>
                     <div class="product_info">
                         <ul>
-                            <li><a href="#" class="add-to-wishlist" data-product-id="{{ $relatedProduct->id }}" title="Add to Wishlist">Thêm vào yêu thích</a></li>
-                            <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="">Xem chi tiết</a></li>
+
+                            <li><a href="{{ route('user.products_detail', $relatedProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="">Xem chi tiết</a></li>
                         </ul>
                     </div>
                 </div>

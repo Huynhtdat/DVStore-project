@@ -60,11 +60,7 @@
                                             <img src="assets\img\cart\span-new.png" alt="">
                                         </div>
                                         <div class="product_action">
-                                            <a href="{{ route('cart.store')}}" >
-                                                <input type="hidden" name="id" value="{{ $newProduct->id }}">
-                                                <input type="hidden" name="quantity" value="1">
-                                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-                                            </a>
+
                                         </div>
                                         </div>
                                         <div class="product_content">
@@ -73,7 +69,7 @@
                                         </div>
                                         <div class="product_info">
                                             <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">thêm vào danh sách yêu thích</a></li>
+
                                                 <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" >Xem chi tiết</a></li>
                                             </ul>
                                         </div>
@@ -136,12 +132,7 @@
                                             <img src="assets\img\cart\span-hot.png" alt="">
                                         </div>
                                         <div class="product_action">
-                                            <form action="{{ route('cart.store') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $sellingProduct->id }}">
-                                                <input type="hidden" name="quantity" value="1">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-                                            </form>
+
                                         </div>
                                         </div>
                                         <div class="product_content">
@@ -150,8 +141,8 @@
                                         </div>
                                         <div class="product_info">
                                             <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Thêm vào danh sách yêu thích</a></li>
-                                                <li><a href="{{ route('user.products_detail', $newProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="Quick view">Xem chi tiết</a></li>
+
+                                                <li><a href="{{ route('user.products_detail', $sellingProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="Quick view">Xem chi tiết</a></li>
                                             </ul>
                                         </div>
                                     </div>

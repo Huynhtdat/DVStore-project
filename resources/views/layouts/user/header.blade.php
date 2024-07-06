@@ -63,7 +63,7 @@
             <!--logo start-->
              <div class="col-lg-3 col-md-3">
                  <div class="logo">
-                    <img src="{{ asset("asset/client/images/". setting_website()->logo)  ) }}" alt="DVShop" style="width: 50px; height: auto;">
+                    <img src="{{ asset("asset/client/images/". setting_website()->logo)   }}" alt="DVShop" style="width: 50px; height: auto;">
                  </div>
              </div>
              <!--logo end-->

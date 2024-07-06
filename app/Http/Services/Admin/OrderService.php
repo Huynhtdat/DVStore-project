@@ -39,6 +39,11 @@ class OrderService
     {
         // Get list order
         $list = $this->orderRepository->getAllOrders();
+
+        // Format the order dates
+        foreach ($list as $order) {
+            $order->created_at = date('d-m-Y | H:i:s', strtotime($order->created_at));
+        }
         $tableCrud = [
             'headers' => [
                 [
