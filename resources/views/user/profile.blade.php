@@ -1,6 +1,31 @@
 @extends('layouts.user.main-client')
 @section('content-client')
-
+        <style>
+            .input-group-text {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: .375rem .75rem;
+                margin-bottom: 0;
+                font-size: 1rem;
+                font-weight: 400;
+                height: 45px;
+                line-height: 3;
+                color: #495057;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-left: none;
+                border-radius: 0 .25rem .25rem 0;
+            }
+            .input-group-text i {
+                color: #888;
+            }
+            .input-group-text:hover i {
+                color: #000;
+            }
+        </style>
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="row">
@@ -234,4 +259,37 @@
 </section>
 <!-- End Maincontent  -->
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleCurrentPassword = document.querySelector('#toggleCurrentPassword');
+        const toggleNewPassword = document.querySelector('#toggleNewPassword');
+        const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+
+        const currentPasswordField = document.querySelector('#current_password');
+        const newPasswordField = document.querySelector('#new_password');
+        const confirmPasswordField = document.querySelector('#confirm_password');
+
+        toggleCurrentPassword.addEventListener('click', function (e) {
+            togglePassword(currentPasswordField, toggleCurrentPassword);
+        });
+
+        toggleNewPassword.addEventListener('click', function (e) {
+            togglePassword(newPasswordField, toggleNewPassword);
+        });
+
+        toggleConfirmPassword.addEventListener('click', function (e) {
+            togglePassword(confirmPasswordField, toggleConfirmPassword);
+        });
+
+        function togglePassword(field, toggleElement) {
+            const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
+            field.setAttribute('type', type);
+
+            toggleElement.querySelector('i').classList.toggle('fa-eye');
+            toggleElement.querySelector('i').classList.toggle('fa-eye-slash');
+        }
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 @endsection

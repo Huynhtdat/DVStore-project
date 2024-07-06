@@ -1,6 +1,32 @@
 @extends('layouts.user.main-client')
 
 @section('content-client')
+    <style>
+            .input-group-text {
+                display: flex;
+                justify-content: center; /* Căn giữa theo chiều ngang */
+                align-items: center;
+                padding: .375rem .75rem;
+                margin-bottom: 0;
+                font-size: 1rem;
+                font-weight: 400;
+                height: 45px;
+                line-height: 3;
+                color: #495057;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-left: none;
+                border-radius: 0 .25rem .25rem 0;
+            }
+            .input-group-text i {
+                color: #888;
+            }
+            .input-group-text:hover i {
+                color: #000;
+            }
+        </style>
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -34,7 +60,14 @@
                                     </div>
                                     <div class="form-group mb-3">
                                     <label for="exampleInputPassword1"><strong>Mật Khẩu</strong></label>
-                                    <input type="password" class="form-control" value="{{ old('password') }}" id="password" name="password" placeholder="Nhập mật khẩu">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" value="{{ old('password') }}" id="password" name="password" placeholder="Nhập mật khẩu">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                                                <i class="fa fa-eye"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                     @if ($errors->get('password'))
                                         <span id="password-error" class="error invalid-feedback" style="display: block">
                                         {{ implode(", ",$errors->get('password')) }}
@@ -43,7 +76,14 @@
                                     </div>
                                     <div class="form-group mb-3">
                                     <label for="exampleInputPassword1"><strong>Xác Nhận Mật Khẩu</strong></label>
-                                    <input type="password" class="form-control" value="{{ old('password_confirmation') }}" id="password_confirm" name="password_confirm" placeholder="Xác nhận mật khẩu">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" value="{{ old('password_confirmation') }}" id="password_confirm" name="password_confirm" placeholder="Xác nhận mật khẩu">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="togglePasswordConfirm" style="cursor: pointer;">
+                                                <i class="fa fa-eye"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                     @if ($errors->get('password_confirm'))
                                         <span id="password_confirm-error" class="error invalid-feedback" style="display: block">
                                         {{ implode(", ",$errors->get('password_confirm')) }}
@@ -137,4 +177,29 @@
         </div>
     </div>
 </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility for "Mật Khẩu"
+            const togglePassword = document.querySelector('#togglePassword');
+            const passwordField = document.querySelector('#password');
+
+            togglePassword.addEventListener('click', function (e) {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+
+            // Toggle password visibility for "Xác Nhận Mật Khẩu"
+            const togglePasswordConfirm = document.querySelector('#togglePasswordConfirm');
+            const passwordConfirmField = document.querySelector('#password_confirm');
+
+            togglePasswordConfirm.addEventListener('click', function (e) {
+                const type = passwordConfirmField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordConfirmField.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
 @endsection

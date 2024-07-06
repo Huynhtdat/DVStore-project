@@ -86,7 +86,7 @@
 <script src="{{asset('assets\js\ajax-mail.js')}}"></script>
 <script src="{{asset('assets\js\plugins.js')}}"></script>
 <script src="{{asset('assets\js\main.js')}}"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <!-- Bootstrap core JavaScript==================================================-->
 
 

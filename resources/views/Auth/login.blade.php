@@ -1,5 +1,31 @@
 @extends('layouts.user.main-client')
 @section('content-client')
+        <style>
+            .input-group-text {
+                display: flex;
+                justify-content: center; /* Căn giữa theo chiều ngang */
+                align-items: center;
+                padding: .375rem .75rem;
+                margin-bottom: 0;
+                font-size: 1rem;
+                font-weight: 400;
+                height: 45px;
+                line-height: 3;
+                color: #495057;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-left: none;
+                border-radius: 0 .25rem .25rem 0;
+            }
+            .input-group-text i {
+                color: #888;
+            }
+            .input-group-text:hover i {
+                color: #000;
+            }
+        </style>
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -21,7 +47,14 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="password" class="form-label"><strong>Mật Khẩu:</strong></label>
-                            <input type="password" class="form-control rounded-2" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control rounded-2" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                                        <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
                             @error('password')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
@@ -50,7 +83,21 @@
     </div>
 </div>
 @endsection
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const passwordField = document.querySelector('#password');
 
+            togglePassword.addEventListener('click', function (e) {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
 @push('scripts')
 @vite('resources/common/js/login.js')
 @endpush
+
