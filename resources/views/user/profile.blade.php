@@ -101,7 +101,7 @@
                                         @endif
                                     </div>
                                     <div style="padding-top: 5px;" class="text-center">
-                                        <button type="submit">Xác nhận</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Xác nhận</button>
                                     </div>
                                 </form>
                             </div>
@@ -154,7 +154,7 @@
                                 @endif
                             </div>
                             <div style="padding-top: 5px;" class="text-center">
-                                <button type="submit">Xác nhận</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Xác nhận</button>
                             </div>
                         </form>
                     </div>
@@ -222,7 +222,7 @@
                                 @endif
                             </div>
                             <div style="padding-top: 5px;" class="text-center">
-                                <button type="submit">Xác nhận</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Xác nhận</button>
                             </div>
                         </form>
                     </div>

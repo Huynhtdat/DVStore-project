@@ -6,7 +6,7 @@
             <div class="checkout-page">
                 <ol class="checkout-steps">
                     <li class="steps active">
-                        <h2 class="title text-center">Quên Mật Khẩu</h2>
+                        <h3 class="title text-center">Quên Mật Khẩu</h3>
                         <div class="step-description">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">

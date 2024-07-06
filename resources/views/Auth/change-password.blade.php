@@ -6,7 +6,7 @@
                 <div class="checkout-page">
                     <ol class="checkout-steps">
                         <li class="steps active">
-                            <h2 class="title text-center">Đổi Mật Khẩu Mới</h2>
+                            <h3 class="title text-center">Đổi Mật Khẩu Mới</h3>
                             <div class="step-description">
                                 <div class="row justify-content-center">
                                     <div class="col-md-12 col-sm-12">
