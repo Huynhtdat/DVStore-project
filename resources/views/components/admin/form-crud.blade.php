@@ -1,4 +1,4 @@
-@props(['route', 'cancel', 'fields', 'rules' => '', 'messages' => '', 'textSubmit' => 'Add', 'cancelBtn' => "true"])
+@props(['route', 'cancel', 'fields', 'rules' => '', 'messages' => '', 'textSubmit' => 'Thêm', 'cancelBtn' => "true"])
 
 <div id="form-data" hidden data-rules="{{ json_encode($rules) }}"
         data-messages="{{ json_encode($messages) }}"></div>

@@ -68,7 +68,6 @@ class UpdateAdminRequest extends FormRequest
             'password.regex' => 'The password must be 8-24 characters long, including at least one uppercase letter, one lowercase letter, one number, and one special character (%, #, @, _, \\, -)', // Mật khẩu bao gồm từ 8 - 24 ký tự, ít nhất một chữ cái in hoa, một chữ cái in thường, một số và một ký tự đặc biệt (%, #, @, _, \\, -)
             'email.unique' => 'This email address has already been used', // Email này đã được sử dụng
             'email.email' => 'Invalid email address', // Địa chỉ email không hợp lệ
-
         ];
     }
 }

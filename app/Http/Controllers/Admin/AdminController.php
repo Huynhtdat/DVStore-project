@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreAdminRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Services\Admin\AdminService;
@@ -42,7 +43,7 @@ class AdminController extends Controller
         return redirect()->route('admin.admins_index');
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreAdminRequest $request)
     {
         return $this->adminService->store($request);
     }

@@ -32,7 +32,7 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::post('delete', [App\Http\Controllers\Admin\AdminController::class, "delete"])->name('admin.admins_delete');
     });
 
-    # profile admin
+    #profile admin
     Route::group(['prefix' => 'profile'], function(){
         Route::get('/change-profile', [App\Http\Controllers\Admin\ProfileController::class, "changeProfile"])->name('admin.profile_change-profile');
         Route::post('/change-profile', [App\Http\Controllers\Admin\ProfileController::class, "updateProfile"])->name('admin.profile_update-profile');

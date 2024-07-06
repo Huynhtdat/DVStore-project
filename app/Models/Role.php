@@ -20,11 +20,11 @@ class Role extends Model
     const STATUS = [
         [
             'value' => 1,
-            'text'  => 'Availiable'
+            'text'  => 'Hoạt động'
         ],
         [
             'value' => 0,
-            'text'  => 'Disable'
+            'text'  => 'Vô hiệu hóa'
         ],
     ];
     /**

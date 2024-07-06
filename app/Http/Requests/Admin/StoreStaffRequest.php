@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Role;
+use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAdminRequest extends FormRequest
+class StoreStaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,9 +38,9 @@ class StoreAdminRequest extends FormRequest
                 'regex:/[@$!%*#?&]/',
             ],
             'phone_number' => 'required|min:11|max:12',
-            'city' => 'required',
-            'district' => 'required',
-            'ward' => 'required',
+            'city' => 'required|integer',
+            'district' => 'required|integer',
+            'ward' => 'required|integer',
             'apartment_number' => 'required|string|min:1|max:100',
             'role_id' => 'required|integer|in:' . Role::ROLE['admin'] . ',' . Role::ROLE['staff'],
         ];
