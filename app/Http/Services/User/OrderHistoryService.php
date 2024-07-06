@@ -46,7 +46,7 @@ class OrderHistoryService
     public function update(Order $order)
     {
         try {
-            switch($order->order_status){
+            switch($order->status){
                 case 0:
                     $this->orderRepository->update($order, ['status' => Order::STATUS_ORDER['cancel']]);
                     $orderDetails = OrderDetail::where('order_id', $order->id)->get();

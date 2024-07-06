@@ -14,8 +14,8 @@
             </div>
           </div>
           <!-- /.card-header -->
-          <x-form-crud route="{{ route('admin.sizes_update', $size->id) }}" c
-            ancel="admin.sizes_index"
+          <x-form-crud route="{{ route('admin.sizes_update', $size->id) }}"
+            cancel="admin.sizes_index"
             :fields="$fields"
             :rules="$rules"
             :messages="$messages"

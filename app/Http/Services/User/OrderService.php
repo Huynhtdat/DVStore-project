@@ -67,7 +67,7 @@ class OrderService
                 ],
                 [
                     'text' => 'Trạng Thái Đơn',
-                    'key' => 'order_status',
+                    'key' => 'status',
                     'status' => [
                         [
                             'text' => 'Chờ Xử Lý',
@@ -169,7 +169,7 @@ class OrderService
         try {
             $data = $request->all();
             // hoàn trả lại số lượng
-            if ($request->order_status == 2) {
+            if ($request->status == 2) {
                 // lấy những phẩm thuộc đơn hàng bị hủy
                 $orderDetails = OrderDetail::where('order_id', $order->id)->get();
                 // duyệt qua tất cả sản phẩm và trả số lượng ban đầu

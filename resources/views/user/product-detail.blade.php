@@ -93,6 +93,7 @@
                         @if (! is_int($avgRating))
                           <i class="fa fa-star-half-alt"></i>
                         @endif
+                        <h4 class="number-avg-star">{{ number_format($avgRating, 1) }}/5</h4>
                         <li><a href="#"> Da ban: {{ $productSold->sum ?? 0}} </a></li>
                     </ul>
                 </div>
@@ -166,9 +167,7 @@
                         <li>
                             <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Mô tả sản phẩm</a>
                         </li>
-                        {{-- <li>
-                            <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Data sheet</a>
-                        </li> --}}
+
                         <li>
                             <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Đánh giá</a>
                         </li>
@@ -180,26 +179,28 @@
                             <p>{!!$product->description!!}</p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="sheet" role="tabpanel">
-                        <div class="product_d_table">
+                    <div class="tab-pane fade" id="product-review" role="tabpanel">
+                        <div class="product_review_form">
                             <form action="#">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="first_child">Name</td>
-                                            <td>{{ $product->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="first_child">Color</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="first_child">Size</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </form>
+                                <h2>Add a review </h2>
+                                <p>Your email address will not be published. Required fields are marked </p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="review_comment">Your review </label>
+                                        <textarea name="comment" id="review_comment"></textarea>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <label for="author">Name</label>
+                                        <input id="author" type="text">
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <label for="email">Email </label>
+                                        <input id="email" type="text">
+                                    </div>
+                                </div>
+                                <button type="submit">Submit</button>
+                             </form>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -222,7 +223,82 @@
                         @else
                         <p class="text-center review-comment-null">Chưa có đánh giá nào</p>
                         @endif
+                        <div class="product_review_form">
+                            <form method="POST" action="{{ route('product_review.store', $product->id) }}">
+                                @csrf
+                                <div class="row">
+                                  @if ($checkReviewProduct)
+                                    <div class="col-md-6 col-sm-6">
+                                      <div class="form-row">
+                                        <label class="review-lable">
+                                          Chọn sao cho sản phẩm
+                                        </label>
+                                        <div class="rating">
+                                            <input class="star" type="radio" hidden id="star1" name="rating" value="1" />
+                                            <label for="star1" title="Poor" id="icon-star1">
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                            <input class="star" type="radio" hidden id="star2" name="rating" value="2" />
+                                            <label for="star2" title="Fair" id="icon-star2">
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                            <input class="star" type="radio" hidden id="star3" name="rating" value="3" />
+                                            <label for="star3" title="Good" id="icon-star3">
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                            <input class="star" type="radio" hidden id="star4" name="rating" value="4" />
+                                            <label for="star4" title="Very Good" id="icon-star4">
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                            <input class="star" type="radio" hidden id="star5" name="rating" value="5" />
+                                            <label for="star5" title="Excellent" id="icon-star5">
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <label class="review-lable">
+                                          Nội dung đánh giá
+                                        </label>
+                                        <textarea style="width: 100%;" name="content" rows="7" >
+                                        </textarea>
+                                      </div>
+                                      <div class="form-row">
+                                        <input type="submit" value="Đánh Giá" class="button">
+                                      </div>
+                                    </div>
+                                  @endif
+                                  <div class="col-md-6 col-sm-6">
+                                    <div class="form-row row">
+                                      <div class="col-md-5">
+                                        <label class="title-avg-star review-lable">Đánh giá trung bình</label>
+                                        <div class="avg-star">
+                                          @for($i = 1; $i <= floor($avgRating); $i++)
+                                            <i class="fa fa-star"></i>
+                                          @endfor
+                                          @if (! is_int($avgRating))
+                                            <i class="fa fa-star-half-alt"></i>
+                                          @endif
+                                        </div>
+                                        <h4 class="number-avg-star">{{ number_format($avgRating, 1) }}</h4>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <label class="title-avg-star review-lable">Đánh giá</label>
+                                        @for ($i = 5; $i >= 1; $i--)
+                                          <div class="avg-star">
+                                            <x-stars :number="$i" />
+                                            <span class="parameter-review">({{ $ratingStatistics[$i] }})</span>
+                                          </div>
+                                        @endfor
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

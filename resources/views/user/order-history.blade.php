@@ -62,13 +62,13 @@
                     <td>
                       <div style="padding: 8px; display: flex; justify-content: start;">
                         <a class="btn-a" href="{{ route('order_history.show', $orderHistory->id) }}">Chi tiết</a>
-                        @if ($orderHistory->order_status == 0)
+                        @if ($orderHistory->status == 0)
                           <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Hủy Đơn</a>
-                        @elseif($orderHistory->order_status == 1)
+                        @elseif($orderHistory->status == 1)
                           <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xác Nhận</a>
-                        @elseif($orderHistory->order_status == 2)
+                        @elseif($orderHistory->status == 2)
                         <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xóa Đơn</a>
-                        @elseif($orderHistory->order_status == 3)
+                        @elseif($orderHistory->status == 3)
                           <a class="btn-a" style="margin-left: 20px;" href="{{ route('order_history.update', $orderHistory->id) }}">Xóa Đơn</a>
                         @endif
                       </div>
