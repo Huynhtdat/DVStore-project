@@ -76,7 +76,7 @@
 
                     <!-- Filter Button -->
                     <div class="d-flex justify-content-center mt-3">
-                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">lọc sản phẩm</button>
+                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">Lọc sản phẩm</button>
                     </div>
 
                 </div>

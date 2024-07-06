@@ -8,7 +8,7 @@
       <a href="../../index2.html" class="h1"><b>Quản trị viên</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg"><b>Đăng nhaaph hệ thống</b></p>
+      <p class="login-box-msg"><b>Đăng Nhập Hệ Thống</b></p>
       @if ($errors->get('disable_reason'))
         <span class="error invalid-feedback" style="display: block">
           {{ implode(", ",$errors->get('disable_reason')) }}

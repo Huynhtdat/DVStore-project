@@ -159,7 +159,7 @@
                           </div>
                           @endforeach
                           <div style="padding-top: 40px;" class="text-center">
-                            <button>Thanh Toán Đơn Hàng</button>
+                            <button class="btn btn-info">Thanh Toán Đơn Hàng</button>
                           </div>
                         </div>
                       </div>

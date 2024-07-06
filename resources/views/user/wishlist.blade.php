@@ -62,7 +62,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $product->id }}">
                                                 <input type="hidden" name="quantity" value="1">
-                                                <button type="submit" class="btn btn-primary btn-sm">Thêm vào giỏ hàng</button>
+                                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
                                             </form>
                                         </td>
                                     </tr>
