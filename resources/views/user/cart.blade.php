@@ -38,7 +38,7 @@
                                     <tr>
                                         <th class="product_thumb">hình ảnh</th>
                                         <th class="product_name">Sản phẩm</th>
-                                        <th class="product-price">Giá =</th>
+                                        <th class="product-price">Giá</th>
                                         <th class="product_quantity">Số lượng</th>
                                         <th class="product_total">Tổng tiền</th>
                                         <th class="product_remove">Chức năng</th>

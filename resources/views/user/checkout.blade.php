@@ -6,9 +6,9 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('user.home') }}">home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('cart.index') }}">cart</a></li>
-                    <li class="breadcrumb-item active">checkout</li>
+                    <li class="breadcrumb-item"><a href="{{ route('user.home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('cart.index') }}">Giỏ hàng</a></li>
+                    <li class="breadcrumb-item active">Thanh toán</li>
                 </ul>
             </div>
         </div>
@@ -125,23 +125,25 @@
                                     <span id="total-order">0</span>
                                 </div>
                             </div>
-                            <div class="payment-method">
-                                <span><strong>Chọn phương thức thanh toán</strong></span>
+                            <div class="payment-method mb-4">
+                                <span class="d-block mb-2"><strong>Chọn phương thức thanh toán</strong></span>
                                 @if ($errors->get('payment_method'))
-                                <span id="payment_method-error" class="invalid-feedback" style="display: block">
+                                <div id="payment_method-error" class="invalid-feedback d-block">
                                     {{ implode(", ",$errors->get('payment_method')) }}
-                                </span>
+                                </div>
                                 @endif
                             </div>
-                            @foreach ($payments as $payment)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="{{ $payment->id }}" name="payment_method" id="{{ $payment->id }}">
-                                <label class="form-check-label" for="{{ $payment->id }}">
-                                    {{ $payment->name }}
-                                    <img src="{{ asset("asset/imgs/$payment->img") }}" alt="">
-                                </label>
+                            <div class="list-group">
+                                @foreach ($payments as $payment)
+                                <div class="list-group-item list-group-item-action d-flex align-items-center">
+                                    <input class="form-check-input" style="width: 3em; height: 1.2em; margin-right: 3em;" type="radio" value="{{ $payment->id }}" name="payment_method" id="{{ $payment->id }}">
+                                    <img src="{{ asset("asset/imgs/$payment->img") }}" alt="{{ $payment->name }}" class="img-fluid ms-4 me-2" style="max-height: 40px; margin-left: 1.5em; margin-right: 0.5em;">
+                                    <label class="form-check-label flex-grow-1 mb-0" for="{{ $payment->id }}">
+                                        {{ $payment->name }}
+                                    </label>
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
                             <div class="text-center mt-4">
                                 <button class="btn btn-info">Thanh Toán Đơn Hàng</button>
                             </div>
