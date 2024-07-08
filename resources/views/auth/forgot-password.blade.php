@@ -26,6 +26,11 @@
                                             <div class="text-center">
                                                 <button type="submit" class="btn btn-primary">Quên Mật Khẩu</button>
                                             </div>
+                                            <div class="content-footer text-center mt-3">
+                                                    <a href="{{ route('user.login') }}">
+                                                        Quay lại trang đăng nhập
+                                                    </a>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
@@ -33,9 +38,6 @@
                         </div>
                     </li>
                 </ol>
-                <div class="content-footer text-center mt-3">
-                    <a href="{{ route('user.login') }}" class="text-primary">Quay lại trang đăng nhập</a>
-                </div>
             </div>
         </div>
     </div>

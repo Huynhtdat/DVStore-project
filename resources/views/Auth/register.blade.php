@@ -103,15 +103,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label for="exampleInputEmail1"><strong>Tỉnh, Thành Phố</strong></label>
-                                    <select class="form-control form-select" id="city" name="city">
-                                        @foreach ($citys as $city)
-                                            <option value="{{ $city['ProvinceID'] }}"
-                                            @if ( $city['ProvinceID'] == old('city'))
-                                                selected
-                                            @endif
-                                            >{{ $city['NameExtension'][1] }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" value="{{ old('city') }}" id="city" name="city" aria-describedby="emailHelp" placeholder="Nhập Tỉnh, Thành Phố">
                                     @if ($errors->get('city'))
                                         <span id="city-error" class="error invalid-feedback" style="display: block">
                                         {{ implode(", ",$errors->get('city')) }}
@@ -120,15 +112,7 @@
                                     </div>
                                     <div class="form-group">
                                     <label for="exampleInputEmail1"><strong>Quận, Huyện</strong></label>
-                                    <select class="form-control form-select" id="district" name="district">
-                                        @foreach ($districts as $district)
-                                            <option value="{{ $district['DistrictID'] }}"
-                                            @if ( $district['DistrictID'] == old('district'))
-                                                selected
-                                            @endif
-                                            >{{ $district['DistrictName'] }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" value="{{ old('district') }}" id="district" name="district" aria-describedby="emailHelp" placeholder="Nhập Quận, Huyện">
                                     @if ($errors->get('district'))
                                         <span id="district-error" class="error invalid-feedback" style="display: block">
                                         {{ implode(", ",$errors->get('district')) }}
@@ -136,16 +120,8 @@
                                     @endif
                                     </div>
                                     <div class="form-group">
-                                    <label for="exampleInputEmail1"><strong>Phường Xã</strong></label>
-                                    <select class="form-control form-select" id="ward" name="ward">
-                                        @foreach ($wards as $ward)
-                                            <option value="{{ $ward['WardCode'] }}"
-                                            @if ( $ward['WardCode'] == old('ward'))
-                                            selected
-                                            @endif
-                                            >{{ $ward['WardName'] }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="exampleInputEmail1"><strong>Phường, Xã</strong></label>
+                                    <input type="text" class="form-control" value="{{ old('ward') }}" id="ward" name="ward" aria-describedby="emailHelp" placeholder="Nhập Phường, Xã">
                                     @if ($errors->get('ward'))
                                         <span id="ward-error" class="error invalid-feedback" style="display: block">
                                         {{ implode(", ",$errors->get('ward')) }}
