@@ -26,7 +26,13 @@ class WishlistController extends Controller
         $productId = $request->input('product_id');
         $this->wishlistService->addToWishlist($productId);
 
-        return response()->json(['message' => 'Product added to wishlist']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Sản phẩm đã được thêm vào danh sách yêu thích',
+            'product' => [
+                'id' => $productId
+            ]
+        ]);
     }
 
     public function remove(Request $request)
@@ -34,6 +40,6 @@ class WishlistController extends Controller
         $productId = $request->input('product_id');
         $this->wishlistService->removeFromWishlist($productId);
 
-        return response()->json(['message' => 'Product removed from wishlist']);
+        return response()->json(['message' => 'Sản phẩm đã bị xóa khỏi danh sách yêu thích']);
     }
 }
