@@ -17,29 +17,38 @@ class WishlistController extends Controller
 
     public function index()
     {
-        $products = $this->wishlistService->getWishlistProducts();
-        return view('user.wishlist', compact('products'));
+        $wishlistItems = $this->wishlistService->getWishlistProducts();
+        return view('user.wishlist', ['wishlistItems' => $wishlistItems]);
     }
 
     public function add(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+
         $productId = $request->input('product_id');
         $this->wishlistService->addToWishlist($productId);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Sản phẩm đã được thêm vào danh sách yêu thích',
-            'product' => [
-                'id' => $productId
-            ]
-        ]);
+        $wishlistItems = $this->wishlistService->getWishlistProducts();
+
+        return view('user.wishlist', ['wishlistItems' => $wishlistItems])
+            ->with('success', 'Product added to wishlist successfully.');
     }
+
 
     public function remove(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|integer|exists:products,id',
+        ]);
+
         $productId = $request->input('product_id');
         $this->wishlistService->removeFromWishlist($productId);
 
-        return response()->json(['message' => 'Sản phẩm đã bị xóa khỏi danh sách yêu thích']);
+        $wishlistItems = $this->wishlistService->getWishlistProducts();
+
+        return view('user.wishlist', ['wishlistItems' => $wishlistItems])
+            ->with('success', 'Product removed from wishlist successfully.');
     }
 }

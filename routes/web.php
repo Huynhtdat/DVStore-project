@@ -44,7 +44,7 @@ Route::middleware(['auth.user'])->group(function () {
     Route::post('product-review/{product}', [App\Http\Controllers\User\ProductReviewController::class, "store"])->name('product_review.store');
 
     #wishlist
-    Route::group(['prefix' => 'wishlist'], function() {
+    Route::group(['prefix' => 'wishlist'], function () {
         Route::get('/', [App\Http\Controllers\User\WishlistController::class, 'index'])->name('wishlist.index');
         Route::post('/add', [App\Http\Controllers\User\WishlistController::class, 'add'])->name('wishlist.add');
         Route::post('/remove', [App\Http\Controllers\User\WishlistController::class, 'remove'])->name('wishlist.remove');
