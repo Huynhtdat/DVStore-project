@@ -60,7 +60,7 @@
                                             <a href="{{ route('user.products_detail', $product->id) }}">{{ $product->name }}</a>
                                         </td>
                                         <td class="product-price align-middle">{{ format_number_to_money($product->price_sell) }} VND</td>
-                                        <td class="product_quantity align-middle">{{ $product->stock > 0 ? 'Còn hàng' : 'Hết hàng' }}</td>
+                                        <td class="product_quantity align-middle">{{ $product->stock > 0 ? 'Hết hàng' : 'Còn hàng' }}</td>
                                         <td class="product_total align-middle">
                                             <form action="{{ route('cart.store') }}" method="POST">
                                                 @csrf

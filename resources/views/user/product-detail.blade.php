@@ -24,6 +24,10 @@
             font-weight: bold;
             color: #333;
         }
+        .favorite-action i{
+            font-size: 30px;
+
+        }
     </style>
 
 <!--breadcrumbs area start-->
@@ -127,16 +131,13 @@
                         </div>
                         <div class="col-md-3 wided-box mb-3">
                             <div class="d-flex align-items-center">
-                                <span><strong>Sô lượng:</strong></span>
+                                <span><strong>Số lượng:</strong></span>
                                 <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
                         <div class="col-md-12 text-center mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-                            </button>
-                            <button id="add-to-wishlist" data-product-id="{{ $product->id }}" class="btn btn-lg ml-2" style="color: red">
-                                <i class="fa fa-heart"></i>
                             </button>
                         </div>
                     </div>
@@ -151,6 +152,16 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
+                <!-- Yêu thích sản phẩm -->
+                    @if(auth()->check())
+                        <div class="favorite-action">
+                            @if($product->wishlist)
+                                <a tile="Bỏ thích" onclick="return confirm('Bạn có muốn bỏ thích không')" href="{{ route('wishlist.toggle', $product->id) }}"><i class="fas fa-heart"></i></a>
+                            @else
+                                <a tile="Yêu thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="far fa-heart"></i></a>
+                            @endif
+                        </div>
+                    @endif
             </div>
         </div>
     </div>
@@ -295,10 +306,8 @@
                                   </div>
                                 </div>
                               </form>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

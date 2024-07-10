@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Wishlist;
 use App\Http\Services\User\WishlistService;
 
 class WishlistController extends Controller
@@ -50,5 +51,21 @@ class WishlistController extends Controller
 
         return view('user.wishlist', ['wishlistItems' => $wishlistItems])
             ->with('success', 'Product removed from wishlist successfully.');
+    }
+
+    public function toggle($productId)
+    {
+        $data = [
+            'product_id' => $productId,
+            'user_id' => auth()->id()
+        ];
+        $wishlist = Wishlist::where(['product_id' => $productId, 'user_id' => auth()->id()])->first();
+        if ($wishlist) {
+            $wishlist->delete();
+            return redirect()->back()->with('ok', 'Bạn đã bỏ yêu thích sản phẩm');
+        } else {
+            Wishlist::create($data);
+            return redirect()->back()->with('ok', 'Bạn đã yêu thích sản phẩm');
+        }
     }
 }

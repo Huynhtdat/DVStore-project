@@ -18,6 +18,7 @@ class Product extends Model
      * @var string
      */
     protected $table = 'products';
+    protected $appends = ['wishlist'];
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +51,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id')->setEagerLoads([]);
-
+    }
+    public function getWishlistAttribute()
+    {
+        $wishlist = Wishlist::where(['product_id' => $this->id, 'user_id' => auth()->id()])->first();
+        return $wishlist ? true : false;
     }
 }

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets\css\bundle.css')}}">
     <link rel="stylesheet" href="{{ asset('assets\css\style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets\css\responsive.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     {{-- <link href="{{ asset('asset/client/css/style-product.css') }}" rel="stylesheet"> --}}
     <script src="{{ asset('assets\js\vendor\modernizr-2.8.3.min.js')}}"></script>
 

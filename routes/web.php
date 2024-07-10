@@ -48,6 +48,7 @@ Route::middleware(['auth.user'])->group(function () {
         Route::get('/', [App\Http\Controllers\User\WishlistController::class, 'index'])->name('wishlist.index');
         Route::post('/add', [App\Http\Controllers\User\WishlistController::class, 'add'])->name('wishlist.add');
         Route::post('/remove', [App\Http\Controllers\User\WishlistController::class, 'remove'])->name('wishlist.remove');
+        Route::get('/toggle/{product}', [App\Http\Controllers\User\WishlistController::class, 'toggle'])->name('wishlist.toggle');
     });
     #cart
     Route::group(['prefix' => 'cart'], function () {
