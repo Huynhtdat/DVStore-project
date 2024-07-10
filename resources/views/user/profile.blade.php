@@ -32,7 +32,7 @@
         <div class="col-12">
             <div class="breadcrumb_content">
                 <ul>
-                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="{{ route('user.home')}}">Trang chủ</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
                     <li>Trang cá nhân</li>
                 </ul>

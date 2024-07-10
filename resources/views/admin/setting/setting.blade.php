@@ -26,7 +26,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="card-body row">
-                      <x-admin-input-prepend label="Website Name" width="120px">
+                      <x-admin-input-prepend label="Tên Website" width="120px">
                         <input
                           id="name"
                           type="text"
@@ -34,7 +34,7 @@
                           value="{{ $setting->name }}"
                           class="form-control">
                       </x-admin-input-prepend>
-                      <x-admin-input-prepend label="Logo website" width="120px">
+                      <x-admin-input-prepend label="Hình đại diện Website" width="120px">
                         <input type="file" name="logo" class="form-control" id="inputFile__js">
                       </x-admin-input-prepend>
                       <x-admin-input-prepend label="Email" width="120px">
@@ -45,7 +45,7 @@
                           value="{{ $setting->email }}"
                           class="form-control">
                       </x-admin-input-prepend>
-                      <x-admin-input-prepend label="Address" width="120px">
+                      <x-admin-input-prepend label="Địa chỉ" width="120px">
                         <input
                           id="name"
                           type="text"
@@ -53,7 +53,7 @@
                           value="{{ $setting->address }}"
                           class="form-control">
                       </x-admin-input-prepend>
-                      <x-admin-input-prepend label="Phone Number" width="120px">
+                      <x-admin-input-prepend label="Số điện thoại" width="120px">
                         <input
                           id="phone_number"
                           type="text"
@@ -61,7 +61,7 @@
                           value="{{ $setting->phone_number }}"
                           class="form-control">
                       </x-admin-input-prepend>
-                      <x-admin-input-prepend label="Maintenance website" width="200px">
+                      <x-admin-input-prepend label="Bảo trì" width="200px">
                         <select class="form-control" name="maintenance" id="maintenance">
                           <option value="1"
                           @if ($setting->maintenance == 1)

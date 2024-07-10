@@ -137,12 +137,12 @@
                                         </div>
                                         <div class="product_content">
                                             <span class="product_price">{{ format_number_to_money($sellingProduct->price_sell) }} VNĐ</span>
-                                            <h3 class="product_title"><a href="single-product.html">{{ $sellingProduct->name }}</a></h3>
+                                            <h3 class="product_title"><a href="{{ route('user.products_detail', $sellingProduct->id) }}">{{ $sellingProduct->name }}</a></h3>
                                         </div>
                                         <div class="product_info">
                                             <ul>
 
-                                                <li><a href="{{ route('user.products_detail', $sellingProduct->id) }}" data-toggle="modal" data-target="#modal_box" title="Quick view">Xem chi tiết</a></li>
+                                                <li><a href="{{ route('user.products_detail', $sellingProduct->id) }}" >Xem chi tiết</a></li>
                                             </ul>
                                         </div>
                                     </div>
