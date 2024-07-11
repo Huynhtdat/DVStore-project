@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
+use Brian2694\Toastr\Toastr;
 use App\Http\Services\User\WishlistService;
 
 class WishlistController extends Controller

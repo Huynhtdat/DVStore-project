@@ -75,21 +75,37 @@ class ForgotPasswordController extends Controller
             $date2 = Carbon::now();
             $result = $date1->gt($date2);
             if (!$result) {
-                return redirect()->route('user.login')->with('error', __('message.token_expired'));
+                return redirect()->route('user.login');
             }
 
             $rules = [
-                'password' => 'required|string|min:8|max:24|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*?&#]/',
-                'password_confirm' => 'required|same:password',
+                'password' => [
+                    'required' => true,
+                    'minlength' => 8,
+                    'maxlength' => 24,
+                    'checklower' => true,
+                    'checkupper' => true,
+                    'checkdigit' => true,
+                    'checkspecialcharacter' => true,
+                ],
+                'password_confirm' => [
+                    'equalTo' => '#password',
+                ],
             ];
 
             $messages = [
-                'password.required' => __('message.required', ['attribute' => 'mật khẩu mới']),
-                'password.min' => __('message.min', ['attribute' => 'Mật khẩu mới', 'min' => 8]),
-                'password.max' => __('message.max', ['attribute' => 'Mật khẩu mới', 'max' => 24]),
-                'password.regex' => __('message.password.invalid_format'),
-                'password_confirm.required' => __('message.required', ['attribute' => 'xác nhận mật khẩu']),
-                'password_confirm.same' => 'Xác nhận mật khẩu không trùng khớp',
+                'password' => [
+                    'required' => __('message.required', ['attribute' => 'mật khẩu mới']),
+                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu mới', 'min' => 8]),
+                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu mới', 'max' => 24]),
+                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
+                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
+                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
+                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                ],
+                'password_confirm' => [
+                    'equalTo' => 'Xác nhận mật khẩu không trùng khớp',
+                ],
             ];
 
             return view('auth.change-password', [
@@ -101,7 +117,6 @@ class ForgotPasswordController extends Controller
         return redirect()->route('user.login');
     }
 
-
     public function updatePassword(ChangeNewPasswordRequest $request)
     {
         if ($request->token) {
@@ -110,12 +125,15 @@ class ForgotPasswordController extends Controller
             if (empty($verifyUser) || empty($verifyUser->user)) {
                 return redirect()->route('user.login')->with('error', __('message.token_is_invalid'));
             }
-            if (Carbon::parse($verifyUser->expires_at)->isPast()) {
+            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $verifyUser->expires_at);
+            $date2 = Carbon::now();
+            $result = $date1->gt($date2);
+            if (!$result) {
                 return redirect()->route('user.login');
             }
 
             $data = [
-                'password' => bcrypt($request->password),
+                'password' => $request->password,
                 'updated_by' => $verifyUser->user->id,
             ];
             $this->userRepository->update($verifyUser->user, $data);

@@ -198,6 +198,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
     ],
 
     /*
@@ -215,6 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     ])->toArray(),
 
 ];
