@@ -112,12 +112,6 @@
                                     <span id="fee">0</span>
                                 </div>
                             </div>
-                            {{-- <div class="info-order">
-                                <div class="d-flex justify-content-between">
-                                    <span><strong>Áp dụng giảm giá:</strong></span>
-                                    <span>0</span>
-                                </div>
-                            </div> --}}
                             <div class="info-order">
                                 <div class="d-flex justify-content-between">
                                     <span><strong>Tổng đơn hàng:</strong></span>

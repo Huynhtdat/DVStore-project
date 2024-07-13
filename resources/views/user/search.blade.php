@@ -11,42 +11,6 @@
                     Chúng tôi không tìm thấy sản phẩm '<span style="color:#f7544a;">{{ $contentSearch }}</span>' nào
                 @endif
             </h3>
-            {{-- <form class="row" method="GET">
-                <input type="text" value="{{ $contentSearch }}" hidden name="keyword">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <select class="form-control form-select" name="category">
-                            <option disabled selected>Chọn danh mục</option>
-                            <option value="" >Tất cả</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" >{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <select class="form-control form-select" name="brand">
-                            <option disabled selected>Chọn thương hiệu</option>
-                            @foreach ($brands as $item)
-                                <option value="{{ $item->id }}" {{ ($item->id == $brand) ? 'selected' : '' }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group" style="display: flex; align-items: center;">
-                        <input type="text" class="form-control price-filter" value="{{ $minPrice }}" placeholder="Giá từ" name="min_price">
-                        <span style="border-top: 1px; width: 50px;"></span>
-                        <input type="text" class="form-control price-filter" value="{{ $maxPrice }}" placeholder="Giá đến" name="max_price">
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <button class="price-filter">Lọc tìm kiếm</button>
-                    </div>
-                </div>
-            </form> --}}
             <ul>
                 <li>
                 <div class="row">

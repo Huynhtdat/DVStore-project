@@ -3,7 +3,7 @@
         <style>
             .input-group-text {
                 display: flex;
-                justify-content: center; /* Căn giữa theo chiều ngang */
+                justify-content: center;
                 align-items: center;
                 padding: .375rem .75rem;
                 margin-bottom: 0;

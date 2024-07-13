@@ -4,7 +4,7 @@
     <style>
             .input-group-text {
                 display: flex;
-                justify-content: center; /* Căn giữa theo chiều ngang */
+                justify-content: center;
                 align-items: center;
                 padding: .375rem .75rem;
                 margin-bottom: 0;
@@ -155,7 +155,6 @@
 </div>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle password visibility for "Mật Khẩu"
             const togglePassword = document.querySelector('#togglePassword');
             const passwordField = document.querySelector('#password');
 
@@ -166,7 +165,6 @@
                 this.querySelector('i').classList.toggle('fa-eye-slash');
             });
 
-            // Toggle password visibility for "Xác Nhận Mật Khẩu"
             const togglePasswordConfirm = document.querySelector('#togglePasswordConfirm');
             const passwordConfirmField = document.querySelector('#password_confirm');
 

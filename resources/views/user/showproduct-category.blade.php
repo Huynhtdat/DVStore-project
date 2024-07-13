@@ -116,47 +116,6 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- <div class="tab-pane fade show active" id="list" role="tabpanel">
-                            <div class="product_list_item mb-35">
-                                <div class="row align-items-center">
-                                    @if (count($products) > 0)
-                                        @foreach ($products as $product)
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                            <div class="product_thumb">
-                                                <a href="{{ route('user.products_detail', $product->id)}}"><img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt=""></a>
-                                                <div class="hot_img">
-                                                    <img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 col-md-6 col-sm-6">
-                                            <div class="list_product_content">
-                                                <div class="product_ratting">
-                                                    <x-avg-stars :number="$product->avg_rating" />
-                                                </div>
-                                                <div class="list_title">
-                                                    <h3><a href="{{ route('user.products_detail', $product->id) }}">{{$product->name}}</a></h3>
-                                                </div>
-                                                <p class="design">{{ $product->description }}</p>
-
-                                                <div class="content_price">
-                                                    <span>{{ $product->price_sell }}</span>
-                                                </div>
-                                                <div class="add_links">
-                                                    <ul>
-                                                        <li><a href="#" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    @else
-                                    @endif
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
