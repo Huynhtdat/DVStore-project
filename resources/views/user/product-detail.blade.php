@@ -156,9 +156,9 @@
                     @if(auth()->check())
                         <div class="favorite-action">
                             @if($product->wishlist)
-                                <a tile="Bỏ thích" onclick="return confirm('Bạn có muốn bỏ thích không')" href="{{ route('wishlist.toggle', $product->id) }}"><i class="fas fa-heart"></i></a>
+                                <a title="Bỏ thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="fas fa-heart"></i></a>
                             @else
-                                <a tile="Yêu thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="far fa-heart"></i></a>
+                                <a title="Yêu thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="far fa-heart"></i></a>
                             @endif
                         </div>
                     @endif

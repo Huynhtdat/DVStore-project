@@ -66,18 +66,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-footer bg-white rounded-bottom border-top-0">
-                    <p class="mb-1 text-center">Hoặc đăng nhập</p>
-                    <div class="row justify-content-center">
-                        <a href="{{ route('google-auth', 'google') }}" class="btn btn-danger social-btn col-5 mb-2 rounded-pill">
-                            <i class="fab fa-google"></i> Sign In with Google
-                        </a>
-                    </div>
-                    <div class="mt-2 text-center">
-                        <a href="{{ route('user.forgot_password_create') }}"><strong>Quên mật khẩu?</strong></a>
-                    </div>
-                    <p class="mt-3 mb-0">Nếu bạn chưa có tài khoản, <a href="{{ route('user.register') }}"><strong>Đăng ký</strong></a> ngay.</p>
+                <div class="mt-2 text-center">
+                    <a href="{{ route('user.forgot_password_create') }}"><strong>Quên mật khẩu?</strong></a>
                 </div>
+                <p class="mt-3 mb-0">Nếu bạn chưa có tài khoản, <a href="{{ route('user.register') }}"><strong>Đăng ký</strong></a> ngay.</p>
             </div>
         </div>
     </div>

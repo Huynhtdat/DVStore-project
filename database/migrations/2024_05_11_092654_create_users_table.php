@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('google_id')->nullable()->unique();
             $table->string('phone_number')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->integer('active')->default(1);
