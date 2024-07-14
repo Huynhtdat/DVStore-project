@@ -17,7 +17,7 @@ class SettingController extends Controller
     public function index()
     {
         return view('admin.setting.setting', [
-            'title' => 'Website Setting',
+            'title' => 'Cấu hình Website',
             'setting' => Setting::first()
         ]);
     }
@@ -33,9 +33,9 @@ class SettingController extends Controller
             }
             $setting = Setting::first();
             $setting->update($data);
-            return back()->with('success', 'Successfully updated');
+            return back()->with('success', 'Cập nhật thành công');
         } catch (Exception) {
-            return back()->with('error', 'Update information failed');
+            return back()->with('error', 'Cập nhật thất bại');
         }
     }
 }

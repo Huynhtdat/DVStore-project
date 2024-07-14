@@ -50,4 +50,9 @@ class HomeController extends Controller
             'cart' => $cart
         ]);
     }
+    public function introduction()
+    {
+        $setting = Setting::first();
+        return view('user.introduction', ['setting' => $setting]);
+    }
 }

@@ -27,6 +27,7 @@ Route::middleware(['maintenance'])->group(function () {
     Route::get('product-detail/{product}', [App\Http\Controllers\User\ProductDetailController::class, "show"])->name('user.products_detail');
     Route::get('products/{slug}', [App\Http\Controllers\User\ShowProductController::class, "index"])->name('user.products');
     Route::get('search', [App\Http\Controllers\User\SearchController::class, "search"])->name('user.search');
+    Route::get('introduction', [App\Http\Controllers\User\HomeController::class, "introduction"])->name('user.introduction');
 });
 
 Route::middleware(['maintenance_active'])->group(function () {

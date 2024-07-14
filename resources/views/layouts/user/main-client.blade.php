@@ -7,12 +7,13 @@
             <div class="pos_page_inner">
                 @include('layouts.user.header')
                 @yield('content-client')
+
             </div>
 
             <!--pos page inner end-->
-
+            @include('layouts.user.footer')
         </div>
-        @include('layouts.user.footer')
+
     </div>
     <!--pos page end-->
     @if (Session::has('success'))

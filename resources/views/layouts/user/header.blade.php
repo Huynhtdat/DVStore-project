@@ -134,21 +134,7 @@
                                         <a href="{{ route('user.products', $category->slug) }}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach
-
-                                    </li>
-
-                                    <li><a href="blog.html">blog</a>
-                                        <div class="mega_menu jewelry">
-                                            <div class="mega_items jewelry">
-                                                <ul>
-                                                    <li><a href="blog-details.html">blog details</a></li>
-                                                    <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                    <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="contact.html">Liên Hệ</a></li>
+                                    <li><a href="{{ route('user.introduction')}}">Giới thiệu</a></li>
                                 </ul>
                             </nav>
                         </div>
