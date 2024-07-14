@@ -26,8 +26,8 @@ class CartRepository extends BaseRepository
     {
         return Cart::where('user_id', Auth::id())
             ->join('products', 'carts.product_id', '=', 'products.id')
-            ->select('products.*', 'carts.quantity as cart_quantity')
-            ->get();
+            ->select('products.*', 'carts.quantity as cart_quantity');
+            // ->get();
     }
     public function getCart()
     {
@@ -50,8 +50,8 @@ class CartRepository extends BaseRepository
             'carts.id as cart_id'
         )
         ->where('carts.user_id', Auth::id())
-        ->whereNull('carts.deleted_at')
-        ->get();
+        ->whereNull('carts.deleted_at');
+        // ->get();
     }
 }
 

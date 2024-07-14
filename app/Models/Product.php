@@ -52,9 +52,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id')->setEagerLoads([]);
     }
-    public function getWishlistAttribute()
-    {
-        $wishlist = Wishlist::where(['product_id' => $this->id, 'user_id' => auth()->id()])->first();
-        return $wishlist ? true : false;
-    }
+    // public function getWishlistAttribute()
+    // {
+    //     $wishlist = Wishlist::where(['product_id' => $this->id, 'user_id' => auth()->id()])->first();
+    //     return $wishlist ? true : false;
+    // }
 }
