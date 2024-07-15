@@ -1,7 +1,7 @@
 @extends('layouts.user.main-client')
 
 @section('content-client')
-    <style>
+        <style>
             .input-group-text {
                 display: flex;
                 justify-content: center;

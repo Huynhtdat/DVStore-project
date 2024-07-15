@@ -4,11 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\Api\LocationController;
-use App\Http\Controllers\User\SocialController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------

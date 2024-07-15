@@ -1,17 +1,17 @@
 @extends('layouts.user.main-client')
 
 @section('content-client')
-<style>
-.title-steps {
-  padding: 15px 25px;
-  font-weight: bold;
-  font-size: 20px;
-}
+    <style>
+        .title-steps {
+            padding: 15px 25px;
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-.text-notification {
-  font-size: 16px;
-}
-</style>
+        .text-notification {
+            font-size: 16px;
+        }
+    </style>
 
 <div class="container-fluid content-page">
   <div class="container">
