@@ -31,7 +31,7 @@
                             <ul>
                                 @foreach ($categories as $category)
                                 <li>
-                                    <input type="checkbox" class="checkboxx" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug">
+                                    <input type="radio" class="checkboxx" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug">
                                     <label for="acces" class="name-filter">{{ $category->name }}</label>
                                 </li>
                                 @endforeach
@@ -48,12 +48,12 @@
                         <div class="layere_categorie">
                             <ul>
                                 <li>
-                                    <input type="checkbox" class="checkboxx" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }}>
+                                    <input type="radio" class="checkboxx" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }}>
                                     <label for="acces" class="name-filter"> All </label>
                                 </li>
                                 @foreach ($brands as $brand)
                                 <li>
-                                    <input type="checkbox" class="checkboxx" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id">
+                                    <input type="radio" class="checkboxx" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id">
                                     <label for="acces" class="name-filter">{{ $brand->name }}</label>
                                 </li>
                                 @endforeach

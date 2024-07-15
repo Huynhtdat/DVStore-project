@@ -124,38 +124,7 @@ class OrderService
         $infomationUser['apartment_number'] = $infoUserOfOrder->address_apartment_number;
         $infomationUser['payment_name'] = $infoUserOfOrder->payment_name;
         $infomationUser['orders_transport_fee'] = $infoUserOfOrder->orders_transport_fee;
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/province');
-        $data = json_decode($response->body(), true);
-        foreach ($data['data'] as $item) {
-            if ($infoUserOfOrder->address_city == $item['ProvinceID']) {
-                $infomationUser['city'] = $item['NameExtension'][1];
-            }
-        }
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/district', [
-            'province_id' => $infoUserOfOrder->address_city,
-        ]);
-        $data = json_decode($response->body(), true);
-        foreach ($data['data'] as $item) {
-            if ($infoUserOfOrder->address_district == $item['DistrictID']) {
-                $infomationUser['district'] = $item['DistrictName'];
-            }
-        }
 
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/ward', [
-            'district_id' => $infoUserOfOrder->address_district,
-        ]);
-        $data = json_decode($response->body(), true);
-        foreach ($data['data'] as $item) {
-            if ($infoUserOfOrder->address_ward == $item['WardCode']) {
-                $infomationUser['ward'] = $item['NameExtension'][0];
-            }
-        }
         return [
             'title' => TextLayoutTitle("order_detail"),
             'order' => $order,

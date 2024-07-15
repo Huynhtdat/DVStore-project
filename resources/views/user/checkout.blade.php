@@ -103,20 +103,20 @@
                             <div class="info-order">
                                 <div class="d-flex justify-content-between">
                                     <span><strong>Tổng tiền sản phẩm:</strong></span>
-                                    <span id="total-product">{{ format_number_to_money(Cart::getTotal()) }}</span>
+                                    <span id="total-product">{{ format_number_to_money(Cart::getTotal()) }} VND</span>
                                 </div>
                             </div>
-                            <div class="info-order">
+                            {{-- <div class="info-order">
                                 <div class="d-flex justify-content-between">
                                     <span><strong>Phí vận chuyển:</strong></span>
                                     <span id="fee">0</span>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="info-order">
                                 <div class="d-flex justify-content-between">
                                     <span><strong>Tổng đơn hàng:</strong></span>
                                     <input id="total-order-input" value="" type="text" hidden>
-                                    <span id="total-order">{{ Cart::getTotal() }} VNĐ</span>
+                                    <span id="total-order">{{ format_number_to_money(Cart::getTotal()) }} VNĐ</span>
                                 </div>
                             </div>
                             <div class="payment-method mb-4">
