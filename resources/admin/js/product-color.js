@@ -53,14 +53,14 @@ $(document).ready(function () {
                 <div class="form-group">
                   <div class="preview">
                     <img id="img-preview" style="width: 60px" src="${urlImg + '/' + res.productColor.img}" />
-                    <label for="file-input-edit" id="lable-img">Image</label>
+                    <label for="file-input-edit" id="lable-img">Hình ảnh</label>
                     <input class="img-color" hidden accept="image/*" type="file" id="file-input-edit" name="img"/>
                   </div>
                 </div>
 				      </div>
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">CACEL</button>
-                <button type="submit" class="btn btn-primary">UPDATE</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
               </div>
           </form>
           `;
@@ -74,13 +74,13 @@ $(document).ready(function () {
 
     let url = $(this).attr('url-delete');
     Swal.fire({
-      title: "Are you sure you want to delete?",
+      title: "Bạn có chắc chắn muốn xóa?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'YES',
-      cancelButtonText: 'NO',
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
         // Display loading
@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         }).fail(() => {
           $('#loading__js').css('display', 'none');
-          fire1(toast1, 'error', 'An error occurred, please try again')
+          fire1(toast1, 'error', 'Có lỗi xảy ra, vui lòng thử lại')
           setTimeout(()=>{
             location.reload();
           }, 2000);

@@ -94,7 +94,7 @@ class ProductDetailService
             $totalRating += $rating->rating * $rating->sum;
             $totalNumberReview += $rating->sum;
         }
-        $avgRating = count($ratingsByProduct) > 0 ? $totalRating / $totalNumberReview : 5;
+        $avgRating = count($ratingsByProduct) > 0 ? $totalRating / $totalNumberReview : 0;
 
         //kiểm tra xem người dùng có được phép đánh giá sản phẩm không
         $checkReviewProduct = false;

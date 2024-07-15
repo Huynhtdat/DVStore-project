@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class BaseRepository
  * @package App\Repositories\Eloquent
  */
-class BaseRepository implements BaseRepositoryInterface 
+class BaseRepository implements BaseRepositoryInterface
 {
     /**
      * @var Model
@@ -26,7 +26,7 @@ class BaseRepository implements BaseRepositoryInterface
         $this->model = $model;
     }
 
-    /** 
+    /**
      * create the model in the database.
      * @param array $attributes
      *
@@ -37,7 +37,7 @@ class BaseRepository implements BaseRepositoryInterface
         return $this->model->create($attributes);
     }
 
-    /** 
+    /**
      * Update the model in the database.
      * @param array $attributes
      *
@@ -64,7 +64,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @param $ids
      * @return int
      */
-    public function destroy($ids): int 
+    public function destroy($ids): int
     {
         return $this->model->destroy($ids);
     }
@@ -81,7 +81,7 @@ class BaseRepository implements BaseRepositoryInterface
      * Delete the models for database.
      * @return bool
      */
-    public function delete(Model $model): bool 
+    public function delete(Model $model): bool
     {
         return $model->delete();
     }

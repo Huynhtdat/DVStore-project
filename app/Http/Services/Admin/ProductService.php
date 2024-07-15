@@ -339,7 +339,7 @@ class ProductService
         $productColors = ProductColor::where('product_id', $product->id)->get();
 
         return [
-            'title' => 'Product Color',
+            'title' => 'Màu của ' . $product->name,
             'colors' => $colors,
             'product' => $product,
             'productColors' => $productColors,
@@ -357,7 +357,7 @@ class ProductService
             if ($checkColorExist > 0) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'This color already exist'
+                    'message' => 'Mày này đã tồn tại'
                 ], 200);
             }
             //thêm màu vào databse
@@ -451,7 +451,7 @@ class ProductService
         $productColors = ProductColor::where('product_id', $product->id)->get();
 
         return [
-            'title' => 'Product Size',
+            'title' => 'Kích thước của ' . $product->name,
             'routeColor' => route('admin.products_color', $product->id),
             'routeProduct' => route('admin.products_edit', $product->id),
             'routeImage' => route('admin.products_image', $product->id),
@@ -557,7 +557,7 @@ class ProductService
         $productImages = ProductImage::where('product_id', $product->id)->whereNull('deleted_at')->get();
 
         return [
-            'title' => 'Image detail product',
+            'title' => 'Hình ảnh của ' . $product->name,
             'product' => $product,
             'productImages' => $productImages,
             'routeColor' => route('admin.products_color', $product->id),

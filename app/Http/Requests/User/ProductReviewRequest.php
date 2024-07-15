@@ -24,7 +24,17 @@ class ProductReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'rating' => 'required|integer|in:1,2,3,4,5',
+            'content' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'rating.in' => 'Điểm đánh giá chỉ từ 1 - 5',
+            'rating.required' => 'Điểm đánh giá không được bỏ trống',
+            'content' => 'Nội dung đánh giá không được bỏ trống'
         ];
     }
 }

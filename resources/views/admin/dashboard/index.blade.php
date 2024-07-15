@@ -15,22 +15,22 @@
             <x-box-dashboard :data="$orders" title="Tổng Đơn Hàng" route="donhang" boxtype="success"/>
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-6">
+          {{-- <div class="col-lg-4 col-6">
             <!-- small box -->
             <x-box-dashboard :data="$admins" title="Tổng Thành Viên" route="sanpham" boxtype="info"/>
-          </div>
-          <div class="col-lg-4 col-6">
+          </div> --}}
+          {{-- <div class="col-lg-4 col-6">
             <!-- small box -->
             <x-box-dashboard :data="$profit" title="Tổng Lợi Nhuận" route="loinhuan" boxtype="danger"/>
-          </div>
+          </div> --}}
           <div class="col-lg-4 col-6">
             <!-- small box -->
             <x-box-dashboard :data="$products" title="Tổng Sản Phẩm Tồn Kho" route="tonkho" boxtype="primary"/>
           </div>
-          <div class="col-lg-4 col-6">
+          {{-- <div class="col-lg-4 col-6">
             <!-- small box -->
             <x-box-dashboard :data="$users" title="Tổng Khách Hàng" route="khachhang" boxtype="warning"/>
-          </div>
+          </div> --}}
           <div class="col-md-12">
              <!-- STACKED BAR CHART -->
              <div class="card card-success">
