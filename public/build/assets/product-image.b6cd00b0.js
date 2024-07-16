@@ -28,7 +28,7 @@ $(document).ready(function() {
                     <div class="form-group">
                     <div class="preview">
                         <img id="img-preview" style="width: 60px" src="${s+"/"+o.productImage.img}" />
-                        <label for="file-input-edit" id="lable-img">Imgae Product</label>
+                        <label for="file-input-edit" id="lable-img">Hình ảnh</label>
                         <input class="img-product" hidden accept="image/*" type="file" id="file-input-edit" name="img"/>
                     </div>
                     </div>

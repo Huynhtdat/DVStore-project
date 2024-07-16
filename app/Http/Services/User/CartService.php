@@ -5,14 +5,8 @@ namespace App\Http\Services\User;
 use App\Helpers\admin\TextSystemConst;
 use App\Repository\Eloquent\ProductSizeRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\Cart as CartModel;
-use App\Models\Product;
-use App\Models\Color;
-use App\Models\ProductSize;
 use App\Repository\Eloquent\CartRepository;
-use Illuminate\Support\Facades\Redirect;
+use App\Repository\Eloquent\ProductRepository;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class CartService
@@ -21,6 +15,12 @@ class CartService
      * @var ProductSizeRepository
      */
     private $productSizeRepository;
+
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
+
 
     /**
      * @var CartRepository
@@ -33,20 +33,18 @@ class CartService
      *
      * @param ProductSizeRepository $categoryRepository
      */
-    public function __construct(ProductSizeRepository $productSizeRepository, CartRepository $cartRepository)
+    public function __construct(ProductSizeRepository $productSizeRepository, CartRepository $cartRepository, ProductRepository $productRepository)
     {
         $this->productSizeRepository = $productSizeRepository;
         $this->cartRepository = $cartRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function index()
     {
-        // $userId = Auth::id();
-
-        // $cartProducts = $this->cartRepository->getCart();
-
-
-        return ['carts' => Cart::getContent()];
+        // $userId = Auth::id()
+        $product = $this->productRepository->all();
+        return ['carts' => Cart::getContent(), 'product' => $product];
     }
 
     //thêm sản phẩm vào giỏ hàng
@@ -80,6 +78,7 @@ class CartService
             'price' => $product->product_price_sell,
             'quantity' => $request->quantity,
             'attributes' => array(
+                'product_id' => $product->product_id,
                 'image' => $product->product_img,
                 'size' => $product->size_name,
                 'color' => $product->color_name,

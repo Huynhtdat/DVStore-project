@@ -20,10 +20,10 @@
 <!--shopping cart area start -->
 <div class="shopping_cart_area">
     @if (count(\Cart::getContent()) <= 0)
-        <h3 class="text-center"> Giỏ hàng cảu bạn đang trống</h3>
+        <h3 class="text-center"> Giỏ hàng của bạn đang trống</h3>
         <div class="text-center" style="padding-top: 50px">
             <div class="col-md-12 wided-box text-center">
-                <button type="submit"><i class="btn btn-primary fa fa-shopping-cart"></i>Mua ngay</button>
+                <button type="submit"><i class="fa fa-shopping-cart"></i>Mua ngay</button>
             </div>
         </div>
     @else
@@ -36,7 +36,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="product_thumb">Hình ảnh</th>
+                                        <th class="product_thumb">hình ảnh</th>
                                         <th class="product_name">Sản phẩm</th>
                                         <th class="product-price">Giá</th>
                                         <th class="product_quantity">Số lượng</th>
@@ -45,15 +45,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ($carts as $cart)
                                         <tr>
                                             <td class="product_thumb">
-                                                <a href="">
-                                                    <img style="max-width: 50%;" src="{{ asset('asset/client/images/products/small/' . $cart->attributes->image) }}" alt="Product Image">
-                                                </a>
+                                                <a href="#"><img style="max-width: 50%;" src="{{ asset('asset/client/images/products/small/' . $cart->attributes->image) }}" alt="Product Image"></a>
                                             </td>
                                             <td class="product_name">
-                                                <a href="">
+                                                <a href=" {{ route('user.products_detail', ['product' => $cart->attributes->product_id])}}">
                                                     {{ $cart->name }}
                                                     <p>Màu sắc: <strong>{{ $cart->attributes->color }}</strong></p>
                                                     <p>Kích thước: <strong>{{ $cart->attributes->size }}</strong></p>

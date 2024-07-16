@@ -38,7 +38,7 @@ class CategoryService
     public function index()
     {
         // Get list category
-        $list = Category::where('parent_id', '!=', 0)->get();
+        $list = Category::where('parent_id', '!=', 0)->orderBy('id', 'desc')->get();
         $tableCrud = [
             'headers' => [
                 [

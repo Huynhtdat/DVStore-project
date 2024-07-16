@@ -4,9 +4,7 @@ namespace App\Http\Services\Admin;
 
 use App\Helpers\admin\TextSystemConst;
 use App\Http\Requests\Admin\StoreAdminRequest;
-use App\Http\Requests\Admin\StoreStaffRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
-use App\Http\Requests\Admin\UpdateStaffRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserVerify;
@@ -310,18 +308,9 @@ class AdminService
                 'apartment_number' => $data['apartment_number'],
             ];
 
-            $token = Str::random(64);
-            $time = Config::get('auth.verification.expire.resend', 60);
-            DB::beginTransaction();
+
             $user = $this->userRepository->create($userData);
-            UserVerify::updateOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'token' => $token,
-                    'expires_at' => Carbon::now()->addMinutes($time),
-                ]
-            );
-            $user->notify(new VerifyUser($token));
+
             $addressData['user_id'] = $user->id;
             $adminData['user_id'] = $user->id;
             $this->addressRepository->updateOrCreate($addressData);
@@ -463,45 +452,39 @@ class AdminService
             // Messages eror rules
             $messages = [
                 'name' => [
-                    'required' => __('message.required', ['attribute' => 'Họ và tên']),
-                    'minlength' => __('message.min', ['min' => 1, 'attribute' => 'Họ và tên']),
-                    'maxlength' => __('message.max', ['max' => 30, 'attribute' => 'Họ và tên']),
+                    'required' => 'Vui lòng nhập họ tên đầy đủ của bạn',
+                    'minlength' => 'Họ tên phải có ít nhất 1 ký tự',
+                    'maxlength' => 'Họ tên không được dài quá 24 ký tự',
                 ],
                 'email' => [
-                    'required' => __('message.required', ['attribute' => 'email']),
-                    'email' => __('message.email'),
+                    'required' => 'Vui lòng nhập email của bạn',
+                    'email' => 'Địa chỉ email không hợp lệ',
                 ],
                 'password' => [
-                    'required' => __('message.required', ['attribute' => 'mật khẩu']),
-                    'minlength' => __('message.min', ['attribute' => 'Mật khẩu', 'min' => 8]),
-                    'maxlength' => __('message.max', ['attribute' => 'Mật khẩu', 'max' => 24]),
-                    'checklower' => __('message.password.at_least_one_lowercase_letter_is_required'),
-                    'checkupper' => __('message.password.at_least_one_uppercase_letter_is_required'),
-                    'checkdigit' => __('message.password.at_least_one_digit_is_required'),
-                    'checkspecialcharacter' => __('message.password.at_least_special_characte_is_required'),
+                    'required' => 'Vui lòng nhập mật khẩu của bạn',
+                    'minlength' => 'Mật khẩu phải có ít nhất 8 ký tự',
+                    'maxlength' => 'Mật khẩu không được dài quá 24 ký tự',
+                    'checklower' => 'Mật khẩu phải chứa ít nhất một chữ cái thường',
+                    'checkupper' => 'Mật khẩu phải chứa ít nhất một chữ cái viết hoa',
+                    'checkdigit' => 'Mật khẩu phải chứa ít nhất một chữ số',
+                    'checkspecialcharacter' => 'Mật khẩu phải chứa ít nhất một ký tự đặc biệt (%, #, @, _, /, -)',
                 ],
                 'phone_number' => [
-                    'required' => __('message.required', ['attribute' => 'số điện thoại']),
-                    'minlength' => __('message.min', ['attribute' => 'số điện thoại', 'min' => 10]),
-                    'maxlength' => __('message.max', ['attribute' => 'số điện thoại', 'max' => 10]),
+                    'required' => 'Vui lòng nhập số điện thoại của bạn',
+                    'minlength' => 'Số điện thoại phải có ít nhất 10 ký tự',
+                    'maxlength' => 'Số điện thoại không được dài quá 10 ký tự',
                 ],
                 'city' => [
-                    'required' =>  __('message.required', ['attribute' => 'tỉnh, thành phố']),
+                    'required' => 'Vui lòng nhập tỉnh, thành phố của bạn',
                 ],
-                'district' =>[
-                    'required' =>  __('message.required', ['attribute' => 'quận, huyện']),
+                'district' => [
+                    'required' => 'Vui lòng nhập quận, huyện của bạn',
                 ],
                 'ward' => [
-                    'required' => __('message.required', ['attribute' => 'phường, xã']),
+                    'required' => 'Vui lòng nhập phường, xã của bạn',
                 ],
                 'apartment_number' => [
-                    'required' =>  __('message.required', ['attribute' => 'số nhà']),
-                ],
-                'role_id' => [
-                    'required' => __('message.required', ['attribute' => 'vai trò']),
-                ],
-                'role_id' => [
-                    'required' => __('message.required', ['attribute' => 'trạng thái']),
+                    'required' => 'Vui lòng nhập số nhà của bạn',
                 ],
             ];
 
@@ -532,7 +515,6 @@ class AdminService
                 'password' => $data['password'],
                 'phone_number' => $data['phone_number'],
                 'role_id' => $data['role_id'],
-                'updated_by' => Auth::guard('admin')->user()->id,
                 'active' => $data['active'],
                 'disable_reason' => $data['disable_reason'],
             ];
@@ -591,9 +573,9 @@ class AdminService
     {
         try{
             $user = $this->userRepository->find($request->id);
-            if ($user->id == Auth::guard('admin')->user()->id) {
-                return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
-            }
+            // if ($user->id == Auth::guard('admin')->user()->id) {
+            //     return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
+            // }
 
             if($this->userRepository->delete($user) && $this->adminRepository->delete($user->admin)) {
                 $this->userRepository->update(

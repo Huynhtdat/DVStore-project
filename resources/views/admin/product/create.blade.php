@@ -28,14 +28,6 @@
                       name="name"
                       class="form-control">
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Price Import" col="col-6" width="auto">
-                    <input
-                      id="price_import"
-                      type="number"
-                      min="1"
-                      name="price_import"
-                      class="form-control">
-                  </x-admin-input-prepend>
                   <x-admin-input-prepend label="Price Sell" col="col-6" width="auto">
                     <input
                       id="price_sell"
@@ -57,7 +49,7 @@
                       @endforeach
                     </select>
                   </x-admin-input-prepend>
-                  <x-admin-input-prepend label="Category" width="auto">
+                  <x-admin-input-prepend label="Category" width="auto" col="col-6">
                     <select class="form-control" name="category_id" id="category_id" route="{{ route('admin.category_by_parent') }}">
 
                     </select>

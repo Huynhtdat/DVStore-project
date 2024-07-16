@@ -35,7 +35,7 @@ $(document).ready(function() {
                             <div class="form-group col-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend" style="width:auto;">
-                                        <span class="input-group-text" style="width:100%;">Color</span>
+                                        <span class="input-group-text" style="width:100%;">Màu</span>
                                     </div>
                                     <select class="form-control" name="color_id" id="color_id_edit">
                                         ${i}
@@ -46,8 +46,8 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
-                        <button type="submit" class="btn btn-primary">update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </form>
             `;
@@ -61,13 +61,13 @@ $(document).ready(function() {
     $(document).on("click", ".delete", function() {
         let e = $(this).attr("url-delete");
         a.fire({
-            title: "Are you sure you want to delete?",
+            title: "Bạn có chắc chắn muốn xóa?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "YES",
-            cancelButtonText: "NO"
+            confirmButtonText: "Có",
+            cancelButtonText: "Không"
         }).then(s => {
             if (s.isConfirmed) {
                 $("#loading__js").css("display", "flex");
@@ -86,7 +86,7 @@ $(document).ready(function() {
                     }
                 }).fail(() => {
                     $("#loading__js").css("display", "none");
-                    r(n, "error", "An error occurred, please try again");
+                    r(n, "error", "Có lỗi xảy ra, vui lòng thử lại sau");
                     setTimeout(() => {
                         location.reload();
                     }, 2000);

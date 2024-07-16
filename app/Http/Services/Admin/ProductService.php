@@ -142,9 +142,7 @@ class ProductService
                 'name' => [
                     'required' => true,
                 ],
-                'price_import' => [
-                    'required' => true,
-                ],
+
                 'price_sell' => [
                     'required' => true,
                 ],
@@ -169,9 +167,6 @@ class ProductService
             $messages = [
                 'name' => [
                     'required' => "Vui lòng nhập tên sản phẩm",
-                ],
-                'price_import' => [
-                    'required' => "Vui lòng nhập giá nhập sản phẩm",
                 ],
                 'price_sell' => [
                     'required' => "Vui lòng nhập giá bán sản phẩm",
@@ -226,9 +221,7 @@ class ProductService
             'name' => [
                 'required' => true,
             ],
-            'price_import' => [
-                'required' => true,
-            ],
+
             'price_sell' => [
                 'required' => true,
             ],
@@ -254,9 +247,7 @@ class ProductService
             'name' => [
                 'required' => "Vui lòng nhập tên sản phẩm",
             ],
-            'price_import' => [
-                'required' => "Vui lòng nhập giá nhập của sản phẩm",
-            ],
+
             'price_sell' => [
                 'required' => "Vui lòng nhập giá bán của sản phẩm",
             ],

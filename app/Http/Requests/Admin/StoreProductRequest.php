@@ -25,7 +25,7 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'price_import' => 'required|integer',
+
             'price_sell' => 'required|integer',
             'brand_id' => 'required|integer',
             'category_id' => 'required|integer',
@@ -38,7 +38,7 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name.required' => "Please enter the product name", // Vui lòng nhập tên sản phẩm
-            'price_import.required' => "Please enter the import price of the product", // Vui lòng nhập giá nhập của sản phẩm
+
             'price_sell.required' => "Please enter the selling price of the product", // Vui lòng nhập giá bán của sản phẩm
             'brand_id.required' => "Please select the product brand", // Vui lòng chọn thương hiệu của sản phẩm
             'category.required' => "Please select the product category", // Vui lòng chọn danh mục của sản phẩm
