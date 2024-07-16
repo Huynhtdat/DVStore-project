@@ -129,13 +129,13 @@
                             </div>
                             <div class="list-group">
                                 @foreach ($payments as $payment)
-                                <div class="list-group-item list-group-item-action d-flex align-items-center">
-                                    <input class="form-check-input" style="width: 3em; height: 1.2em; margin-right: 3em;" type="radio" value="{{ $payment->id }}" name="payment_method" id="{{ $payment->id }}">
-                                    <img src="{{ asset("asset/imgs/$payment->img") }}" alt="{{ $payment->name }}" class="img-fluid ms-4 me-2" style="max-height: 40px; margin-left: 1.5em; margin-right: 0.5em;">
-                                    <label class="form-check-label flex-grow-1 mb-0" for="{{ $payment->id }}">
-                                        {{ $payment->name }}
-                                    </label>
-                                </div>
+                                    <div class="list-group-item list-group-item-action d-flex align-items-center">
+                                        <input class="form-check-input" style="width: 3em; height: 1.2em; margin-right: 3em;" type="radio" value="{{ $payment->id }}" name="payment_method" id="{{ $payment->id }}">
+                                        <img src="{{ asset("asset/imgs/$payment->img") }}" alt="{{ $payment->name }}" class="img-fluid ms-4 me-2" style="max-height: 40px; margin-left: 1.5em; margin-right: 0.5em;">
+                                        <label class="form-check-label flex-grow-1 mb-0" for="{{ $payment->id }}">
+                                            {{ $payment->name }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                             <div class="text-center mt-4">

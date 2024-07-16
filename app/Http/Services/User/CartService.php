@@ -22,7 +22,7 @@ class CartService
      */
     private $productSizeRepository;
 
-     /**
+    /**
      * @var CartRepository
      */
     private $cartRepository;
@@ -55,14 +55,14 @@ class CartService
         // lấy thông tin sản phẩm
         $product = $this->productSizeRepository->getProductSize($request->id);
         // kiểm tra xem sản phẩm được thêm vào giỏ hàng có tồn tại không
-        if (! $product) {
+        if (!$product) {
             return redirect()->route('user.home');
         }
         // lấy toàn bộ sản phẩm có trong giỏ hàng
         $carts = Cart::getContent()->toArray();
 
         //Nếu giỏ hàng không rỗng và kiểm tra xem sản phẩm được thêm có tồn tại trong giỏ hàng chưa
-        if (! empty($carts) && array_key_exists($request->id, $carts)) {
+        if (!empty($carts) && array_key_exists($request->id, $carts)) {
             // khi thêm vào nếu số lượng vượt quá trong kho thì sẽ báo lỗi
             if ($carts[$request->id]['quantity'] + $request->quantity > $product->products_size_quantity) {
                 return back()->with('error', TextSystemConst::ADD_CART_ERROR_QUANTITY);
@@ -126,6 +126,10 @@ class CartService
     // cập nhật giỏ hàng
     public function update(Request $request)
     {
+        $request->validate([
+            'quantity.*' => 'required|integer|min:1|max:100',
+        ]);
+
         foreach ($request->id as $index => $id) {
             $quantity = $request->quantity[$index];
             $product = $this->productSizeRepository->getProductSize($id);
@@ -147,27 +151,27 @@ class CartService
 
         return redirect()->route('cart.index');
 
-    // Lấy danh sách các sản phẩm và số lượng từ request
-    // $quantities = $request->input('quantities', []);
-    // $productIds = $request->input('ids', []);
+        // Lấy danh sách các sản phẩm và số lượng từ request
+        // $quantities = $request->input('quantities', []);
+        // $productIds = $request->input('ids', []);
 
-    // // Lặp qua từng sản phẩm để kiểm tra và cập nhật
-    // foreach ($quantities as $productId => $quantity) {
-    //     $product = $this->productSizeRepository->getProductSize($productId);
+        // // Lặp qua từng sản phẩm để kiểm tra và cập nhật
+        // foreach ($quantities as $productId => $quantity) {
+        //     $product = $this->productSizeRepository->getProductSize($productId);
 
-    //     // Nếu số lượng yêu cầu lớn hơn số lượng có sẵn trong kho, trả về lỗi
-    //     if ($quantity > $product->products_size_quantity) {
-    //         return back()->with('error', TextSystemConst::ADD_CART_ERROR_QUANTITY);
-    //     }
+        //     // Nếu số lượng yêu cầu lớn hơn số lượng có sẵn trong kho, trả về lỗi
+        //     if ($quantity > $product->products_size_quantity) {
+        //         return back()->with('error', TextSystemConst::ADD_CART_ERROR_QUANTITY);
+        //     }
 
-    //     // Cập nhật số lượng trong bảng carts
-    //     $userId = Auth::id();
-    //     Cart::where('user_id', $userId)
-    //         ->where('product_id', $productId)
-    //         ->update(['quantity' => $quantity]);
-    // }
+        //     // Cập nhật số lượng trong bảng carts
+        //     $userId = Auth::id();
+        //     Cart::where('user_id', $userId)
+        //         ->where('product_id', $productId)
+        //         ->update(['quantity' => $quantity]);
+        // }
 
-    // return redirect()->route('cart.index')->with('success', 'Cart updated successfully.');
+        // return redirect()->route('cart.index')->with('success', 'Cart updated successfully.');
     }
 
 
@@ -197,5 +201,3 @@ class CartService
         return redirect()->route('cart.index');
     }
 }
-
-?>
