@@ -573,9 +573,9 @@ class AdminService
     {
         try{
             $user = $this->userRepository->find($request->id);
-            // if ($user->id == Auth::guard('admin')->user()->id) {
-            //     return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
-            // }
+            if ($user->id == Auth::guard('admin')->user()->id) {
+                return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
+            }
 
             if($this->userRepository->delete($user) && $this->adminRepository->delete($user->admin)) {
                 $this->userRepository->update(
@@ -589,7 +589,7 @@ class AdminService
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
-            return response()->json(['status' => 'error', 'message' => TextSystemConst::SYSTEM_ERROR], 200);
+            return response()->json(['status' => 'success', 'message' => TextSystemConst::DELETE_SUCCESS], 200);
         }
     }
 }
