@@ -90,49 +90,57 @@
                         <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">LỌC SẢN PHẨM</button>
                     </div>
                 </div>
-                <br></br>
                 <div class="col-lg-9">
-                <!--shop tab product-->
-                <div class="shop_tab_product">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="large" role="tabpanel">
-                            <div class="row">
-                                @if (count($products) > 0)
-                                    @foreach ($products as $product)
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="single_product">
-                                            <div class="product_thumb">
-                                                <a href="{{ route('user.products_detail', $product->id) }}">
-                                                    <img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt=""></a>
-                                                <div class="product_action">
+                    <!--shop tab product-->
+                    <div class="shop_tab_product">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="large" role="tabpanel">
+                                <div class="row">
+                                    @if (count($products) > 0)
+                                        @foreach ($products as $product)
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="single_product">
+                                                <div class="product_thumb">
+                                                    <a href="{{ route('user.products_detail', $product->id) }}">
+                                                        <img src="{{ asset("asset/client/images/products/small/$product->img") }}" alt=""></a>
+                                                    <div class="product_action">
 
+                                                    </div>
+                                                </div>
+                                                <div class="product_content">
+                                                    <span class="product_price">{{ format_number_to_money($product->price_sell) }} VNĐ</span>
+                                                    <h3 class="product_title"><a href="{{ route('user.products_detail', $product->id) }}">
+                                                        {{ $product->name }}</a></h3>
+                                                </div>
+                                                <div class="product_info">
+                                                    <ul>
+                                                        <li><a href="{{ route('user.products_detail', $product->id) }}" title="">Xem chi tiết</a></li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <div class="product_content">
-                                                <span class="product_price">{{ format_number_to_money($product->price_sell) }} VNĐ</span>
-                                                <h3 class="product_title"><a href="{{ route('user.products_detail', $product->id) }}">
-                                                    {{ $product->name }}</a></h3>
-                                            </div>
-                                            <div class="product_info">
-                                                <ul>
-                                                    <li><a href="{{ route('user.products_detail', $product->id) }}" title="">Xem chi tiết</a></li>
-                                                </ul>
+                                        </div>
+                                        @endforeach
+                                    @else
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h1 class="not-found-message text-right">Không tìm thấy sản phẩm</h1>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    @endforeach
-                                @else
-                                    <h3 class="title" style="padding-top: 20px;">Không tìm thấy sản phẩm</h3>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
 </div>
+<br></br>
 
 <!--pos home section end-->
 

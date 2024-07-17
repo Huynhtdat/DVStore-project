@@ -57,7 +57,7 @@
   .review__comment-header--title{
     font-size: 16px;
     color: #7e592a;
-    font-weight: 500; 
+    font-weight: 500;
   }
   .review__comment-author{
     color: #84c52c;
@@ -68,7 +68,7 @@
   .review__comment-time{
     font-size: 14px;
     color: #cebda2;
-    padding-top: 10px; 
+    padding-top: 10px;
   }
 
   .review__comment-content{
