@@ -146,10 +146,10 @@
                     <h4>Share on:</h4>
                     <ul>
                         <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                        <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fab fa-tumblr"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
                 <!-- Yêu thích sản phẩm -->

@@ -21,65 +21,71 @@
     <div class="row pos_home">
         <form method="get">
             <div class="row">
-                <div class="col-lg-3" >
+                <div class="col-lg-3">
                     <!-- Category Section -->
-                    <div class="sidebar_widget shop_c " style="margin-left: 2rem;" >
-                        <div class="categorie__titile">
-                            <h4 class="title">Danh mục</h4>
-                        </div>
-                        <div class="layere_categorie">
-                            <ul>
-                                @foreach ($categories as $category)
-                                <li>
-                                    <input type="radio" class="checkboxx" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug">
-                                    <label for="acces" class="name-filter">{{ $category->name }}</label>
-                                </li>
-                                @endforeach
-                            </ul>
+                    <div class="card mb-3" style="margin-left: 2rem;">
+                        <div class="card-body">
+                            <div class="categorie__titile">
+                                <h4 class="card-title">Danh mục</h4>
+                            </div>
+                            <div class="layere_categorie ml-3">
+                                <ul class="list-unstyled">
+                                    @foreach ($categories as $category)
+                                    <li class="mb-2">
+                                        <input type="radio" class="form-check-input me-2" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug" id="category-{{ $category->id }}">
+                                        <label for="category-{{ $category->id }}" class="form-check-label">{{ $category->name }}</label>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <!-- Category Section End -->
 
                     <!-- Brand Section -->
-                    <div class="sidebar_widget shop_c" style="margin-left: 2rem;">
-                        <div class="categorie__titile">
-                            <h4 class="title">Thương hiệu</h4>
-                        </div>
-                        <div class="layere_categorie">
-                            <ul>
-                                <li>
-                                    <input type="radio" class="checkboxx" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }}>
-                                    <label for="acces" class="name-filter"> All </label>
-                                </li>
-                                @foreach ($brands as $brand)
-                                <li>
-                                    <input type="radio" class="checkboxx" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id">
-                                    <label for="acces" class="name-filter">{{ $brand->name }}</label>
-                                </li>
-                                @endforeach
-                            </ul>
+                    <div class="card mb-3" style="margin-left: 2rem;">
+                        <div class="card-body">
+                            <div class="categorie__titile">
+                                <h4 class="card-title">Thương hiệu</h4>
+                            </div>
+                            <div class="layere_categorie ml-3">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <input type="radio" class="form-check-input me-2" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }} id="brand-all">
+                                        <label for="brand-all" class="form-check-label">All</label>
+                                    </li>
+                                    @foreach ($brands as $brand)
+                                    <li class="mb-2">
+                                        <input type="radio" class="form-check-input me-2" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id" id="brand-{{ $brand->id }}">
+                                        <label for="brand-{{ $brand->id }}" class="form-check-label">{{ $brand->name }}</label>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                     <!-- Brand Section End -->
 
                     <!-- Price Filter Section -->
-                    <div class="price-filter leftbar" style="width: 100%; margin-left: 2rem;">
-                        <h4 class="title">Price</h4>
-                        <div class="d-flex">
-                            <input id="min-price" type="text" value="{{ $request->min_price ?? '' }}" class="form-control mr-2" placeholder="From" name="min_price">
-                            <span class="separate">_</span>
-                            <input id="max-price" type="text" value="{{ $request->max_price ?? '' }}" class="form-control ml-2" placeholder="To" name="max_price">
+                    <div class="card mb-3" style="margin-left: 2rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">KHOẢNG GIÁ</h5>
+                            <div class="d-flex align-items-center">
+                                <input id="min-price" type="text" value="{{ $request->min_price ?? '' }}" class="form-control me-2" placeholder="Từ" name="min_price">
+                                <span class="separate">_</span>
+                                <input id="max-price" type="text" value="{{ $request->max_price ?? '' }}" class="form-control ms-2" placeholder="Đến" name="max_price">
+                            </div>
                         </div>
                     </div>
-
                     <!-- Price Filter Section End -->
 
                     <!-- Filter Button -->
-                    <div class="d-flex justify-content-center mt-3">
-                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">Lọc sản phẩm</button>
+                    <div class="d-flex justify-content-center mt-3" style="margin-left: 2rem;">
+                        <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">LỌC SẢN PHẨM</button>
                     </div>
-
                 </div>
+
 
                 <div class="col-lg-9">
                 <!--shop tab product-->
