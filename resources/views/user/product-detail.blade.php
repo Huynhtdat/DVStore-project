@@ -135,15 +135,26 @@
                                 <input type="number" value="1" min="1" name="quantity" class="form-control ml-2" style="max-width: 70px;">
                             </div>
                         </div>
-                        <div class="col-md-12 text-center mb-3">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-                            </button>
-                        </div>
+                            <div class="col-md-8 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                @if(auth()->check())
+                                    <div class="favorite-action">
+                                        @if($product->wishlist)
+                                            <a title="Bỏ thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="fas fa-heart"></i></a>
+                                        @else
+                                            <a title="Yêu thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="far fa-heart"></i></a>
+                                        @endif
+                                    </div>
+                                @endif
+                            </div>
                     </div>
-                </form>
+                </form><br></br>
                 <div class="wishlist-share">
-                    <h4>Share on:</h4>
+                    <h4>Chia sẻ:</h4>
                     <ul>
                         <li><a href="#"><i class="fa fa-rss"></i></a></li>
                         <li><a href="#"><i class="fab fa-vimeo"></i></a></li>
@@ -152,16 +163,6 @@
                         <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
-                <!-- Yêu thích sản phẩm -->
-                    @if(auth()->check())
-                        <div class="favorite-action">
-                            @if($product->wishlist)
-                                <a title="Bỏ thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="fas fa-heart"></i></a>
-                            @else
-                                <a title="Yêu thích" href="{{ route('wishlist.toggle', $product->id) }}"><i class="far fa-heart"></i></a>
-                            @endif
-                        </div>
-                    @endif
             </div>
         </div>
     </div>

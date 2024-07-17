@@ -29,11 +29,13 @@
                                 <h4 class="card-title">Danh mục</h4>
                             </div>
                             <div class="layere_categorie ml-3">
-                                <ul class="list-unstyled">
+                               <ul class="list-unstyled">
                                     @foreach ($categories as $category)
                                     <li class="mb-2">
-                                        <input type="radio" class="form-check-input me-2" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug" id="category-{{ $category->id }}">
-                                        <label for="category-{{ $category->id }}" class="form-check-label">{{ $category->name }}</label>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input me-2" value="{{ $category->slug }}" {{ ($categorySlug == $category->slug) ? 'checked' : '' }} name="category_slug" id="category-{{ $category->id }}">
+                                            <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
+                                        </div>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -51,18 +53,21 @@
                             <div class="layere_categorie ml-3">
                                 <ul class="list-unstyled">
                                     <li class="mb-2">
-                                        <input type="radio" class="form-check-input me-2" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }} id="brand-all">
-                                        <label for="brand-all" class="form-check-label">All</label>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input me-2" value="" name="brand_id" {{ ($request->brand_id == '') ? 'checked' : '' }} id="brand-all">
+                                            <label class="form-check-label" for="brand-all">All</label>
+                                        </div>
                                     </li>
                                     @foreach ($brands as $brand)
                                     <li class="mb-2">
-                                        <input type="radio" class="form-check-input me-2" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id" id="brand-{{ $brand->id }}">
-                                        <label for="brand-{{ $brand->id }}" class="form-check-label">{{ $brand->name }}</label>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input me-2" value="{{ $brand->id }}" {{ ($request->brand_id == $brand->id) ? 'checked' : '' }} name="brand_id" id="brand-{{ $brand->id }}">
+                                            <label class="form-check-label" for="brand-{{ $brand->id }}">{{ $brand->name }}</label>
+                                        </div>
                                     </li>
                                     @endforeach
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                     <!-- Brand Section End -->
@@ -85,8 +90,7 @@
                         <button id="filter-price" url="{{ $request->fullUrl() }}" class="btn btn-primary">LỌC SẢN PHẨM</button>
                     </div>
                 </div>
-
-
+                <br></br>
                 <div class="col-lg-9">
                 <!--shop tab product-->
                 <div class="shop_tab_product">
