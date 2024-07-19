@@ -86,7 +86,7 @@ class CartService
         ]);
 
         // chuyển hướng người dùng đến trang giỏ hàng
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.index')->with('success', 'Đã thêm sản phẩm vào giỏ hàng thành công');
 
         // lấy thông tin sản phẩm
         // $product = $this->productSizeRepository->getProductSize($request->id);
@@ -126,7 +126,7 @@ class CartService
     public function update(Request $request)
     {
         $request->validate([
-            'quantity.*' => 'required|integer|min:1|max:100',
+            'quantity.*' => 'required|integer|min:1|max:30',
         ]);
 
         foreach ($request->id as $index => $id) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
+use App\Helpers\admin\TextSystemConst;
 use Brian2694\Toastr\Toastr;
 use App\Http\Services\User\WishlistService;
 
@@ -63,10 +64,10 @@ class WishlistController extends Controller
         $wishlist = Wishlist::where(['product_id' => $productId, 'user_id' => auth()->id()])->first();
         if ($wishlist) {
             $wishlist->delete();
-            return redirect()->back()->with('ok', 'Bạn đã bỏ yêu thích sản phẩm');
+            return back()->with('error', 'Đã xóa khỏi danh sách yêu thích');
         } else {
             Wishlist::create($data);
-            return redirect()->back()->with('ok', 'Bạn đã yêu thích sản phẩm');
+            return back()->with('success', 'Đã thêm vào danh sách yêu thích');
         }
     }
 }

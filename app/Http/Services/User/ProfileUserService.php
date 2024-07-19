@@ -52,26 +52,9 @@ class ProfileUserService
         $phoneNumber = old('phone_number') ?? Auth::user()->phone_number;
         $fullName = old('full_name') ?? Auth::user()->name;
         $email = old('email') ?? Auth::user()->email;
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/province');
-        $citys = json_decode($response->body(), true);
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/district', [
-            'province_id' => $city,
-        ]);
-        $districts = json_decode($response->body(), true);
-        $response = Http::withHeaders([
-            'token' => '24d5b95c-7cde-11ed-be76-3233f989b8f3'
-        ])->get('https://online-gateway.ghn.vn/shiip/public-api/master-data/ward', [
-            'district_id' => $district,
-        ]);
-        $wards = json_decode($response->body(), true);
+
         return [
-            'citys' => $citys['data'],
-            'districts' => $districts['data'],
-            'wards' => $wards['data'],
+
             'city' => $city,
             'district' => $district,
             'ward' => $ward,
@@ -148,4 +131,3 @@ class ProfileUserService
         }
     }
 }
-?>

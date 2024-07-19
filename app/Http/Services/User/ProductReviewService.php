@@ -37,9 +37,9 @@ class ProductReviewService
     {
         try {
             $data = $request->validated();
-            if ($this->checkProductReview($product)){
-                return back()->with('error', "Đánh giá thất bại vui lòng thử lại");
-            }
+            // if ($this->checkProductReview($product)){
+            //     return back()->with('error', "Đánh giá thất bại vui lòng thử lại");
+            // }
             $data['user_id'] = Auth::user()->id;
             $data['product_id'] = $product->id;
             $this->productReviewReprository->create($data);
@@ -52,7 +52,7 @@ class ProductReviewService
 
     public function checkProductReview(Product $product)
     {
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             return false;
         }
         $user = Auth::user();
@@ -67,15 +67,15 @@ class ProductReviewService
         return true;
     }
 
-     /**
+    /**
      * delete the user in the database.
      * @param Illuminate\Http\Request; $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function delete(Request $request)
     {
-        try{
-            if($this->productReviewReprository->delete($this->productReviewReprository->find($request->id))) {
+        try {
+            if ($this->productReviewReprository->delete($this->productReviewReprository->find($request->id))) {
                 return response()->json(['status' => 'success', 'message' => TextSystemConst::DELETE_SUCCESS], 200);
             }
 
@@ -86,4 +86,3 @@ class ProductReviewService
         }
     }
 }
-?>

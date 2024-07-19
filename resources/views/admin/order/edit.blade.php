@@ -115,7 +115,7 @@
       </div>
     </div>
   </div>
-  <x-modal-view-detail size="modal-lg" title="Order processing">
+  <x-modal-view-detail size="modal-lg" title="Xác nhận hóa đơn">
     <form action="{{ route('admin.orders_update', $order->id) }}" method="post">
       @csrf
       <div class="form-group">
